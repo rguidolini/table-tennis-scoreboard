@@ -201,7 +201,7 @@ function createOverlays() {
   maxScale['fancy'] = 1.0;
 
   var scoreboard = gapi.hangout.av.effects.createImageResource(
-      'https://rguidolini.appspot.com/static/scoreboard/images/gtvlogo.png');
+      'https://table-tennis-scoreboard.googlecode.com/git/images/gtvlogo.png');
   overlays['scoreboard'] = scoreboard.createOverlay();
   overlays['scoreboard'].setScale(
       0.26, gapi.hangout.av.effects.ScaleReference.WIDTH);

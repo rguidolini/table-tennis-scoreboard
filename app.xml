@@ -9,7 +9,7 @@
 
 <html>
 <link rel="stylesheet" type="text/css"
-      href="https://rguidolini.appspot.com/static/scoreboard/css/style.css" />
+      href="https://table-tennis-scoreboard.googlecode.com/git/css/style.css" />
 <head>
 	<title>Ping Pong</title>
 	<meta http-equiv="Content-Type" content="text/html; charset = iso-8859-1" />
@@ -136,13 +136,13 @@ function init() {
 gadgets.util.registerOnLoadHandler(init);
 </script>
 
-<script src="https://rguidolini.appspot.com/static/scoreboard/js/scoreboard.js">
+<script src="https://table-tennis-scoreboard.googlecode.com/git/js/scoreboard.js">
 </script>
-<script src="https://rguidolini.appspot.com/static/scoreboard/js/chronometer.js">
+<script src="https://table-tennis-scoreboard.googlecode.com/git/js/chronometer.js">
 </script>
-<script src="https://rguidolini.appspot.com/static/scoreboard/js/gtvlogo.js">
+<script src="https://table-tennis-scoreboard.googlecode.com/git/js/gtvlogo.js">
 </script>
-<script src="https://rguidolini.appspot.com/static/scoreboard/js/main.js">
+<script src="https://table-tennis-scoreboard.googlecode.com/git/js/main.js">
 </script>
 
 
