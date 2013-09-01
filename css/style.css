@@ -1,0 +1,106 @@
+body, html{
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+label {
+  padding-top: 2px;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: bolder;
+  line-height: 21px;
+}
+
+input[type=text] {
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  border-radius: 1px;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+  padding: 2px 5px;
+  width: 150px;
+}
+
+input[type=text]:hover {
+  border: 1px solid #b9b9b9;
+  border-top: 1px solid #a0a0a0;
+  box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);
+}
+
+input[type=text]:focus {
+  border: 1px solid #4d90fe;
+  box-shadow: inset 0px 1px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: inset 0px 1px 2px rgba(0,0,0,0.3);
+  -webkit-box-shadow: inset 0px 1px 2px rgba(0,0,0,0.3);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.button {
+  background-color: #e5e5e5;
+  background-image: -webkit-linear-gradient(top,#e5e5e5,#f1f1f1);
+  color: #444;
+  border: 1px solid rgba(0,0,0,0.1);
+  text-shadow: 0 1px rgba(0,0,0,0.1);
+  text-transform: uppercase;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  cursor: default;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  height: 25px;
+  line-height: 25px;
+  outline: 0;
+  padding: 0 8px;
+  font-family: arial,sans-serif;
+}
+
+.button:active {
+	background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333)); 
+	background: -moz-linear-gradient(bottom, #ddd, #aaa);
+}
+
+.button:hover {
+  background-color: #f5f5f5;
+  background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
+}
+
+.error-box {
+  background-color: #dd4b39;
+  background-image: linear-gradient(to bottom,#dd4b39,#d14836);
+  border: 1px solid #602019;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  text-align: center;
+  z-index: 3;
+
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  width: 270px;
+  padding: 6px;
+  margin-left: -141px;
+}
+
+.warning {
+  border-color: #f0c36d;
+  background-image: linear-gradient(to bottom, #f9edbe, #f9edbe);
+  background-color: #f9edbe;
+  color: #333;
+  text-shadow: #f0c36d 0.1em 0.1em 0.2em;
+}
+

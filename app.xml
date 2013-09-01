@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs title="Table Tennis Scoreboard">
+	<Require feature="rpc" />
+	<Require feature="views" />\
+	<Require feature="locked-domain" /> \
+</ModulePrefs>
+<Content type="html"><![CDATA[     
+
+<html>
+<link rel="stylesheet" type="text/css"
+      href="https://rguidolini.appspot.com/static/scoreboard/css/style.css" />
+<head>
+	<title>Ping Pong</title>
+	<meta http-equiv="Content-Type" content="text/html; charset = iso-8859-1" />
+</head>
+
+<body>
+
+<script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
+<script src="https://hangoutmediastarter.appspot.com/static/html5slider.js">
+</script>
+
+<center>
+
+<div id="error-msg" class="hidden error-box">
+  You should not be seing this message
+</div>
+
+<div id="app-controls" style="margin: 10px;">
+	<input type="button" class="button" id="hide-app" value="Hide App" style="width: 80px;" />
+	<input type="button" class="button" id="new-game" value="New Match" />
+</div>
+
+<div id="app-interaction">
+  <div id="player-names" style="margin-top: 30px;" />
+    <label>Player 1 Name&nbsp</label>
+    <input id="player1name" type="text" value="PLAYER1" />
+    <br>
+    <label>Player 2 Name&nbsp</label>
+    <input id="player2name" type="text" value="PLAYER2" />
+    <br>
+    <input id="update-names" class="button" type="button" value="Update Names"
+           style="margin-top: 4px;" />
+  </div>
+
+  <div id="load-logo-container" style="margin-top: 30px;" />
+    You can also load any arbitrary PNG. Enter an URL below.<br/>
+    <input id="loadable-uri" type="text" 
+           placeholder="Enter an image URL that ends in .png"
+           style="width: 300px;" />
+    <input id="load-logo" class="button" type="button" value="Load Logo" "/>
+  </div>
+
+  <div id="scoring" style="margin-top: 30px;" />
+    <div>
+      <label>Score point for</label>
+    </div>
+    <input id="score-player1" class="button" type="button" value="PLAYER1" />
+    <input id="score-player2" class="button" type="button" value="PLAYER2" />
+    <div>
+      <input id="undo" class="button" type="button" value="undo" />
+    </div>
+  </div>
+</div>
+
+
+
+<!--div id='fullUI'>
+  <input class="button" type="button" value="ScoreBoard" id="topHatButton"
+         onClick="showOverlay('scoreboard')"/>
+
+  <input class="button" type="button" value="Time" id="fancyButton"
+         onClick="showOverlay('fancy')"/>
+
+  <input class="button" type="button" value="Nothing." id="nothingButton"
+         onClick="showNothing()"/>
+</div>
+<div id="overlayControls" style="visibility: hidden">
+	SCALE:
+	<input id="scaleSlider" type="range" min="0.75" max="2.0" value="1.0"
+         step="0.01"  onchange="onSetScale(this.value)" />
+	<span id="scaleTxt">0</span><br/>
+
+	X-OFFSET:<br>
+	<input id="offsetSliderX" type="range" min="0" max="0.5" value="0.0"
+         step="0.01"  onchange="onSetOffsetX(this.value)" />
+	<span id="offsetTxtX">0</span><br>
+
+	Y-OFFSET:<br>
+	<input id="offsetSlider" type="range" min="-0.5" max="0" value="0.0"
+         step="0.01"  onchange="onSetOffset(this.value)" />
+	<span id="offsetTxt">0</span>
+</div>
+<br/>
+<div id='arbitraryURILoader'>
+  You can also load any arbitrary PNG.  Enter an URL below.<br/>
+	<input id="loadableURI" type="text" 
+	       placeholder="Enter an image URL that ends in .png"
+	       style="width:300px;"
+	       />
+	<input class="button"
+	       type="button" 
+	       value="Load an overlay" id="animatedButton"
+               onClick="loadOverlay(document.querySelector('#loadableURI').value)"/>
+</div-->
+
+<!--div>
+  <input class="button"
+      type="checkbox"
+      value="Mirror me" id="mirror-checkbox"
+      checked="true"
+      onClick="updateMirroring()">
+          Mirror me
+  </input>
+</div-->
+
+</div>
+</center>
+
+<script>
+var CANVAS_WIDTH = 640;
+var CANVAS_HEIGHT = 360;
+
+function updateMirroring() {
+  var val =  document.querySelector('#mirror-checkbox').checked;
+  gapi.hangout.av.setLocalParticipantVideoMirrored(val);
+}
+
+function init() {
+  gapi.hangout.onApiReady.add(function(eventObj) {
+    console.log("everything ready");
+  });
+  gapi.hangout.av.setLocalParticipantVideoMirrored(false);
+}
+gadgets.util.registerOnLoadHandler(init);
+</script>
+
+<script src="https://rguidolini.appspot.com/static/scoreboard/js/scoreboard.js">
+</script>
+<script src="https://rguidolini.appspot.com/static/scoreboard/js/chronometer.js">
+</script>
+<script src="https://rguidolini.appspot.com/static/scoreboard/js/gtvlogo.js">
+</script>
+<script src="https://rguidolini.appspot.com/static/scoreboard/js/main.js">
+</script>
+
+
+
+
+<script>
+</script>
+
+]]>
+</Content>
+</Module>
