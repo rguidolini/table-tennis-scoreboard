@@ -43,6 +43,10 @@ input[type=text]:focus {
   visibility: hidden;
 }
 
+.height-zero {
+  height: 0px;
+}
+
 .button {
   background-color: #e5e5e5;
   background-image: -webkit-linear-gradient(top,#e5e5e5,#f1f1f1);
@@ -192,15 +196,15 @@ input[type=text]:focus {
 .load-logo-container {
   margin-top: 30px;
   padding: 5px;
-}
-
-.load-logo-container:hover {
-  background-color: #e5e5e5;
+  font-family: sans-serif;
+  font-size: 13px;
 }
 
 .load-logo-control {
-  font-family: sans-serif;
-  font-size: 13px;
+}
+
+.load-logo-control:hover {
+  background-color: #e5e5e5;
 }
 
 .load-logo-box {

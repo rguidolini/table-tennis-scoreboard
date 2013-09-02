@@ -110,6 +110,10 @@ function drawLogo() {
   gtvLogo.draw(uri);
 }
 
+function zippy(controlElement, zippyElement) {
+  getElement(zippyElement).classList.toggle('height-zero');
+}
+
 function bindEvents() {
   document.onkeydown = function(e) {handleKeyStroke(e);}
   getElement('update-names').onclick = function() { updateNames(); }
@@ -119,6 +123,8 @@ function bindEvents() {
   getElement('score-player2').onclick = function() { scorePointForPlayer('2'); }
   getElement('undo').onclick = function() { undo(); }
   getElement('load-logo').onclick = function() { drawLogo(); }
+  getElement('load-logo-control').onclick =
+    function() { zippyElement('load-logo-control', 'load-logo-box'); }
 }
 bindEvents();
 
