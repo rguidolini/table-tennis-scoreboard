@@ -45,29 +45,34 @@
   </div>
 
   <div id="load-logo-container" style="margin-top: 30px;" />
-    You can also load any arbitrary PNG. Enter an URL below.<br/>
+    <div style="font-family: sans-serif; font-size: 13px;" >
+      You can also load any arbitrary PNG. Enter an URL below.
+    </div>
     <input id="loadable-uri" type="text" 
            placeholder="Enter an image URL that ends in .png"
-           style="width: 300px;" />
+           style="width: 280px; margin-bottom: 6px;" />
     <input id="load-logo" class="button" type="button" value="Load Logo" "/>
   </div>
 
   <div id="scoring" class="scoring" />
     <div id="score-buttons" style="height: 70px;" >
-      <div id="label" class="score-label">
+      <div id="label" class="minor-label">
         Score point for
       </div>
-      <div></div>
+      <div class="path-1"></div>
+      <div class="path-2"></div>
       <div class="score-btn">
-        <input id="score-player1" class="button" type="button" value="PLAYER1" />
+        <input id="score-player1" style="width: 100%;" class="button"
+               type="button" value="PLAYER1" />
       </div>
       <div class="score-btn">
-        <input id="score-player2" class="button" type="button" value="PLAYER2" />
+        <input id="score-player2" style="width: 100%;" class="button"
+               type="button" value="PLAYER2" />
       </div>
     </div>
 
     <div>
-      <input id="undo" class="button" type="button" value="Undo" />
+      <input id="undo" class="red-button" type="button" value="Undo" />
     </div>
   </div>
 </div>
