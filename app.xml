@@ -53,14 +53,15 @@
   </div>
 
   <div id="scoring" class="scoring" />
-    <div id="score-buttons">
-      <div id="label" style="float: left;">
+    <div id="score-buttons" style="height: 70px;" >
+      <div id="label" class="score-label">
         Score point for
       </div>
-      <div class="socre-btn">
+      <div></div>
+      <div class="score-btn">
         <input id="score-player1" class="button" type="button" value="PLAYER1" />
       </div>
-      <div class="socre-btn">
+      <div class="score-btn">
         <input id="score-player2" class="button" type="button" value="PLAYER2" />
       </div>
     </div>

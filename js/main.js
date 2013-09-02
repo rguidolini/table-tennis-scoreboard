@@ -171,6 +171,8 @@ function updateNames() {
   hideWarning();
   scoreboard.setPlayerName(1, name1);
   scoreboard.setPlayerName(2, name2);
+  getElement('score-player1').value = name1;
+  getElement('score-player2').value = name2;
 }
 
 function gameOver() {

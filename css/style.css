@@ -108,10 +108,18 @@ input[type=text]:focus {
   border-radius: 3px;
   margin: 30px 5px 0px 5px;
   padding: 5px;
-  font-family: sans-serif;
-  font-size: 13px;
 }
 
 .score-btn {
+  float: right;
+  height: 35px;
+  width: 175px;
+}
+
+.score-label {
   float: left;
+  height: 70px;
+  line-height: 70px;
+  font-family: sans-serif;
+  font-size: 13px;
 }

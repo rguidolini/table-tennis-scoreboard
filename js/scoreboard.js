@@ -186,6 +186,9 @@ Scoreboard.prototype.playerServing = function() {
 Scoreboard.prototype.resetFirstServer = function() {
   this.overlays['ball-1']['ovl'].setVisible(false);
   this.overlays['ball-2']['ovl'].setVisible(false);
+  if (this.matchFinished()) {
+    return;
+  }
   this.serving['1'] = false;
   this.serving['2'] = false;
   this.firstServer = this.firstServer % 2 + 1;
