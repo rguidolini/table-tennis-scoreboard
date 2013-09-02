@@ -28,7 +28,8 @@
 </div>
 
 <div id="app-controls" style="margin: 10px;">
-	<input type="button" class="button" id="hide-app" value="Hide App" style="width: 80px;" />
+	<input type="button" class="button" id="hide-app" value="Hide App"
+         style="width: 80px;" />
 	<input type="button" class="button" id="new-game" value="New Match" />
 </div>
 
@@ -44,19 +45,23 @@
            style="margin-top: 4px;" />
   </div>
 
-  <div id="load-logo-container" style="margin-top: 30px;" />
-    <div id="load-control" style="font-family: sans-serif; font-size: 13px;" >
+  <div id="load-logo-container" class="load-logo-container" />
+    <div id="load-logo-control"  >
       <label>
         <span id="symbol">&#9658;</span>
-        You can also load any arbitrary PNG as logo.
+        load Logo
       </label>
     </div>
 
     <div id="load-logo-box" class="load-logo-box" >
-      <input id="loadable-uri" type="text" 
-             placeholder="Enter an image URL that ends in .png"
-             style="width: 280px; margin-bottom: 6px;" />
-      <input id="load-logo" class="button" type="button" value="Load Logo" "/>
+      <div style="border: solid 1px #b9b9b9; border-radius: 3px;">
+        You can also load any arbitrary PNG image as a logo.
+        Enter a valid URL below.
+        <input id="loadable-uri" type="text" 
+               placeholder="Enter an image URL that ends in .png"
+               style="width: 280px; margin-bottom: 6px;" />
+        <input id="load-logo" class="button" type="button" value="Load Logo" "/>
+      </div>
     </div>
   </div>
 

@@ -189,6 +189,22 @@ input[type=text]:focus {
   border-radius: 2px 0 0 2px;
 }
 
-.load-logo-box {
+.load-logo-container {
+  margin-top: 30px;
   padding: 5px;
+}
+
+.load-logo-container:hover {
+  background-color: #e5e5e5;
+}
+
+.load-logo-control {
+  font-family: sans-serif;
+  font-size: 13px;
+}
+
+.load-logo-box {
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.5s;
 }
