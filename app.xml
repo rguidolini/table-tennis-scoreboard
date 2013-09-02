@@ -52,14 +52,21 @@
     <input id="load-logo" class="button" type="button" value="Load Logo" "/>
   </div>
 
-  <div id="scoring" style="margin-top: 30px;" />
-    <div>
-      <label>Score point for</label>
+  <div id="scoring" class="scoring" />
+    <div id="score-buttons">
+      <div id="label" style="float: left;">
+        Score point for
+      </div>
+      <div class="socre-btn">
+        <input id="score-player1" class="button" type="button" value="PLAYER1" />
+      </div>
+      <div class="socre-btn">
+        <input id="score-player2" class="button" type="button" value="PLAYER2" />
+      </div>
     </div>
-    <input id="score-player1" class="button" type="button" value="PLAYER1" />
-    <input id="score-player2" class="button" type="button" value="PLAYER2" />
+
     <div>
-      <input id="undo" class="button" type="button" value="undo" />
+      <input id="undo" class="button" type="button" value="Undo" />
     </div>
   </div>
 </div>

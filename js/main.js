@@ -54,7 +54,7 @@ function getElement(elementId) {
 }
 
 function handleKeyStroke(e) {
-  if (isGameOver) {
+  if (isGameOver || !appVisible) {
     return;
   }
 

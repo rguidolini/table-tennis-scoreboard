@@ -129,12 +129,15 @@ Scoreboard.prototype.drawScore = function(player, score) {
 Scoreboard.prototype.setScore = function(player, score) {
   this.scoreCounting[player] = score;
   this.drawScore(player, score);
+  this.overlays['point-' + player]['ovl'].setVisible(false);
 }
 
 Scoreboard.prototype.incrementScore = function(player) {
   this.scoreCounting[player]++;
   this.scoreHistory.push(player);
   this.drawScore(player, this.scoreCounting[player]);
+  this.overlays['point-1']['ovl'].setVisible(true);
+  this.overlays['point-2']['ovl'].setVisible(true);
   this.serviceCounter++;
   this.toggleService();
   this.incrementSet(player);
