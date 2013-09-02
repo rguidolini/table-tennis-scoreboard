@@ -73,6 +73,23 @@ input[type=text]:focus {
   background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
 }
 
+.jfk-button {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  cursor: default;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  margin-right: 16px;
+  height: 27px;
+  line-height: 27px;
+  min-width: 54px;
+  outline: 0;
+  padding: 0 8px;
+}
+
 .red-button {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -172,3 +189,6 @@ input[type=text]:focus {
   border-radius: 2px 0 0 2px;
 }
 
+.load-logo-box {
+  padding: 5px;
+}
