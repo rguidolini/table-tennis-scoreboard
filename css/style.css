@@ -208,7 +208,13 @@ input[type=text]:focus {
 }
 
 .load-logo-box {
-  height: 0px;
+  height: 100px;
   overflow: hidden;
   transition: height 0.5s;
+}
+
+.load-logo-box-content {
+  border: solid 1px #b9b9b9;
+  border-radius: 3px;
+  padding: 5px;
 }

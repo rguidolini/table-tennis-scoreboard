@@ -46,15 +46,15 @@
   </div>
 
   <div id="load-logo-container" class="load-logo-container" />
-    <div id="load-logo-control"  >
+    <div id="load-logo-control" class="load-logo-control">
       <label>
         <span id="symbol">&#9658;</span>
-        load Logo
+        Load Logo
       </label>
     </div>
 
     <div id="load-logo-box" class="load-logo-box" >
-      <div style="border: solid 1px #b9b9b9; border-radius: 3px;">
+      <div class="load-logo-box-content">
         You can also load any arbitrary PNG image as a logo.
         Enter a valid URL below.
         <input id="loadable-uri" type="text" 
