@@ -117,9 +117,10 @@ function zippy(controlElement, zippyElement) {
   getElement(controlElement).onclick =
     function() {
       getElement(zippyElement).classList.toggle('height-zero');
-      getElement(controlElement).firstChild.innerHTML = '&#9660';
+      getElement(controlElement).firstChild.innerHTML =
+        getElement(zippyElement).classList.contains('height-zero') ?
+          '&#9658;' : '&#9660;';
     }
-  getElement(zippyElement).classList.add('height-zero');
 }
 zippy('load-logo-control', 'load-logo-box');
 

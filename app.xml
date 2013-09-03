@@ -50,7 +50,7 @@
       <label>Load Logo</label>
     </div>
 
-    <div id="load-logo-box" class="load-logo-box" >
+    <div id="load-logo-box" class="load-logo-box height-zero" >
       <div class="load-logo-box-content">
         You can also load any arbitrary PNG image as a logo.
         Enter a valid URL below.
