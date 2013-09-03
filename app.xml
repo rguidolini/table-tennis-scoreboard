@@ -47,10 +47,7 @@
 
   <div id="load-logo-container" class="load-logo-container" />
     <div id="load-logo-control" class="load-logo-control">
-      <label>
-        <span id="symbol">&#9658;</span>
-        Load Logo
-      </label>
+      <label>Load Logo</label>
     </div>
 
     <div id="load-logo-box" class="load-logo-box" >

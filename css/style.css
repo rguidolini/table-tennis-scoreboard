@@ -44,7 +44,7 @@ input[type=text]:focus {
 }
 
 .height-zero {
-  height: 0px;
+  height: 0px!important;
 }
 
 .button {
@@ -201,6 +201,7 @@ input[type=text]:focus {
 }
 
 .load-logo-control {
+  background-color: #f0f0f0;
 }
 
 .load-logo-control:hover {

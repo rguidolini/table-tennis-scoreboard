@@ -111,9 +111,14 @@ function drawLogo() {
 }
 
 function zippy(controlElement, zippyElement) {
+  var html = getElement(controlElement).innerHTML;
+  getElement(controlElement).innerHTML =
+    '<span id="symbol">&#9658;</span>&nbsp;' + html;
   getElement(controlElement).onclick =
-    function() { getElement(zippyElement).classList.toggle('height-zero');
-    console.log('ola'); }
+    function() {
+      getElement(zippyElement).classList.toggle('height-zero');
+      getElement(controlElement).firstChild.innerHTML = '&#9660';
+    }
   getElement(zippyElement).classList.add('height-zero');
 }
 zippy('load-logo-control', 'load-logo-box');
