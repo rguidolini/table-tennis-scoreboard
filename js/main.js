@@ -112,7 +112,8 @@ function drawLogo() {
 
 function zippy(controlElement, zippyElement) {
   getElement(controlElement).onclick =
-    function() { getElement(zippyElement).classList.toggle('height-zero'); }
+    function() { getElement(zippyElement).classList.toggle('height-zero');
+    console.log('ola'); }
   getElement(zippyElement).classList.add('height-zero');
 }
 zippy('load-logo-control', 'load-logo-box');
