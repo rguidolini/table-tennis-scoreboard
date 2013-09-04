@@ -2,6 +2,10 @@ var SET_LENGHT = 11;
 var MATCH_LENGHT = 2;
 var LINE_1 = 338;
 var LINE_2 = 354;
+var X_BALL = 3;
+var X_NAME = 23;
+var X_SET = 142;
+var X_SCORE = 165;
 
 function Scoreboard() {
   this.overlays = {};
@@ -59,7 +63,7 @@ Scoreboard.prototype.createBall = function(player) {
   var ctx = canvas.getContext("2d");
   ctx.fillStyle = "white";
   ctx.beginPath();
-  ctx.arc(17, (player == 1)? 331: 346, 3, 0, 2*Math.PI);
+  ctx.arc(17, (player == 1)? 331: 346, X_BALL, 0, 2*Math.PI);
   ctx.fill();
   var img = gapi.hangout.av.effects.createImageResource(canvas.toDataURL());
   this.overlays['ball-' + player] = {
@@ -107,7 +111,8 @@ Scoreboard.prototype.createTextOverlay =
 Scoreboard.prototype.setPlayerName = function(player, name) {
   var yPos = (player == 1) ? LINE_1: LINE_2; 
   var img = gapi.hangout.av.effects.createImageResource(
-    this.createTextOverlay(name.toUpperCase(), 13, 'white', 'left', 23, yPos));
+    this.createTextOverlay(
+      name.toUpperCase(), 13, 'white', 'left', X_NAME, yPos));
   this.redrawOverlay('name-' + player, img);
 }
 
@@ -122,7 +127,7 @@ Scoreboard.prototype.setFirstServer = function(player) {
 Scoreboard.prototype.drawScore = function(player, score) {
   var yPos = (player == 1) ? LINE_1: LINE_2; 
   var img = gapi.hangout.av.effects.createImageResource(
-    this.createTextOverlay(score, 13, 'white', 'right', 167, yPos));
+    this.createTextOverlay(score, 13, 'white', 'right', X_SCORE, yPos));
   this.redrawOverlay('point-' + player, img);
 }
 
@@ -155,7 +160,7 @@ Scoreboard.prototype.shouldIncrementSet = function() {
 Scoreboard.prototype.setSet = function(player, value) {
   var yPos = (player == 1) ? LINE_1: LINE_2; 
   var img = gapi.hangout.av.effects.createImageResource(
-      this.createTextOverlay(value, 13, 'black', 'right', 141, yPos));
+      this.createTextOverlay(value, 13, 'black', 'right', X_SET, yPos));
   this.redrawOverlay('set-' + player, img);
 }
 
