@@ -3,9 +3,9 @@ var MATCH_LENGHT = 2;
 var LINE_1 = 338;
 var LINE_2 = 354;
 var X_BALL = 3;
-var X_NAME = 23;
+var X_NAME = 24;
 var X_SET = 142;
-var X_SCORE = 165;
+var X_SCORE = 164;
 
 function Scoreboard() {
   this.overlays = {};
