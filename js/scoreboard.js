@@ -2,7 +2,7 @@ var SET_LENGHT = 11;
 var MATCH_LENGHT = 2;
 var LINE_1 = 338;
 var LINE_2 = 354;
-var X_BALL = 4;
+var X_BALL = 18;
 var X_NAME = 23;
 var X_SET = 142;
 var X_SCORE = 164;
@@ -63,7 +63,7 @@ Scoreboard.prototype.createBall = function(player) {
   var ctx = canvas.getContext("2d");
   ctx.fillStyle = "white";
   ctx.beginPath();
-  ctx.arc(17, (player == 1)? 331: 346, X_BALL, 0, 2*Math.PI);
+  ctx.arc(X_BALL, (player == 1)? 331: 346, 3, 0, 2*Math.PI);
   ctx.fill();
   var img = gapi.hangout.av.effects.createImageResource(canvas.toDataURL());
   this.overlays['ball-' + player] = {
