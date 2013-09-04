@@ -41,7 +41,7 @@ Scoreboard.prototype.display = function(visible) {
 
 Scoreboard.prototype.drawBackground = function() {
   var img = gapi.hangout.av.effects.createImageResource(
-      'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard.png');
+      'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard2.png');
   var overlay = img.createOverlay();
   overlay.setPosition(-0.36, 0.44);
   overlay.setScale( 0.26, gapi.hangout.av.effects.ScaleReference.WIDTH);
@@ -155,7 +155,7 @@ Scoreboard.prototype.shouldIncrementSet = function() {
 Scoreboard.prototype.setSet = function(player, value) {
   var yPos = (player == 1) ? LINE_1: LINE_2; 
   var img = gapi.hangout.av.effects.createImageResource(
-      this.createTextOverlay(value, 13, 'black', 'right', 144, yPos));
+      this.createTextOverlay(value, 13, 'black', 'right', 141, yPos));
   this.redrawOverlay('set-' + player, img);
 }
 
