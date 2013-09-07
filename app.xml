@@ -115,7 +115,7 @@
             <td>Undo last scoring.</td>
           </tr>
           <tr>
-            <td class="legend-icon">I</td>
+            <td class="legend-icon">&uarr;</td>
             <td>Invert players position at the table..</td>
           </tr>
         </table>
