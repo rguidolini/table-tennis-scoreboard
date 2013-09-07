@@ -66,7 +66,7 @@ input[type=checkbox] {
 }
 
 .button:active {
-	background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333)); 
+	background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333));
 	background: -moz-linear-gradient(bottom, #ddd, #aaa);
 }
 

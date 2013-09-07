@@ -124,7 +124,7 @@ StatsTable.prototype.displayTable = function(
   if (this.sets.length == 3)
     titlesLine = titlesLine + '<th>Set 3</th>';
   titlesLine = titlesLine + '<th>Total</th></tr>';
-  
+
   var duration = '';
   for (var i = 0; i < this.sets.length; i++) {
     duration += '<td>' + formatTime(this.sets[i].duration) + '</td>';

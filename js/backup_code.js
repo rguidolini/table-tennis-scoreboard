@@ -142,7 +142,7 @@ function createTextOverlay(text, fontSize, color, align, xPos, yPos) {
   var canvas = document.createElement('canvas');
   canvas.setAttribute('width', CANVAS_WIDTH);
   canvas.setAttribute('height', CANVAS_HEIGHT);
-  
+
   var context = canvas.getContext('2d');
   context.shadowColor = 'black';
   context.shadowOffsetX = 1;
@@ -153,7 +153,7 @@ function createTextOverlay(text, fontSize, color, align, xPos, yPos) {
   context.fillStyle = color;
   context.textAlign = align;
   context.textBaseline = 'bottom';
-  context.fillText(text, xPos, yPos); 
+  context.fillText(text, xPos, yPos);
 
   return canvas.toDataURL();
 }
@@ -224,7 +224,7 @@ function disposeArbitraryOverlay(arbitraryResource) {
 function loadOverlay(uri) {
   /*arbitraryResource = gapi.hangout.av.effects.createImageResource(uri);
 
-  // Use an onLoad handler 
+  // Use an onLoad handler
   arbitraryResource.onLoad.add( function(event) {
       if ( !event.isLoaded ) {
       alert("We could not load your overlay.");

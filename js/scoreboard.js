@@ -96,7 +96,7 @@ Scoreboard.prototype.createTextOverlay =
   var canvas = document.createElement('canvas');
   canvas.setAttribute('width', CANVAS_WIDTH);
   canvas.setAttribute('height', CANVAS_HEIGHT);
-  
+
   var context = canvas.getContext('2d');
   context.shadowColor = 'black';
   context.shadowOffsetX = 1;
@@ -107,13 +107,13 @@ Scoreboard.prototype.createTextOverlay =
   context.fillStyle = color;
   context.textAlign = align;
   context.textBaseline = 'bottom';
-  context.fillText(text, xPos, yPos); 
+  context.fillText(text, xPos, yPos);
 
   return canvas.toDataURL();
 }
 
 Scoreboard.prototype.setPlayerName = function(player, name) {
-  var yPos = (player == 1) ? LINE_1: LINE_2; 
+  var yPos = (player == 1) ? LINE_1: LINE_2;
   var img = gapi.hangout.av.effects.createImageResource(
     this.createTextOverlay(
       name.toUpperCase(), 13, 'white', 'left', X_NAME, yPos));
@@ -129,7 +129,7 @@ Scoreboard.prototype.setFirstServer = function(player) {
 }
 
 Scoreboard.prototype.drawScore = function(player, score) {
-  var yPos = (player == 1) ? LINE_1: LINE_2; 
+  var yPos = (player == 1) ? LINE_1: LINE_2;
   var img = gapi.hangout.av.effects.createImageResource(
     this.createTextOverlay(score, 13, 'white', 'right', X_SCORE, yPos));
   this.redrawOverlay('point-' + player, img);
@@ -162,7 +162,7 @@ Scoreboard.prototype.shouldIncrementSet = function() {
 }
 
 Scoreboard.prototype.setSet = function(player, value) {
-  var yPos = (player == 1) ? LINE_1: LINE_2; 
+  var yPos = (player == 1) ? LINE_1: LINE_2;
   var img = gapi.hangout.av.effects.createImageResource(
       this.createTextOverlay(value, 13, 'black', 'right', X_SET, yPos));
   this.redrawOverlay('set-' + player, img);

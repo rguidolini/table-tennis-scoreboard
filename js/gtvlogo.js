@@ -28,7 +28,7 @@ GtvLogo.prototype.createTextOverlay =
   var canvas = document.createElement('canvas');
   canvas.setAttribute('width', CANVAS_WIDTH);
   canvas.setAttribute('height', CANVAS_HEIGHT);
-  
+
   var context = canvas.getContext('2d');
   context.shadowColor = 'black';
   context.shadowOffsetX = 1;
@@ -39,7 +39,7 @@ GtvLogo.prototype.createTextOverlay =
   context.fillStyle = color;
   context.textAlign = align;
   context.textBaseline = 'bottom';
-  context.fillText(text, xPos, yPos); 
+  context.fillText(text, xPos, yPos);
 
   return canvas.toDataURL();
 }

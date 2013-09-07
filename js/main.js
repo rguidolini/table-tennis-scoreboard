@@ -219,7 +219,7 @@ function updateNames() {
   scoreboard.setPlayerName(2, name2);
   getElement('score-player1').value = name1;
   getElement('score-player2').value = name2;
-  updateShortcutText(name1, name2).
+  updateShortcutText(name1, name2);
 }
 
 function gameOver() {
