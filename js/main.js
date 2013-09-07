@@ -24,26 +24,27 @@ var gtvLogo = new GtvLogo();
 
 function showError(msg) {
   var errorDiv = document.getElementById('error-msg');
-  errorDiv.innerHTML = msg;
-  errorDiv.classList.remove('hidden'); 
+  errorDiv.textContent = msg;
+  errorDiv.classList.remove('hidden');
+  errorDiv.classList.remove('warning');
 }
 
 function hideError() {
   var errorDiv = document.getElementById('error-msg');
-  errorDiv.classList.add('hidden'); 
+  errorDiv.classList.add('hidden');
 }
 
 function showWarning(msg) {
   var element = document.getElementById('error-msg');
-  element.innerHTML = msg;
-  element.classList.add('warning'); 
-  element.classList.remove('hidden'); 
+  element.textContent = msg;
+  element.classList.add('warning');
+  element.classList.remove('hidden');
 }
 
 function hideWarning() {
   var element = document.getElementById('error-msg');
-  element.classList.add('hidden'); 
-  element.classList.remove('warning'); 
+  element.classList.add('hidden');
+  element.classList.remove('warning');
 }
 
 function getElement(elementId) {
@@ -55,6 +56,13 @@ function getElement(elementId) {
 }
 
 function handleKeyStroke(e) {
+  if (e.target) {
+    var tag = e.target.tagName.toLowerCase();
+    if (tag == 'input' || tag == 'textarea' || tag == 'select') {
+      return;
+    }
+  }
+
   if (isGameOver || !appVisible) {
     return;
   }
@@ -101,6 +109,7 @@ function newMatch() {
   chrono.reset();
   getElement('player1name').value = 'PLAYER1';
   getElement('player2name').value = 'PLAYER2';
+  updateNames();
   getElement('controls-cover').style.zIndex = -1;
   isGameOver = false;
   firstStroke = true;
@@ -132,8 +141,9 @@ zippy('load-logo-control', 'load-logo-box');
 zippy('help-control', 'help-box');
 
 function bindEvents() {
-  document.onkeydown = function(e) {handleKeyStroke(e);}
-  getElement('update-names').onclick = function() { updateNames(); }
+  document.onkeydown = function(e) { handleKeyStroke(e); }
+  getElement('player1name').oninput = function() { updateNames(); }
+  getElement('player2name').oninput = function() { updateNames(); }
   getElement('hide-app').onclick = function() { toggleDisplayApp(); }
   getElement('new-game').onclick = function() { newMatch(); }
   getElement('score-player1').onclick = function() { scorePointForPlayer('1'); }
@@ -199,14 +209,20 @@ function updateNames() {
   scoreboard.setPlayerName(2, name2);
   getElement('score-player1').value = name1;
   getElement('score-player2').value = name2;
-  getElement('p1name').innerHTML = name1;
-  getElement('p2name').innerHTML = name2;
+  if (arePostionsinverted) {
+    getElement('p1name').textContent = name2;
+    getElement('p2name').textContent = name1;
+  } else {
+    getElement('p1name').textContent = name1;
+    getElement('p2name').textContent = name2;
+  }
 }
 
 function gameOver() {
   isGameOver = true;
   chrono.stop();
   getElement('controls-cover').style.zIndex = 1;
+  hideWarning();
   /*statTable.displayTable(
       getElement('stat-table'),
       chrono.getElapsedTime(),
@@ -259,4 +275,14 @@ function invertSides() {
   var p1LeftCoordinate = player1.style.left;
   player1.style.left = player2.style.left;
   player2.style.left = p1LeftCoordinate ;
+
+  // TODO: This if-else is copied twice. Move it to a separate function
+  // updateShortcutText().
+  if (arePostionsinverted) {
+    getElement('p1name').textContent = name2;
+    getElement('p2name').textContent = name1;
+  } else {
+    getElement('p1name').textContent = name1;
+    getElement('p2name').textContent = name2;
+  }
 }
