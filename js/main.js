@@ -17,10 +17,10 @@ var isGameOver = false;
 var firstStroke = true;
 var arePostionsinverted = false;
 
-//var scoreboard = new Scoreboard();
-////var statTable = new StatsTable();
-//var chrono = new Chronometer();
-//var gtvLogo = new GtvLogo();
+var scoreboard = new Scoreboard();
+//var statTable = new StatsTable();
+var chrono = new Chronometer();
+var gtvLogo = new GtvLogo();
 
 function showError(msg) {
   var errorDiv = document.getElementById('error-msg');
