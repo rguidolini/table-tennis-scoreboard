@@ -196,6 +196,16 @@ function getAndValidateInputText(elementId, fieldName, minLen, maxLen) {
   return element.value;
 }
 
+function updateShortcutText(name1, name2) {
+  if (arePostionsinverted) {
+    getElement('p1name').textContent = name2;
+    getElement('p2name').textContent = name1;
+  } else {
+    getElement('p1name').textContent = name1;
+    getElement('p2name').textContent = name2;
+  }
+}
+
 function updateNames() {
   var name1 = getAndValidateInputText('#player1name', 'Player Name', 3, 10);
   var name2 = getAndValidateInputText('#player2name', 'Player Name', 3, 10);
@@ -209,13 +219,7 @@ function updateNames() {
   scoreboard.setPlayerName(2, name2);
   getElement('score-player1').value = name1;
   getElement('score-player2').value = name2;
-  if (arePostionsinverted) {
-    getElement('p1name').textContent = name2;
-    getElement('p2name').textContent = name1;
-  } else {
-    getElement('p1name').textContent = name1;
-    getElement('p2name').textContent = name2;
-  }
+  updateShortcutText(name1, name2).
 }
 
 function gameOver() {
@@ -275,14 +279,5 @@ function invertSides() {
   var p1LeftCoordinate = player1.style.left;
   player1.style.left = player2.style.left;
   player2.style.left = p1LeftCoordinate ;
-
-  // TODO: This if-else is copied twice. Move it to a separate function
-  // updateShortcutText().
-  if (arePostionsinverted) {
-    getElement('p1name').textContent = name2;
-    getElement('p2name').textContent = name1;
-  } else {
-    getElement('p1name').textContent = name1;
-    getElement('p2name').textContent = name2;
-  }
+  updateShortcutText(player1, player2);
 }

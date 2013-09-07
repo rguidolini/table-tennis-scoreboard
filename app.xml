@@ -39,12 +39,10 @@
   <div id="player-names" class="controls-container" />
     <div class="table-image" ></div>
     <center>
-      <input id="update-names" class="button" type="button" value="Update Names"
-             style="margin: 4px 30px 0px 0px;" />
-      <label class="checkbox-label" 
+      <label class="checkbox-label"
              title="Auto invert player sides at the end of each set">
         <input id="auto-invert" type="checkbox" checked />
-        auto-invert
+        Auto-invert
       </label>
     </center>
     <input id="player1name" type="text" value="PLAYER1" class="input-name-box"
