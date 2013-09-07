@@ -279,5 +279,5 @@ function invertSides() {
   var p1LeftCoordinate = player1.style.left;
   player1.style.left = player2.style.left;
   player2.style.left = p1LeftCoordinate ;
-  updateShortcutText(player1, player2);
+  updateShortcutText(player1.value, player2.value);
 }
