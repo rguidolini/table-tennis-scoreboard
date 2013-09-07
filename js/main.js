@@ -264,10 +264,16 @@ function invertSides() {
   var tmp_key = PLAYER1_KEY;
   PLAYER1_KEY = PLAYER2_KEY;
   PLAYER2_KEY = tmp_key;
+
   var player1 = getElement('player1name');
   var player2 = getElement('player2name');
   var p1LeftCoordinate = player1.style.left;
   player1.style.left = player2.style.left;
   player2.style.left = p1LeftCoordinate ;
-  updateShortcutText(player1.value, player2.value);
+
+  var p1name = getElement('p1name');
+  var p2name = getElement('p2name');
+  var tmp_name = p1name.textContent;
+  p1name.textContent = p2name.textContent;
+  p2name.textContent = tmp_name; 
 }
