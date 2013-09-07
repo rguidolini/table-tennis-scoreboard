@@ -1,14 +1,14 @@
 var CONFIRM_KEY = 13;       // enter
 var DISPLAY_VIDEO_KEY = 66; // B
-var PLAYER1_KEY = 37;       // arrow
-var PLAYER2_KEY = 39;       // arrow
+var PLAYER1_KEY = 37;       // left arrow
+var PLAYER2_KEY = 39;       // right arrow
 var QUIT_KEY = 27;          // ESC
-var UNDO_KEY = 40;          // UP
+var UNDO_KEY = 40;          // down arrow
 var UPDATE_KEY = 85;        // U
 
 var ACE_KEY = 65;           // A
 var EDGE_BALL_KEY = 69;     // E
-var INVERT_SIDES_KEY = 73;  // I
+var INVERT_SIDES_KEY = 38;  // up arrow
 var NON_FORCED_KEY = 78;    // N
 var WINNER_KEY = 87;        // W
 
@@ -122,7 +122,9 @@ function zippy(controlElement, zippyElement) {
           '&#9658;' : '&#9660;';
     }
 }
+
 zippy('load-logo-control', 'load-logo-box');
+zippy('help-control', 'help-box');
 
 function bindEvents() {
   document.onkeydown = function(e) {handleKeyStroke(e);}
@@ -157,6 +159,9 @@ function finishSet() {
   if (scoreboard.matchFinished()) {
     gameOver();
   } else {
+    if (getElement('auto-invert').checked) {
+      invertSides();
+    }
     //statTable.startSet();
   }
 }
@@ -189,6 +194,8 @@ function updateNames() {
   scoreboard.setPlayerName(2, name2);
   getElement('score-player1').value = name1;
   getElement('score-player2').value = name2;
+  getElement('p1name').innerHTML = name1;
+  getElement('p2name').innerHTML = name2;
 }
 
 function gameOver() {
@@ -241,4 +248,9 @@ function invertSides() {
   var tmp_key = PLAYER1_KEY;
   PLAYER1_KEY = PLAYER2_KEY;
   PLAYER2_KEY = tmp_key;
+  var player1 = getElement('player1name');
+  var player2 = getElement('player2name');
+  var p1LeftCoordinate = player1.style.left;
+  player1.style.left = player2.style.left;
+  player2.style.left = p1LeftCoordinate ;
 }

@@ -45,7 +45,7 @@ Scoreboard.prototype.display = function(visible) {
 
 Scoreboard.prototype.drawBackground = function() {
   var img = gapi.hangout.av.effects.createImageResource(
-      'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard2.png');
+      'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard.png');
   var overlay = img.createOverlay();
   overlay.setPosition(-0.36, 0.44);
   overlay.setScale( 0.26, gapi.hangout.av.effects.ScaleReference.WIDTH);

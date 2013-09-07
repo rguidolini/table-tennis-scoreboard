@@ -1,23 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Module>
-<ModulePrefs title="Table Tennis Scoreboard">
-	<Require feature="rpc" />
-	<Require feature="views" />\
-	<Require feature="locked-domain" /> \
-</ModulePrefs>
-<Content type="html"><![CDATA[     
-
+<!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css"
-      href="https://table-tennis-scoreboard.googlecode.com/git/css/style.css" />
 <head>
-	<title>Ping Pong</title>
-	<meta http-equiv="Content-Type" content="text/html; charset = iso-8859-1" />
+<title>Ping Pong Scorer</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>
-<script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
-<script src="https://hangoutmediastarter.appspot.com/static/html5slider.js"></script>
+<div style="background-image: url('images/screen.png'); width: 100%; height: 100%;" >
+<div style="
+width: 300px;
+height: 563px;
+position: absolute;
+right: 0px;
+top: 97px;
+background-color: white;
+">
 
 
 
@@ -124,33 +121,11 @@
 
 
 
-<script>
-var CANVAS_WIDTH = 640;
-var CANVAS_HEIGHT = 360;
 
-function updateMirroring() {
-  var val =  document.querySelector('#mirror-checkbox').checked;
-  gapi.hangout.av.setLocalParticipantVideoMirrored(val);
-}
 
-function init() {
-  gapi.hangout.onApiReady.add(function(eventObj) {
-    console.log("everything ready");
-  });
-  gapi.hangout.av.setLocalParticipantVideoMirrored(false);
-}
-gadgets.util.registerOnLoadHandler(init);
-</script>
+</div>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
 
-<script src="https://table-tennis-scoreboard.googlecode.com/git/js/scoreboard.js">
-</script>
-<script src="https://table-tennis-scoreboard.googlecode.com/git/js/chronometer.js">
-</script>
-<script src="https://table-tennis-scoreboard.googlecode.com/git/js/gtvlogo.js">
-</script>
-<script src="https://table-tennis-scoreboard.googlecode.com/git/js/main.js">
-</script>
-
-]]>
-</Content>
-</Module>
