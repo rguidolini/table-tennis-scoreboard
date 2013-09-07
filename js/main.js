@@ -186,16 +186,6 @@ function undo() {
   //statTable.undo();
 }
 
-function getAndValidateInputText(elementId, fieldName, minLen, maxLen) {
-  var element = document.querySelector(elementId);
-  if (element.value.length < minLen || element.value.length > maxLen) {
-    showWarning( fieldName + ' must have between ' + minLen + ' and ' +
-        maxLen + ' chars.');
-    return;
-  }
-  return element.value;
-}
-
 function updateShortcutText(name1, name2) {
   if (arePostionsinverted) {
     getElement('p1name').textContent = name2;
@@ -207,8 +197,8 @@ function updateShortcutText(name1, name2) {
 }
 
 function updateNames() {
-  var name1 = getAndValidateInputText('#player1name', 'Player Name', 3, 10);
-  var name2 = getAndValidateInputText('#player2name', 'Player Name', 3, 10);
+  var name1 = getElement('player1name').value;
+  var name2 = getElement('player2name').value;
   if (!name1 || !name2) {
     return;
   }
