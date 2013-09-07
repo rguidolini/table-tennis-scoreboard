@@ -15,11 +15,12 @@ var WINNER_KEY = 87;        // W
 var appVisible = true;
 var isGameOver = false;
 var firstStroke = true;
+var arePostionsinverted = false;
 
-var scoreboard = new Scoreboard();
-//var statTable = new StatsTable();
-var chrono = new Chronometer();
-var gtvLogo = new GtvLogo();
+//var scoreboard = new Scoreboard();
+////var statTable = new StatsTable();
+//var chrono = new Chronometer();
+//var gtvLogo = new GtvLogo();
 
 function showError(msg) {
   var errorDiv = document.getElementById('error-msg');
@@ -100,8 +101,12 @@ function newMatch() {
   chrono.reset();
   getElement('player1name').value = 'PLAYER1';
   getElement('player2name').value = 'PLAYER2';
+  getElement('controls-cover').style.zIndex = -1;
   isGameOver = false;
   firstStroke = true;
+  if (arePostionsinverted) {
+    invertSides();
+  }
 }
 
 function drawLogo() {
@@ -201,7 +206,7 @@ function updateNames() {
 function gameOver() {
   isGameOver = true;
   chrono.stop();
-  firstStroke = true;
+  getElement('controls-cover').style.zIndex = 1;
   /*statTable.displayTable(
       getElement('stat-table'),
       chrono.getElapsedTime(),
@@ -245,6 +250,7 @@ function scoreUnforcedError() {
 }
 
 function invertSides() {
+  arePostionsinverted = !arePostionsinverted;
   var tmp_key = PLAYER1_KEY;
   PLAYER1_KEY = PLAYER2_KEY;
   PLAYER2_KEY = tmp_key;
