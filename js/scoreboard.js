@@ -37,6 +37,10 @@ Scoreboard.prototype.display = function(visible) {
   for (var i in this.overlays) {
     this.overlays[i]['ovl'].setVisible(visible);
   }
+  if (scoreCounting['1'] == 0 && scoreCounting['2'] == 0) {
+    this.overlays['point-1']['ovl'].setVisible(false);
+    this.overlays['point-2']['ovl'].setVisible(false);
+  }
   if (visible) {
     this.overlays['ball-1']['ovl'].setVisible(this.serving['1']);
     this.overlays['ball-2']['ovl'].setVisible(this.serving['2']);

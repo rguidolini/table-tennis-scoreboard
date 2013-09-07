@@ -13,8 +13,9 @@ input[type=text] {
   -moz-border-radius: 1px;
   -webkit-border-radius: 1px;
   padding: 2px 5px;
-  width: 110px;
+  width: 122px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 input[type=text]:hover {
