@@ -182,7 +182,13 @@ function finishSet() {
 }
 
 function undo() {
-  scoreboard.undo();
+  if (!scoreboard.undo()) {
+    // There is no point to be undone anymore.
+    // The choice of the first server is being undone.
+    scoreboard.unsetFirstServer();
+    firstStroke = true;
+    return;
+  }
   //statTable.undo();
 }
 

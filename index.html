@@ -3,22 +3,38 @@
 <head>
 <title>Ping Pong Scorer</title>
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/local.css" />
 </head>
 
 <body>
 <div style="background-image: url('images/screen.png'); width: 100%; height: 100%;" >
-<div id="app-pannel" style="
-background-color: white;
-width: 300px;
-height: 563px;
-position: absolute;
-right: 0px;
-top: 97px;
-overflow: hidden;
+<div id='scoreboard' class='scorer'>
+  <div class=line id='line-1'>
+    <div class='ball hidden' id='ball-1'></div>
+    <div class='player-name' id='name-1'> player 1 </div>
+    <div class='set' id='set-1'> 0 </div>
+    <div class='point hidden' id='point-1'> 0 </div>
+  </div>
+
+  <div class=line id='line-2'>
+    <div class='ball hidden' id='ball-2'></div>
+    <div class='player-name' id='name-2'> player 2 </div>
+    <div class='set' id='set-2'> 0 </div>
+    <div class='point hidden' id='point-2'> 0 </div>
+  </div>
+</div>
+<div style="
+    background-color: white;
+    width: 300px;
+    height: 563px;
+    position: absolute;
+    right: 0px;
+    top: 97px;
+    overflow: hidden;
 ">
 
 
-
+<!-- START COPING HERE -->
 <center>
 <div id="error-msg" class="hidden error-box">
   You should not be seing this message
@@ -119,13 +135,12 @@ overflow: hidden;
     </div>
   </div>
 </div>
-
-
-
+<!-- STOP COPING HERE -->
 
 
 </div>
 </div>
+<script src="js/scoreboard.js"></script>
 <script src="js/scoreboard_mock.js"></script>
 <script src="js/chronometer_mock.js"></script>
 <script src="js/gtvlogo_mock.js"></script>

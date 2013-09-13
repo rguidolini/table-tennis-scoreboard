@@ -15,16 +15,28 @@ function Scoreboard() {
   this.reset();
 }
 
+Scoreboard.prototype.getSetMap = function() {
+  return {
+    serviceCounter : 0,
+    firstServer : 0,
+    scoreCounting : {1: 0, 2: 0},
+    setCounting : {1: 0, 2: 0},
+    setHistory : [],
+    serving : {1: false, 2: false},
+  };
+}
+
 Scoreboard.prototype.reset = function() {
   this.serviceCounter = 0;
   this.firstServer = 0;
   this.scoreCounting = {1: 0, 2: 0};
   this.setCounting = {1: 0, 2: 0};
-  this.scoreHistory = [];
+  this.setHistory = [];
+  this.gameHistory = [];
   this.serving = {1: false, 2: false};
 
-  this.overlays['ball-1']['ovl'].setVisible(false);
-  this.overlays['ball-2']['ovl'].setVisible(false);
+  this.setBallVisible('1', false);
+  this.setBallVisible('2', false);
   this.setScore('1', 0);
   this.setScore('2', 0);
   this.setSet('1', 0);
@@ -42,8 +54,8 @@ Scoreboard.prototype.display = function(visible) {
     this.overlays['point-2']['ovl'].setVisible(false);
   }
   if (visible) {
-    this.overlays['ball-1']['ovl'].setVisible(this.serving['1']);
-    this.overlays['ball-2']['ovl'].setVisible(this.serving['2']);
+    this.setBallVisible('1', this.serving['1']);
+    this.setBallVisible('2', this.serving['2']);
   }
 }
 
@@ -128,6 +140,25 @@ Scoreboard.prototype.setFirstServer = function(player) {
   this.toggleBall(player);
 }
 
+Scoreboard.prototype.unsetFirstServer = function() {
+  if (this.firstServer) {
+    this.toggleBall(this.firstServer);
+    this.firstServer = 0;
+  }
+}
+
+Scoreboard.prototype.resetFirstServer = function() {
+  this.setBallVisible('1', false);
+  this.setBallVisible('2', false);
+  if (this.matchFinished()) {
+    return;
+  }
+  this.serving['1'] = false;
+  this.serving['2'] = false;
+  this.firstServer = this.firstServer % 2 + 1;
+  this.toggleBall(this.firstServer);
+}
+
 Scoreboard.prototype.drawScore = function(player, score) {
   var yPos = (player == 1) ? LINE_1: LINE_2;
   var img = gapi.hangout.av.effects.createImageResource(
@@ -143,7 +174,7 @@ Scoreboard.prototype.setScore = function(player, score) {
 
 Scoreboard.prototype.incrementScore = function(player) {
   this.scoreCounting[player]++;
-  this.scoreHistory.push(player);
+  this.setHistory.push(player);
   this.drawScore(player, this.scoreCounting[player]);
   this.overlays['point-1']['ovl'].setVisible(true);
   this.overlays['point-2']['ovl'].setVisible(true);
@@ -174,7 +205,8 @@ Scoreboard.prototype.incrementSet = function(player) {
   }
   this.setCounting[player]++;
   this.serviceCounter = 0;
-  this.scoreHistory = [];
+  this.gameHistory.push(this.setHistory);
+  this.setHistory = [];
 
   this.setSet(player, this.setCounting[player]);
   this.setScore('1', 0);
@@ -192,21 +224,13 @@ Scoreboard.prototype.playerServing = function() {
   return 0;
 }
 
-Scoreboard.prototype.resetFirstServer = function() {
-  this.overlays['ball-1']['ovl'].setVisible(false);
-  this.overlays['ball-2']['ovl'].setVisible(false);
-  if (this.matchFinished()) {
-    return;
-  }
-  this.serving['1'] = false;
-  this.serving['2'] = false;
-  this.firstServer = this.firstServer % 2 + 1;
-  this.toggleBall(this.firstServer);
+Scoreboard.prototype.setBallVisible = function(player, visible) {
+  this.overlays['ball-' + player]['ovl'].setVisible(visible);
 }
 
 Scoreboard.prototype.toggleBall = function(player) {
   this.serving[player] = !(this.serving[player]);
-  this.overlays['ball-' + player]['ovl'].setVisible(this.serving[player]);
+  this.setBallVisible(player, this.serving[player]);
 }
 
 Scoreboard.prototype.toggleService = function() {
@@ -232,19 +256,59 @@ Scoreboard.prototype.matchFinished = function() {
 }
 
 Scoreboard.prototype.lastPlayerToScore = function() {
-  if (this.scoreHistory.length == 0) {
+  if (this.setHistory.length == 0) {
     return 0;
   }
-  return this.scoreHistory[this.scoreHistory.length - 1];
+  return this.setHistory[this.setHistory.length - 1];
+}
+
+Scoreboard.prototype.reconstructPreviousSetData = function() {
+  if (this.gameHistory.length == 0) {
+    return;
+  }
+  this.serviceCounter = this.gameHistory.length;
+  var secondServer = this.firstServer;
+  this.firstServer = this.firstServer % 2 + 1;
+  this.serving[this.firstServer] = ((this.serviceCounter/2) % 2) == 0;
+  this.serving[secondServer] = !this.serving[this.firstServer];
+  this.setHistory = this.gameHistory.pop();
+  for (var i = 0; i < this.setHistory.length; i++) {
+    this.scoreCounting[this.setHistory[i]]++;
+  }
+
+  // Deducting from the winner the last set and the last point won.
+  this.setHistory.pop();
+  this.serviceCounter--;
+  if (this.scoreCounting['1'] > this.scoreCounting['2']) { 
+    this.setCounting['1']--;
+    this.scoreCounting['1']--;
+  } else {
+    this.setCounting['2']--;
+    this.scoreCounting['2']--;
+  }
+  this.toggleService();
+
+  // Refreshing the scoreboard
+  this.setBallVisible('1', this.serving['1']);
+  this.setBallVisible('2', this.serving['2']);
+  this.setScore('1', this.scoreCounting['1']);
+  this.setScore('2', this.scoreCounting['2']);
+  this.setSet('1', this.setCounting['1']);
+  this.setSet('2', this.setCounting['2']);
 }
 
 Scoreboard.prototype.undo = function() {
-  var lastPlayerToScore = this.scoreHistory.pop();
+  var lastPlayerToScore = this.setHistory.pop();
   if (!lastPlayerToScore) {
-    return;
+    if (this.setCounting['1'] == 0 && this.setCounting['2'] == 0) {
+      return false;
+    }
+    this.reconstructPreviousSetData();
+    return true;
   }
   this.scoreCounting[lastPlayerToScore]--;
   this.drawScore(lastPlayerToScore, this.scoreCounting[lastPlayerToScore]);
   this.toggleService();
   this.serviceCounter--;
+  return true;
 }
