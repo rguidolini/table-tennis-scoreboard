@@ -15,17 +15,6 @@ function Scoreboard() {
   this.reset();
 }
 
-Scoreboard.prototype.getSetMap = function() {
-  return {
-    serviceCounter : 0,
-    firstServer : 0,
-    scoreCounting : {1: 0, 2: 0},
-    setCounting : {1: 0, 2: 0},
-    setHistory : [],
-    serving : {1: false, 2: false},
-  };
-}
-
 Scoreboard.prototype.reset = function() {
   this.serviceCounter = 0;
   this.firstServer = 0;
@@ -172,6 +161,35 @@ Scoreboard.prototype.setScore = function(player, score) {
   this.overlays['point-' + player]['ovl'].setVisible(false);
 }
 
+Scoreboard.prototype.storeSetInfo = function() {
+  this.gameHistory.push(
+      {
+        firstServer :    this.firstServer,
+        scoreCounting :  this.scoreCounting,
+        setHistory :     this.setHistory,
+        serviceCounter : this.serviceCounter,
+        serving :        this.serving,
+      });
+
+  // Releasing Object references.
+  this.scoreCounting = {1: 0, 2: 0};
+  this.setHistory = [];
+  this.serving = {1: false, 2: false};
+}
+
+Scoreboard.prototype.retrieveSetInfo = function() {
+  if (this.gameHistory.length == 0) {
+    return;
+  }
+  var set = this.gameHistory.pop();
+  this.serviceCounter = set.serviceCounter;
+  this.firstServer =    set.firstServer;   
+  this.scoreCounting =  set.scoreCounting; 
+  this.setCounting =    set.setCounting;  
+  this.setHistory =     set.setHistory;    
+  this.serving =        set.serving;       
+}
+
 Scoreboard.prototype.incrementScore = function(player) {
   this.scoreCounting[player]++;
   this.setHistory.push(player);
@@ -203,11 +221,9 @@ Scoreboard.prototype.incrementSet = function(player) {
   if (!this.shouldIncrementSet()) {
     return;
   }
+  this.storeSetInfo();
   this.setCounting[player]++;
   this.serviceCounter = 0;
-  this.gameHistory.push(this.setHistory);
-  this.setHistory = [];
-
   this.setSet(player, this.setCounting[player]);
   this.setScore('1', 0);
   this.setScore('2', 0);
@@ -266,17 +282,15 @@ Scoreboard.prototype.reconstructPreviousSetData = function() {
   if (this.gameHistory.length == 0) {
     return;
   }
-  this.serviceCounter = this.gameHistory.length;
-  var secondServer = this.firstServer;
-  this.firstServer = this.firstServer % 2 + 1;
-  this.serving[this.firstServer] = ((this.serviceCounter/2) % 2) == 0;
-  this.serving[secondServer] = !this.serving[this.firstServer];
-  this.setHistory = this.gameHistory.pop();
-  for (var i = 0; i < this.setHistory.length; i++) {
-    this.scoreCounting[this.setHistory[i]]++;
-  }
+  var prevSet = this.gameHistory.pop();
+  this.serviceCounter = prevSet.serviceCounter;
+  this.firstServer = prevSet.firstServer;
+  this.serving = prevSet.serving;
+  this.setHistory = prevSet.setHistory;
+  this.scoreCounting = prevSet.scoreCounting;
 
   // Deducting from the winner the last set and the last point won.
+  this.toggleService();
   this.setHistory.pop();
   this.serviceCounter--;
   if (this.scoreCounting['1'] > this.scoreCounting['2']) { 
@@ -286,7 +300,6 @@ Scoreboard.prototype.reconstructPreviousSetData = function() {
     this.setCounting['2']--;
     this.scoreCounting['2']--;
   }
-  this.toggleService();
 
   // Refreshing the scoreboard
   this.setBallVisible('1', this.serving['1']);
@@ -297,18 +310,23 @@ Scoreboard.prototype.reconstructPreviousSetData = function() {
   this.setSet('2', this.setCounting['2']);
 }
 
+// return: what has been undone:
+// - the first server setting
+// - a score
+// - a set
 Scoreboard.prototype.undo = function() {
   var lastPlayerToScore = this.setHistory.pop();
   if (!lastPlayerToScore) {
     if (this.setCounting['1'] == 0 && this.setCounting['2'] == 0) {
-      return false;
+      this.unsetFirstServer();
+      return 'server';
     }
     this.reconstructPreviousSetData();
-    return true;
+    return 'set';
   }
   this.scoreCounting[lastPlayerToScore]--;
   this.drawScore(lastPlayerToScore, this.scoreCounting[lastPlayerToScore]);
   this.toggleService();
   this.serviceCounter--;
-  return true;
+  return 'score';
 }

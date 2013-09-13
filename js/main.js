@@ -56,15 +56,16 @@ function getElement(elementId) {
 }
 
 function handleKeyStroke(e) {
+  if ((isGameOver && e.which != UNDO_KEY) || !appVisible) {
+    return;
+  }
+
+  // Ignore command keys when interacting with input elements.
   if (e.target) {
     var tag = e.target.tagName.toLowerCase();
     if (tag == 'input' || tag == 'textarea' || tag == 'select') {
       return;
     }
-  }
-
-  if (isGameOver || !appVisible) {
-    return;
   }
 
   if (e.which == UPDATE_KEY) {
@@ -182,12 +183,16 @@ function finishSet() {
 }
 
 function undo() {
-  if (!scoreboard.undo()) {
-    // There is no point to be undone anymore.
-    // The choice of the first server is being undone.
-    scoreboard.unsetFirstServer();
+  var undone = scoreboard.undo();
+  if (undone == 'server') {
     firstStroke = true;
-    return;
+  } else if (undone == 'set' && !isGameOver) {
+    invertSides();
+  }
+  if (isGameOver) {
+    isGameOver = false;
+    chrono.start();
+    getElement('controls-cover').style.zIndex = -1;
   }
   //statTable.undo();
 }
