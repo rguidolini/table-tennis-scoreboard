@@ -7,10 +7,9 @@ var X_NAME = 23;
 var X_SET = 142;
 var X_SCORE = 164;
 var FONT_SIZE = 13;
-var SUMMARY_TOP_LINE = 320;
-var SUMMARY_COL_1 = 164;
-var SUMMARY_COL_2 = 186;
-var SUMMARY_COL_3 = 208;
+var SUMMARY_COL_1 = 165;
+var SUMMARY_COL_2 = 187;
+var SUMMARY_COL_3 = 209;
 
 
 function Scoreboard() {
@@ -380,12 +379,26 @@ Scoreboard.prototype.undo = function() {
   return 'score';
 }
 
-Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
+Scoreboard.prototype.drawSummaryTitles = function(text, column, overlayId) {
   var img = gapi.hangout.av.effects.createImageResource(
     this.createTextOverlay(text,
                            11, // font size
                            'white',
                            false, // bold
+                           false, // shadow
+                           'right',
+                           column - 1, // x position
+                           320)); // y position
+  this.redrawOverlay(overlayId, img);
+  this.summary_overlays.push(overlayId);
+}
+
+Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
+  var img = gapi.hangout.av.effects.createImageResource(
+    this.createTextOverlay(text,
+                           FONT_SIZE,
+                           'white',
+                           true, // bold
                            true, // shadow
                            'right',
                            column,
@@ -410,7 +423,7 @@ Scoreboard.prototype.displaySummary = function() {
                  1 : SUMMARY_COL_2,
                  2 : SUMMARY_COL_3};
   for (var i = 0; i < 3; i++) {
-    this.drawSummaryText('#' + (i+1), SUMMARY_TOP_LINE, columns[i], '#' + i);
+    this.drawSummaryTitles('#' + (i+1), columns[i], '#' + i);
   }
   for (var set = 0; set < this.gameHistory.length; set++) {
     var score1 = this.gameHistory[set].scoreCounting['1'];
