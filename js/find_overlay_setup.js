@@ -13,7 +13,8 @@ var INITIAL_SCALE = 0.26;
 var INITIAL_X_POS = -0.36;
 var INITIAL_Y_POS = 0.44;
 var IMAGE_URI =
-    'https://table-tennis-scoreboard.googlecode.com/git/images/gtvlogo.png';
+    'https://table-tennis-scoreboard.googlecode.com/git/images/' +
+    'scoreboard_summary.png';
 
 /** Responds to scale slider
  * @param {string} value The new scale.
