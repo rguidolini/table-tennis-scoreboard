@@ -9,9 +9,9 @@ var imageOverlay = null;
 var minScale = 0.01;
 var maxScale = 0.5;
 
-var INITIAL_SCALE = 0.26;
-var INITIAL_X_POS = -0.36;
-var INITIAL_Y_POS = 0.44;
+var INITIAL_SCALE = 0.115;
+var INITIAL_X_POS = -0.22;
+var INITIAL_Y_POS = 0.415;
 var IMAGE_URI =
     'https://table-tennis-scoreboard.googlecode.com/git/images/' +
     'scoreboard_summary.png';
@@ -53,6 +53,29 @@ function drawImageOverlayTest() {
   imageOverlay.setVisible(true);
 }
 
+function createTextOverlay =
+    function(text, fontSize, color, shadow, align, xPos, yPos) {
+  var canvas = document.createElement('canvas');
+  canvas.setAttribute('width', CANVAS_WIDTH);
+  canvas.setAttribute('height', CANVAS_HEIGHT);
+
+  var context = canvas.getContext('2d');
+  if (shadow) {
+    context.shadowColor = 'black';
+    context.shadowOffsetX = 1;
+    context.shadowOffsetY = 1;
+    context.shadowBlur = 2;
+  }
+
+  context.font = 'bold ' + fontSize + 'px Arial';
+  context.fillStyle = color;
+  context.textAlign = align;
+  context.textBaseline = 'bottom';
+  context.fillText(text, xPos, yPos);
+
+  return canvas.toDataURL();
+}
+
 function drawTextOverlayTest(uri) {
   var params = uri.split(' ');
   var img = gapi.hangout.av.effects.createImageResource(
@@ -74,11 +97,3 @@ function drawTextOverlayTest(uri) {
   minScale = 0.1;
   maxScale = 1.0;
 }
-
-
-
-
-
-
-
-
