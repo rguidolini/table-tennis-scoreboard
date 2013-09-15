@@ -8,21 +8,17 @@
          onClick="drawImageOverlayTest();"/>
 </div>
 <div id="overlayControls">
-	SCALE:
-	<input id="scaleSlider" type="range" min="0.75" max="2.0" value="1.0"
-         step="0.01"  onchange="onSetScale(this.value)" />
-	<span id="scaleTxt">0</span><br/>
-
-	X-OFFSET:<br>
-	<input id="offsetSliderX" type="range" min="0" max="0.5" value="0.0"
-         step="0.01"  onchange="onSetOffsetX(this.value)" />
-	<span id="offsetTxtX">0</span><br>
-
-	Y-OFFSET:<br>
-	<input id="offsetSlider" type="range" min="-0.5" max="0" value="0.0"
-         step="0.01"  onchange="onSetOffset(this.value)" />
-	<span id="offsetTxt">0</span>
+	<input id="scale-input" type="text" style="width:300px;" />
+	<input class="button" type="button" value="Scale" 
+         onClick="onSetScale(document.querySelector('#scale-input').value)"/>
+	<input id="xoffset-input" type="text" style="width:300px;" />
+	<input class="button" type="button" value="X Offset" 
+         onClick="onSetScale(document.querySelector('#xoffset-input').value)"/>
+	<input id="yoffset-input" type="text" style="width:300px;" />
+	<input class="button" type="button" value="Y Offset" 
+         onClick="onSetScale(document.querySelector('#yoffset-input').value)"/>
 </div>
+
 <div id='arbitraryURILoader'>
   Format: text fontSize color shadow align xPos yPos [c]<br>
 	<input id="loadableURI" type="text" 
