@@ -19,39 +19,6 @@
 <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
 <script src="https://hangoutmediastarter.appspot.com/static/html5slider.js"></script>
 
-<div id='fullUI'>
-  <input class="button" type="button" value="Display Image" id="topHatButton"
-         onClick="drawImageOverlayTest();"/>
-</div>
-<div id="overlayControls">
-	SCALE:
-	<input id="scaleSlider" type="range" min="0.75" max="2.0" value="1.0"
-         step="0.01"  onchange="onSetScale(this.value)" />
-	<span id="scaleTxt">0</span><br/>
-
-	X-OFFSET:<br>
-	<input id="offsetSliderX" type="range" min="0" max="0.5" value="0.0"
-         step="0.01"  onchange="onSetOffsetX(this.value)" />
-	<span id="offsetTxtX">0</span><br>
-
-	Y-OFFSET:<br>
-	<input id="offsetSlider" type="range" min="-0.5" max="0" value="0.0"
-         step="0.01"  onchange="onSetOffset(this.value)" />
-	<span id="offsetTxt">0</span>
-</div>
-<div id='arbitraryURILoader'>
-  Format: text fontSize color shadow align xPos yPos [c]<br>
-	<input id="loadableURI" type="text" 
-	       placeholder="Enter an image URL that ends in .png"
-	       style="width:300px;"
-	       />
-	<input class="button"
-	       type="button" 
-	       value="Show Text" id="animatedButton"
-               onClick="drawTextOverlayTest(document.querySelector('#loadableURI').value)"/>
-</div>
-<script src="https://table-tennis-scoreboard.googlecode.com/git/js/find_overlay_setup.js">
-</script>
 
 
 <center>

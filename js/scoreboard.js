@@ -7,10 +7,10 @@ var X_NAME = 23;
 var X_SET = 142;
 var X_SCORE = 164;
 var FONT_SIZE = 13;
-var SUMMARY_TOP_LINE = 321;
-var SUMMARY_COL_1 = 165;
-var SUMMARY_COL_2 = 187;
-var SUMMARY_COL_3 = 209;
+var SUMMARY_TOP_LINE = 320;
+var SUMMARY_COL_1 = 164;
+var SUMMARY_COL_2 = 186;
+var SUMMARY_COL_3 = 208;
 
 
 function Scoreboard() {
@@ -104,7 +104,7 @@ Scoreboard.prototype.redrawOverlay = function(overlayId, overlayImg) {
 }
 
 Scoreboard.prototype.createTextOverlay =
-    function(text, fontSize, color, shadow, align, xPos, yPos) {
+    function(text, fontSize, color, bold, shadow, align, xPos, yPos) {
   var canvas = document.createElement('canvas');
   canvas.setAttribute('width', CANVAS_WIDTH);
   canvas.setAttribute('height', CANVAS_HEIGHT);
@@ -117,7 +117,7 @@ Scoreboard.prototype.createTextOverlay =
     context.shadowBlur = 2;
   }
 
-  context.font = 'bold ' + fontSize + 'px Arial';
+  context.font = ((bold) ? 'bold ' : '') + fontSize + 'px Arial';
   context.fillStyle = color;
   context.textAlign = align;
   context.textBaseline = 'bottom';
@@ -132,6 +132,7 @@ Scoreboard.prototype.setPlayerName = function(player, name) {
     this.createTextOverlay(name.toUpperCase(),
                            FONT_SIZE,
                            'white',
+                           true, // bold
                            true, // shadow
                            'left',
                            X_NAME,
@@ -182,6 +183,7 @@ Scoreboard.prototype.drawScore = function(player, score) {
     this.createTextOverlay(score,
                            FONT_SIZE,
                            'white',
+                           true, // bold
                            true, // shadow
                            'right',
                            X_SCORE,
@@ -248,6 +250,7 @@ Scoreboard.prototype.setSet = function(player, value) {
       this.createTextOverlay(value,
                              FONT_SIZE,
                              'black',
+                             true, // bold
                              false, // shadow
                              'right',
                              X_SET,
@@ -380,8 +383,9 @@ Scoreboard.prototype.undo = function() {
 Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
   var img = gapi.hangout.av.effects.createImageResource(
     this.createTextOverlay(text,
-                           FONT_SIZE,
+                           11, // font size
                            'white',
+                           false, // bold
                            true, // shadow
                            'right',
                            column,
