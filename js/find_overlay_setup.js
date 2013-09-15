@@ -14,7 +14,7 @@ var INITIAL_X_POS = -0.22;
 var INITIAL_Y_POS = 0.415;
 var IMAGE_URI =
     'https://table-tennis-scoreboard.googlecode.com/git/images/' +
-    'scoreboard_summary2.png';
+    'scoreboard_summary.png';
 
 /** Responds to scale slider
  * @param {string} value The new scale.
