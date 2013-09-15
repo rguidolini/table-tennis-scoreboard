@@ -53,8 +53,7 @@ function drawImageOverlayTest() {
   imageOverlay.setVisible(true);
 }
 
-function createTextOverlay =
-    function(text, fontSize, color, shadow, align, xPos, yPos) {
+function createTextOverlay(text, fontSize, color, shadow, align, xPos, yPos) {
   var canvas = document.createElement('canvas');
   canvas.setAttribute('width', CANVAS_WIDTH);
   canvas.setAttribute('height', CANVAS_HEIGHT);
