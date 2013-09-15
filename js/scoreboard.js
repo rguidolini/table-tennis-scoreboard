@@ -16,7 +16,7 @@ var SUMMARY_COL_3 = 209;
 function Scoreboard() {
   this.overlays = {};
   this.drawBackground(
-      'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard.png'
+      'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard.png',
       -0.36, // x pos
       0.44, // y pos
       0.26, // scale
@@ -388,7 +388,7 @@ Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
 
 Scoreboard.prototype.displaySummary = function() {
   this.drawBackground(
-      'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard_summary.png'
+      'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard_summary.png',
       -0.22, // x pos
       0.415, // y pos
       0.115, // scale
