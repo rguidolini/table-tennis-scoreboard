@@ -400,9 +400,9 @@ Scoreboard.prototype.displaySummary = function() {
     this.drawSummaryText('#' + (i+1), SUMMARY_TOP_LINE, columns[i], '#' + i);
   }
   for (var set = 0; set < this.gameHistory.length; set++) {
-    var score1 = this.gameHistory[i].scoreCounting['1'];
-    var score2 = this.gameHistory[i].scoreCounting['2'];
-    this.drawSummaryText(score1, LINE_1, columns[i], 'sum-p1-s' + (i+1));
-    this.drawSummaryText(score2, LINE_2, columns[i], 'sum-p2-s' + (i+1));
+    var score1 = this.gameHistory[set].scoreCounting['1'];
+    var score2 = this.gameHistory[set].scoreCounting['2'];
+    this.drawSummaryText(score1, LINE_1, columns[set], 'sum-p1-s' + (set+1));
+    this.drawSummaryText(score2, LINE_2, columns[set], 'sum-p2-s' + (set+1));
   }
 }
