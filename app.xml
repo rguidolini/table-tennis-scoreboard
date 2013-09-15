@@ -21,6 +21,48 @@
 
 
 
+
+<script src="https://table-tennis-scoreboard.googlecode.com/git/js/find_overlay_setup.js">
+</script>
+
+<div id='fullUI'>
+  <input class="button" type="button" value="ScoreBoard" id="topHatButton"
+         onClick="drawImageOverlayTest();"/>
+
+</div>
+<div id="overlayControls" style="visibility: hidden">
+	SCALE:
+	<input id="scaleSlider" type="range" min="0.75" max="2.0" value="1.0"
+         step="0.01"  onchange="onSetScale(this.value)" />
+	<span id="scaleTxt">0</span><br/>
+
+	X-OFFSET:<br>
+	<input id="offsetSliderX" type="range" min="0" max="0.5" value="0.0"
+         step="0.01"  onchange="onSetOffsetX(this.value)" />
+	<span id="offsetTxtX">0</span><br>
+
+	Y-OFFSET:<br>
+	<input id="offsetSlider" type="range" min="-0.5" max="0" value="0.0"
+         step="0.01"  onchange="onSetOffset(this.value)" />
+	<span id="offsetTxt">0</span>
+</div>
+<br/>
+<div id='arbitraryURILoader'>
+  You can also load any arbitrary PNG.  Enter an URL below.<br/>
+	<input id="loadableURI" type="text" 
+	       placeholder="Enter an image URL that ends in .png"
+	       style="width:300px;"
+	       />
+	<input class="button"
+	       type="button" 
+	       value="Load an overlay" id="animatedButton"
+               onClick="drawTextOverlayTest(document.querySelector('#loadableURI').value)"/>
+</div>
+
+
+
+
+
 <center>
 <div id="error-msg" class="hidden error-box">
   You should not be seing this message
