@@ -7,10 +7,20 @@ var X_NAME = 23;
 var X_SET = 142;
 var X_SCORE = 164;
 var FONT_SIZE = 13;
+var SUMMARY_TOP_LINE = 321;
+var SUMMARY_COL_1 = 165;
+var SUMMARY_COL_2 = 187;
+var SUMMARY_COL_3 = 209;
+
 
 function Scoreboard() {
   this.overlays = {};
-  this.drawBackground();
+  this.drawBackground(
+      'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard.png'
+      -0.36, // x pos
+      0.44, // y pos
+      0.26, // scale
+      'bkg');
   this.createBall('1');
   this.createBall('2');
   this.reset();
@@ -46,14 +56,14 @@ Scoreboard.prototype.display = function(visible) {
   this.hideScoresIn0x0();
 }
 
-Scoreboard.prototype.drawBackground = function() {
-  var img = gapi.hangout.av.effects.createImageResource(
-      'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard.png');
+Scoreboard.prototype.drawBackground =
+    function(imageUri, xPos, yPos, scale, overlayId) {
+  var img = gapi.hangout.av.effects.createImageResource(imageUri);
   var overlay = img.createOverlay();
-  overlay.setPosition(-0.36, 0.44);
-  overlay.setScale( 0.26, gapi.hangout.av.effects.ScaleReference.WIDTH);
+  overlay.setPosition(xPos, yPos);
+  overlay.setScale(scale, gapi.hangout.av.effects.ScaleReference.WIDTH);
   overlay.setVisible(true);
-  this.overlays['bkg'] = {
+  this.overlays[overlayId] = {
     'img' : img,
     'ovl' : overlay,
   };
@@ -362,4 +372,37 @@ Scoreboard.prototype.undo = function() {
   this.toggleService();
   this.serviceCounter--;
   return 'score';
+}
+
+Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
+  var img = gapi.hangout.av.effects.createImageResource(
+    this.createTextOverlay(text,
+                           FONT_SIZE,
+                           'white',
+                           true, // shadow
+                           'right',
+                           column,
+                           line));
+  this.redrawOverlay(overlayId, img);
+}
+
+Scoreboard.prototype.displaySummary = function() {
+  this.drawBackground(
+      'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard_summary.png'
+      -0.22, // x pos
+      0.415, // y pos
+      0.115, // scale
+      'sum-bkg');
+  var columns = {0 : SUMMARY_COL_1,
+                 1 : SUMMARY_COL_2,
+                 2 : SUMMARY_COL_3};
+  for (var i = 0; i < 3; i++) {
+    this.drawSummaryText('#' + (i+1), SUMMARY_TOP_LINE, columns[i], '#' + i);
+  }
+  for (var set = 0; set < this.gameHistory.length; set++) {
+    var score1 = this.gameHistory[i].scoreCounting['1'];
+    var score2 = this.gameHistory[i].scoreCounting['2'];
+    this.drawSummaryText(score1, LINE_1, columns[i], 'sum-p1-s' + (i+1));
+    this.drawSummaryText(score2, LINE_2, columns[i], 'sum-p2-s' + (i+1));
+  }
 }

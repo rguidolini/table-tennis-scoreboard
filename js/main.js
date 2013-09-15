@@ -225,6 +225,7 @@ function updateNames() {
 
 function gameOver() {
   isGameOver = true;
+  scoreboard.displaySummary();
   chrono.stop();
   getElement('controls-cover').style.zIndex = 1;
   hideWarning();
