@@ -201,8 +201,6 @@ Scoreboard.prototype.incrementScore = function(player) {
   this.scoreCounting[player]++;
   this.setHistory.push(player);
   this.drawScore(player, this.scoreCounting[player]);
-  this.setScoreVisible('1', true);
-  this.setScoreVisible('2', true);
   this.serviceCounter++;
   this.toggleService();
   this.incrementSet(player);
@@ -252,6 +250,8 @@ Scoreboard.prototype.setBallVisible = function(player, visible) {
 }
 
 Scoreboard.prototype.setScoreVisible = function(player, visible) {
+  console.log('player' + player);
+  console.log(this.overlays);
   this.overlays['point-' + player]['ovl'].setVisible(visible);
 }
 
