@@ -34,7 +34,9 @@ Scoreboard.prototype.reset = function() {
   this.setHistory = [];
   this.gameHistory = [];
   this.serving = {1: false, 2: false};
+  this.summary_overlays = [];
 
+  this.hideSummary();
   this.setBallVisible('1', false);
   this.setBallVisible('2', false);
   this.setScore('1', 0);
@@ -384,15 +386,21 @@ Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
                            column,
                            line));
   this.redrawOverlay(overlayId, img);
+  this.summary_overlays.push(overlayId);
 }
 
 Scoreboard.prototype.displaySummary = function() {
-  this.drawBackground(
-      'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard_summary.png',
-      -0.22, // x pos
-      0.415, // y pos
-      0.115, // scale
-      'sum-bkg');
+  if (this.overlays['sum-bkg']) {
+    this.overlays['sum-bkg']['ovl'].setVisible(true);
+  } else {
+    this.drawBackground(
+        'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard_summary.png',
+        -0.22, // x pos
+        0.415, // y pos
+        0.115, // scale
+        'sum-bkg');
+    this.summary_overlays.push('sum-bkg');
+  }
   var columns = {0 : SUMMARY_COL_1,
                  1 : SUMMARY_COL_2,
                  2 : SUMMARY_COL_3};
@@ -404,5 +412,11 @@ Scoreboard.prototype.displaySummary = function() {
     var score2 = this.gameHistory[set].scoreCounting['2'];
     this.drawSummaryText(score1, LINE_1, columns[set], 'sum-p1-s' + (set+1));
     this.drawSummaryText(score2, LINE_2, columns[set], 'sum-p2-s' + (set+1));
+  }
+}
+
+Scoreboard.prototype.hideSummary = function() {
+  for (var i = 0; i < this.summary_overlays.length; i++) {
+    this.overlays[this.summary_overlays[i]]['ovl'].setVisible(false);
   }
 }
