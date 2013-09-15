@@ -250,9 +250,11 @@ Scoreboard.prototype.setBallVisible = function(player, visible) {
 }
 
 Scoreboard.prototype.setScoreVisible = function(player, visible) {
-  console.log('player' + player);
-  console.log(this.overlays);
-  this.overlays['point-' + player]['ovl'].setVisible(visible);
+  if (this.overlays) {
+    if (this.overlays['point-' + player]) {
+      this.overlays['point-' + player]['ovl'].setVisible(visible);
+    }
+  }
 }
 
 Scoreboard.prototype.toggleBall = function(player) {
