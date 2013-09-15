@@ -20,38 +20,6 @@
 <script src="https://hangoutmediastarter.appspot.com/static/html5slider.js"></script>
 
 
-<div id='fullUI'>
-  <input class="button" type="button" value="Display Image" id="topHatButton"
-         onClick="drawImageOverlayTest();"/>
-</div>
-<div id="overlayControls">
-  <br>
-	<input id="scale-input" type="text" style="width:100px;" />
-	<input class="button" type="button" value="Scale" 
-         onClick="onSetScale(document.querySelector('#scale-input').value)"/>
-  <br>
-	<input id="xoffset-input" type="text" style="width:100px;" />
-	<input class="button" type="button" value="X Offset" 
-         onClick="onSetScale(document.querySelector('#xoffset-input').value)"/>
-  <br>
-	<input id="yoffset-input" type="text" style="width:100px;" />
-	<input class="button" type="button" value="Y Offset" 
-         onClick="onSetScale(document.querySelector('#yoffset-input').value)"/>
-</div>
-
-<div id='arbitraryURILoader'>
-  Format: text, fontSize, color, bold, shadow, align, xPos, yPos [, c]<br>
-	<input id="loadableURI" type="text" 
-	       placeholder="Enter an image URL that ends in .png"
-	       style="width:300px;"
-	       />
-	<input class="button"
-	       type="button" 
-	       value="Show Text" id="animatedButton"
-               onClick="drawTextOverlayTest(document.querySelector('#loadableURI').value)"/>
-</div>
-<script src="https://table-tennis-scoreboard.googlecode.com/git/js/find_overlay_setup.js">
-</script>
 
 <center>
 <div id="error-msg" class="hidden error-box">

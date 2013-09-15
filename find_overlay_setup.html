@@ -8,20 +8,21 @@
          onClick="drawImageOverlayTest();"/>
 </div>
 <div id="overlayControls">
-  <br>
+  <br><br>
 	<input id="scale-input" type="text" style="width:100px;" />
 	<input class="button" type="button" value="Scale" 
          onClick="onSetScale(document.querySelector('#scale-input').value)"/>
-  <br>
+  <br><br>
 	<input id="xoffset-input" type="text" style="width:100px;" />
 	<input class="button" type="button" value="X Offset" 
-         onClick="onSetScale(document.querySelector('#xoffset-input').value)"/>
-  <br>
+         onClick="onSetOffsetX(document.querySelector('#xoffset-input').value)"/>
+  <br><br>
 	<input id="yoffset-input" type="text" style="width:100px;" />
 	<input class="button" type="button" value="Y Offset" 
-         onClick="onSetScale(document.querySelector('#yoffset-input').value)"/>
+         onClick="onSetOffsetY(document.querySelector('#yoffset-input').value)"/>
 </div>
 
+<br><br>
 <div id='arbitraryURILoader'>
   Format: text, fontSize, color, bold, shadow, align, xPos, yPos [, c]<br>
 	<input id="loadableURI" type="text" 

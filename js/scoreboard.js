@@ -414,7 +414,7 @@ Scoreboard.prototype.displaySummary = function() {
     this.drawBackground(
         'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard_summary.png',
         -0.22, // x pos
-        0.415, // y pos
+        0.420, // y pos
         0.115, // scale
         'sum-bkg');
     this.summary_overlays.push('sum-bkg');
