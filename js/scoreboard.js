@@ -15,6 +15,7 @@ var SUMMARY_COL_3 = 209;
 
 function Scoreboard() {
   this.overlays = {};
+  this.summary_overlays = [];
   this.drawBackground(
       'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard.png',
       -0.36, // x pos
@@ -34,9 +35,9 @@ Scoreboard.prototype.reset = function() {
   this.setHistory = [];
   this.gameHistory = [];
   this.serving = {1: false, 2: false};
-  this.summary_overlays = [];
 
   this.hideSummary();
+  this.summary_overlays = [];
   this.setBallVisible('1', false);
   this.setBallVisible('2', false);
   this.setScore('1', 0);
