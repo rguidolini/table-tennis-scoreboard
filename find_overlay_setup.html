@@ -3,13 +3,9 @@
   scale or size of new image/text overlays.
 -->
 
-<script src="https://table-tennis-scoreboard.googlecode.com/git/js/find_overlay_setup.js">
-</script>
-
 <div id='fullUI'>
   <input class="button" type="button" value="ScoreBoard" id="topHatButton"
          onClick="drawImageOverlayTest();"/>
-
 </div>
 <div id="overlayControls">
 	SCALE:
@@ -27,9 +23,8 @@
          step="0.01"  onchange="onSetOffset(this.value)" />
 	<span id="offsetTxt">0</span>
 </div>
-<br/>
 <div id='arbitraryURILoader'>
-  You can also load any arbitrary PNG.  Enter an URL below.<br/>
+  Format: text fontSize color shadow align xPos yPos [c]<br>
 	<input id="loadableURI" type="text" 
 	       placeholder="Enter an image URL that ends in .png"
 	       style="width:300px;"
@@ -39,3 +34,6 @@
 	       value="Load an overlay" id="animatedButton"
                onClick="drawTextOverlayTest(document.querySelector('#loadableURI').value)"/>
 </div>
+<script src="https://table-tennis-scoreboard.googlecode.com/git/js/find_overlay_setup.js">
+</script>
+
