@@ -38,14 +38,11 @@ Scoreboard.prototype.display = function(visible) {
   for (var i in this.overlays) {
     this.overlays[i]['ovl'].setVisible(visible);
   }
-  if (this.scoreCounting['1'] == 0 && this.scoreCounting['2'] == 0) {
-    this.overlays['point-1']['ovl'].setVisible(false);
-    this.overlays['point-2']['ovl'].setVisible(false);
-  }
   if (visible) {
     this.setBallVisible('1', this.serving['1']);
     this.setBallVisible('2', this.serving['2']);
   }
+  this.hideScoresIn0x0();
 }
 
 Scoreboard.prototype.drawBackground = function() {
@@ -99,10 +96,10 @@ Scoreboard.prototype.createTextOverlay =
   canvas.setAttribute('height', CANVAS_HEIGHT);
 
   var context = canvas.getContext('2d');
-  context.shadowColor = 'black';
-  context.shadowOffsetX = 1;
-  context.shadowOffsetY = 1;
-  context.shadowBlur = 2;
+  //context.shadowColor = 'black';
+  //context.shadowOffsetX = 1;
+  //context.shadowOffsetY = 1;
+  //context.shadowBlur = 2;
 
   context.font = 'bold ' + fontSize + 'px Arial';
   context.fillStyle = color;
@@ -148,17 +145,27 @@ Scoreboard.prototype.resetFirstServer = function() {
   this.toggleBall(this.firstServer);
 }
 
+Scoreboard.prototype.hideScoresIn0x0 = function() {
+  if (this.scoreCounting['1'] == 0 && this.scoreCounting['2'] == 0) {
+    this.setScoreVisible('1', false);
+    this.setScoreVisible('2', false);
+  } else {
+    this.setScoreVisible('1', true);
+    this.setScoreVisible('2', true);
+  }
+}
+
 Scoreboard.prototype.drawScore = function(player, score) {
   var yPos = (player == 1) ? LINE_1: LINE_2;
   var img = gapi.hangout.av.effects.createImageResource(
     this.createTextOverlay(score, 13, 'white', 'right', X_SCORE, yPos));
   this.redrawOverlay('point-' + player, img);
+  this.hideScoresIn0x0();
 }
 
 Scoreboard.prototype.setScore = function(player, score) {
   this.scoreCounting[player] = score;
   this.drawScore(player, score);
-  this.overlays['point-' + player]['ovl'].setVisible(false);
 }
 
 Scoreboard.prototype.storeSetInfo = function() {
@@ -194,8 +201,8 @@ Scoreboard.prototype.incrementScore = function(player) {
   this.scoreCounting[player]++;
   this.setHistory.push(player);
   this.drawScore(player, this.scoreCounting[player]);
-  this.overlays['point-1']['ovl'].setVisible(true);
-  this.overlays['point-2']['ovl'].setVisible(true);
+  this.setScoreVisible('1', true);
+  this.setScoreVisible('2', true);
   this.serviceCounter++;
   this.toggleService();
   this.incrementSet(player);
@@ -242,6 +249,10 @@ Scoreboard.prototype.playerServing = function() {
 
 Scoreboard.prototype.setBallVisible = function(player, visible) {
   this.overlays['ball-' + player]['ovl'].setVisible(visible);
+}
+
+Scoreboard.prototype.setScoreVisible = function(player, visible) {
+  this.overlays['point-' + player]['ovl'].setVisible(visible);
 }
 
 Scoreboard.prototype.toggleBall = function(player) {

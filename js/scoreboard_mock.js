@@ -32,7 +32,7 @@ Scoreboard.prototype.drawScore = function(player, score) {
   this.scoreCounting[player] = score;
   var element = getElement('point-' + player);
   element.textContent = score;
-  element.classList.remove('hidden');
+  this.hideScoresIn0x0();
 }
 
 Scoreboard.prototype.setScore = function(player, score) {
@@ -44,17 +44,17 @@ Scoreboard.prototype.setSet = function(player, value) {
   getElement('set-' + player).textContent = value;
 }
 
-Scoreboard.prototype.incrementScore = function(player) {
-  this.scoreCounting[player]++;
-  this.setHistory.push(player);
-  this.drawScore(player, this.scoreCounting[player]);
-  this.serviceCounter++;
-  this.toggleService();
-  this.incrementSet(player);
-}
-
 Scoreboard.prototype.setBallVisible = function(player, visible) {
   var element = getElement('ball-' + player);
+  if (visible) {
+    element.classList.remove('hidden');
+  } else {
+    element.classList.add('hidden');
+  }
+}
+
+Scoreboard.prototype.setScoreVisible = function(player, visible) {
+  var element = getElement('point-' + player);
   if (visible) {
     element.classList.remove('hidden');
   } else {

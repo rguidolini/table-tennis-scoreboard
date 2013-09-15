@@ -6,16 +6,33 @@
   visibility: hidden;
 }
 
+#screen {
+  background-image: url('../images/screen.png');
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+#app-pannel {
+  background-color: white;
+  width: 300px;
+  height: 563px;
+  position: absolute;
+  left: 978px;
+  top: 97px;
+  overflow: hidden;
+}
+
 .scorer {
   background-image: url('../images/scoreboard.png');
   width: 253px;
   height: 50px;
   position: absolute;
-  bottom: 167px;
   padding-top: 2px;
   padding-left: 4px;
   background-size: 256px 52px;
   left: 200px;
+  top: 444px;
 }
 
 .line {
