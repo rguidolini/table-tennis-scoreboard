@@ -25,19 +25,22 @@
          onClick="drawImageOverlayTest();"/>
 </div>
 <div id="overlayControls">
-	<input id="scale-input" type="text" style="width:300px;" />
+  <br>
+	<input id="scale-input" type="text" style="width:100px;" />
 	<input class="button" type="button" value="Scale" 
          onClick="onSetScale(document.querySelector('#scale-input').value)"/>
-	<input id="xoffset-input" type="text" style="width:300px;" />
+  <br>
+	<input id="xoffset-input" type="text" style="width:100px;" />
 	<input class="button" type="button" value="X Offset" 
          onClick="onSetScale(document.querySelector('#xoffset-input').value)"/>
-	<input id="yoffset-input" type="text" style="width:300px;" />
+  <br>
+	<input id="yoffset-input" type="text" style="width:100px;" />
 	<input class="button" type="button" value="Y Offset" 
          onClick="onSetScale(document.querySelector('#yoffset-input').value)"/>
 </div>
 
 <div id='arbitraryURILoader'>
-  Format: text fontSize color shadow align xPos yPos [c]<br>
+  Format: text, fontSize, color, bold, shadow, align, xPos, yPos [, c]<br>
 	<input id="loadableURI" type="text" 
 	       placeholder="Enter an image URL that ends in .png"
 	       style="width:300px;"
@@ -49,7 +52,6 @@
 </div>
 <script src="https://table-tennis-scoreboard.googlecode.com/git/js/find_overlay_setup.js">
 </script>
-
 
 <center>
 <div id="error-msg" class="hidden error-box">

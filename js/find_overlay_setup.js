@@ -1,9 +1,5 @@
 // Used just to help finding the position and scale of new overlays.
 
-var scaleTxt = document.getElementById('scaleTxt');
-var offsetTxt = document.getElementById('offsetTxt');
-var offsetTxtX = document.getElementById('offsetTxtX');
-
 var textOverlay = null;
 var imageOverlay = null;
 var minScale = 0.01;
@@ -20,7 +16,6 @@ var IMAGE_URI =
  * @param {string} value The new scale.
  */
 function onSetScale(value) {
-  scaleTxt.innerHTML = parseFloat(value).toFixed(2);
   imageOverlay.setScale(parseFloat(value),
       gapi.hangout.av.effects.ScaleReference.WIDTH);
 }
@@ -29,7 +24,6 @@ function onSetScale(value) {
  * @param {string} value The new offset.
  */
 function onSetOffset(value) {
-  offsetTxt.innerHTML = parseFloat(value).toFixed(2);
   var x = imageOverlay.getPosition().x;
   imageOverlay.setPosition(x, parseFloat(value));
 }
@@ -38,7 +32,6 @@ function onSetOffset(value) {
  * @param {string} value The new offset.
  */
 function onSetOffsetX(value) {
-  offsetTxtX.innerHTML = parseFloat(value).toFixed(2);
   var y = imageOverlay.getPosition().y;
   imageOverlay.setPosition(parseFloat(value), y);
 }
@@ -53,7 +46,7 @@ function drawImageOverlayTest() {
   imageOverlay.setVisible(true);
 }
 
-function createTextOverlay(text, fontSize, color, shadow, align, xPos, yPos) {
+function createTextOverlay(text, fontSize, color, bold, shadow, align, xPos, yPos) {
   var canvas = document.createElement('canvas');
   canvas.setAttribute('width', CANVAS_WIDTH);
   canvas.setAttribute('height', CANVAS_HEIGHT);
@@ -66,7 +59,7 @@ function createTextOverlay(text, fontSize, color, shadow, align, xPos, yPos) {
     context.shadowBlur = 2;
   }
 
-  context.font = 'bold ' + fontSize + 'px Arial';
+  context.font = ((bold) ? 'bold ' : '') + fontSize + 'px Arial';
   context.fillStyle = color;
   context.textAlign = align;
   context.textBaseline = 'bottom';
