@@ -23,7 +23,7 @@ function onSetScale(value) {
 /** Responds to offset slider
  * @param {string} value The new offset.
  */
-function onSetOffset(value) {
+function onSetOffsetY(value) {
   var x = imageOverlay.getPosition().x;
   imageOverlay.setPosition(x, parseFloat(value));
 }

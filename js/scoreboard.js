@@ -410,6 +410,7 @@ Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
 Scoreboard.prototype.displaySummary = function() {
   if (this.overlays['sum-bkg']) {
     this.overlays['sum-bkg']['ovl'].setVisible(true);
+    this.summary_overlays.push('sum-bkg');
   } else {
     this.drawBackground(
         'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard_summary.png',

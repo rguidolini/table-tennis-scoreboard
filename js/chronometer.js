@@ -101,7 +101,7 @@ Chronometer.prototype.update = function() {
 Chronometer.prototype.start = function() {
   var thisObject = this;
   // If it has been stopped but not reseted, resume as if it had never stopped.
-  if (!this.start) {
+  if (!this.start_t) {
     this.start_t = new Date();
   }
   this.timerID = window.setInterval(function() {thisObject.update();}, 500);
