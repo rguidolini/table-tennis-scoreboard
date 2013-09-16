@@ -18,7 +18,7 @@ function Chronometer() {
     'bkg' : {},
     'time' : {},
   };
-  this.start_t = 0;
+  this.start_t = null;
   this.timerID = null;
   this.visible = true;
 
@@ -100,18 +100,21 @@ Chronometer.prototype.update = function() {
 
 Chronometer.prototype.start = function() {
   var thisObject = this;
-  this.start_t = new Date();
+  // If it has been stopped but not reseted, resume as if it had never stopped.
+  if (!this.start) {
+    this.start_t = new Date();
+  }
   this.timerID = window.setInterval(function() {thisObject.update();}, 500);
 }
 
 Chronometer.prototype.stop = function() {
   clearInterval(this.timerID);
-  this.start_t = 0;
   this.timerID = null;
 }
 
 Chronometer.prototype.reset = function() {
   this.stop();
+  this.start_t = null;
   this.drawTime('00:00');
 }
 

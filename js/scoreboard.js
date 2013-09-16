@@ -7,8 +7,8 @@ var X_NAME = 23;
 var X_SET = 142;
 var X_SCORE = 164;
 var FONT_SIZE = 13;
-var SUMMARY_COL_1 = 165;
-var SUMMARY_COL_2 = 187;
+var SUMMARY_COL_1 = 164;
+var SUMMARY_COL_2 = 186;
 var SUMMARY_COL_3 = 209;
 
 
