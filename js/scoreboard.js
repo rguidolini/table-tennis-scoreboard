@@ -387,7 +387,7 @@ Scoreboard.prototype.drawSummaryTitles = function(text, column, overlayId) {
                            false, // shadow
                            'right',
                            column - 1, // x position
-                           320)); // y position
+                           321)); // y position
   this.redrawOverlay(overlayId, img);
   this.summary_overlays.push(overlayId);
 }
