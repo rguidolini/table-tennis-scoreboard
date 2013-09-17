@@ -37,8 +37,8 @@ Scoreboard.prototype.reset = function() {
 
   this.hideSummary();
   this.summary_overlays = [];
-  this.setBallVisible('1', false);
-  this.setBallVisible('2', false);
+  this.setOverlayVisible('ball-1', false);
+  this.setOverlayVisible('ball-2', false);
   this.setScore('1', 0);
   this.setScore('2', 0);
   this.setSet('1', 0);
@@ -49,13 +49,14 @@ Scoreboard.prototype.reset = function() {
 
 Scoreboard.prototype.display = function(visible) {
   for (var i in this.overlays) {
-    this.overlays[i]['ovl'].setVisible(visible);
+    if (visible) {
+      if (this.overlays[i]['vis']) {
+        this.overlays[i]['ovl'].setVisible(visible);
+      }
+    } else {
+      this.overlays[i]['ovl'].setVisible(visible);
+    }
   }
-  if (visible) {
-    this.setBallVisible('1', this.serving['1']);
-    this.setBallVisible('2', this.serving['2']);
-  }
-  this.hideScoresIn0x0();
 }
 
 Scoreboard.prototype.drawBackground =
@@ -68,6 +69,7 @@ Scoreboard.prototype.drawBackground =
   this.overlays[overlayId] = {
     'img' : img,
     'ovl' : overlay,
+    'vis' : true, // set the overlay as visible
   };
 }
 
@@ -84,6 +86,7 @@ Scoreboard.prototype.createBall = function(player) {
   this.overlays['ball-' + player] = {
     'img' : img,
     'ovl' : img.createOverlay(),
+    'vis' : false, // set the overlay as hidden 
   }
 }
 
@@ -100,6 +103,14 @@ Scoreboard.prototype.redrawOverlay = function(overlayId, overlayImg) {
   }
   this.overlays[overlayId]['ovl'] = newOverlay;
   this.overlays[overlayId]['img'] = overlayImg;
+  this.overlays[overlayId]['vis'] = true; // set the overlay as visible
+}
+
+Scoreboard.prototype.setOverlayVisible = function(overlayId, visible) {
+  if (this.overlays && this.overlays[overlayId]) {
+    this.overlays[overlayId]['ovl'].setVisible(visible);
+    this.overlays[overlayId]['vis'] = visible;
+  }
 }
 
 Scoreboard.prototype.createTextOverlay =
@@ -155,8 +166,8 @@ Scoreboard.prototype.unsetFirstServer = function() {
 }
 
 Scoreboard.prototype.resetFirstServer = function() {
-  this.setBallVisible('1', false);
-  this.setBallVisible('2', false);
+  this.setOverlayVisible('ball-1', false);
+  this.setOverlayVisible('ball-2', false);
   if (this.matchFinished()) {
     return;
   }
@@ -168,11 +179,11 @@ Scoreboard.prototype.resetFirstServer = function() {
 
 Scoreboard.prototype.hideScoresIn0x0 = function() {
   if (this.scoreCounting['1'] == 0 && this.scoreCounting['2'] == 0) {
-    this.setScoreVisible('1', false);
-    this.setScoreVisible('2', false);
+    this.setOverlayVisible('point-1', false);
+    this.setOverlayVisible('point-2', false);
   } else {
-    this.setScoreVisible('1', true);
-    this.setScoreVisible('2', true);
+    this.setOverlayVisible('point-1', true);
+    this.setOverlayVisible('point-2', true);
   }
 }
 
@@ -280,21 +291,9 @@ Scoreboard.prototype.playerServing = function() {
   return 0;
 }
 
-Scoreboard.prototype.setBallVisible = function(player, visible) {
-  this.overlays['ball-' + player]['ovl'].setVisible(visible);
-}
-
-Scoreboard.prototype.setScoreVisible = function(player, visible) {
-  if (this.overlays) {
-    if (this.overlays['point-' + player]) {
-      this.overlays['point-' + player]['ovl'].setVisible(visible);
-    }
-  }
-}
-
 Scoreboard.prototype.toggleBall = function(player) {
   this.serving[player] = !(this.serving[player]);
-  this.setBallVisible(player, this.serving[player]);
+  this.setOverlayVisible('ball-' + player, this.serving[player]);
 }
 
 Scoreboard.prototype.toggleService = function() {
@@ -350,8 +349,8 @@ Scoreboard.prototype.reconstructPreviousSetData = function() {
   }
 
   // Refreshing the scoreboard
-  this.setBallVisible('1', this.serving['1']);
-  this.setBallVisible('2', this.serving['2']);
+  this.setOverlayVisible('ball-1', this.serving['1']);
+  this.setOverlayVisible('ball-2', this.serving['2']);
   this.setScore('1', this.scoreCounting['1']);
   this.setScore('2', this.scoreCounting['2']);
   this.setSet('1', this.setCounting['1']);
@@ -409,7 +408,7 @@ Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
 
 Scoreboard.prototype.displaySummary = function() {
   if (this.overlays['sum-bkg']) {
-    this.overlays['sum-bkg']['ovl'].setVisible(true);
+    this.setOverlayVisible('sum-bkg', true);
     this.summary_overlays.push('sum-bkg');
   } else {
     this.drawBackground(
@@ -436,6 +435,6 @@ Scoreboard.prototype.displaySummary = function() {
 
 Scoreboard.prototype.hideSummary = function() {
   for (var i = 0; i < this.summary_overlays.length; i++) {
-    this.overlays[this.summary_overlays[i]]['ovl'].setVisible(false);
+    this.setOverlayVisible(this.summary_overlays[i], false);
   }
 }
