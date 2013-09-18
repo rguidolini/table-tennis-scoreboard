@@ -254,7 +254,7 @@ input[type=checkbox] {
 
 #controls-cover {
   background-color: rgba(255, 255, 255, 0.5);
-  height: 227;
+  height: 227px;
   width: 300px;
   position: absolute;
   z-index: -1;

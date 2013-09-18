@@ -99,11 +99,17 @@ Chronometer.prototype.update = function() {
 }
 
 Chronometer.prototype.start = function() {
-  var thisObject = this;
-  // If it has been stopped but not reseted, resume as if it had never stopped.
+  // If it is already running, do nothing.
+  if (this.timerID) {
+    return;
+  }
+
+  // If it has been stopped but not reseted, resume as if it had never been
+  // stopped.
   if (!this.start_t) {
     this.start_t = new Date();
   }
+  var thisObject = this;
   this.timerID = window.setInterval(function() {thisObject.update();}, 500);
 }
 

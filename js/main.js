@@ -186,6 +186,7 @@ function finishSet() {
 function undo() {
   var undone = scoreboard.undo();
   if (undone == 'server') {
+    chrono.reset();
     firstStroke = true;
   } else if (undone == 'set' && !isGameOver) {
     invertSides();

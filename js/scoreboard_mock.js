@@ -24,6 +24,15 @@ Scoreboard.prototype.redrawOverlay = function(overlayId, overlayImg) {
   // Mocked.
 }
 
+Scoreboard.prototype.setOverlayVisible = function(overlayId, visible) {
+  var element = getElement(overlayId);
+  if (visible) {
+    element.classList.remove('hidden');
+  } else {
+    element.classList.add('hidden');
+  }
+}
+
 Scoreboard.prototype.setPlayerName = function(player, name) {
   var element =  getElement('name-' + player);
   element.textContent = name;
