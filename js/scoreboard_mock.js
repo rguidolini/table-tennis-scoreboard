@@ -25,7 +25,8 @@ Scoreboard.prototype.redrawOverlay = function(overlayId, overlayImg) {
 }
 
 Scoreboard.prototype.setPlayerName = function(player, name) {
-  // Mocked.
+  var element =  getElement('name-' + player);
+  element.textContent = name;
 }
 
 Scoreboard.prototype.drawScore = function(player, score) {
@@ -60,4 +61,20 @@ Scoreboard.prototype.setScoreVisible = function(player, visible) {
   } else {
     element.classList.add('hidden');
   }
+}
+
+Scoreboard.prototype.drawSummaryTitles = function(text, column, overlayId) {
+  // mock
+}
+
+Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
+  // mock
+}
+
+Scoreboard.prototype.displaySummary = function() {
+  // mock
+}
+
+Scoreboard.prototype.hideSummary = function() {
+  // mock
 }

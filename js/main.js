@@ -143,10 +143,11 @@ zippy('help-control', 'help-box');
 
 function bindEvents() {
   document.onkeydown = function(e) { handleKeyStroke(e); }
-  getElement('player1name').oninput = function() { updateNames(); }
-  getElement('player2name').oninput = function() { updateNames(); }
+  //getElement('player1name').oninput = function() { updateNames(); }
+  //getElement('player2name').oninput = function() { updateNames(); }
   getElement('hide-app').onclick = function() { toggleDisplayApp(); }
   getElement('new-game').onclick = function() { newMatch(); }
+  getElement('update-names').onclick = function() { updateNames(); }
   getElement('score-player1').onclick = function() { scorePointForPlayer('1'); }
   getElement('score-player2').onclick = function() { scorePointForPlayer('2'); }
   getElement('undo').onclick = function() { undo(); }

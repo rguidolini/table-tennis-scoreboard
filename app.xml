@@ -20,13 +20,13 @@
 <script src="https://hangoutmediastarter.appspot.com/static/html5slider.js"></script>
 
 
-
+<!-- START PASTING HERE -->
 <center>
 <div id="error-msg" class="hidden error-box">
-  You should not be seing this message
+  You should not be seeing this message
 </div>
 
-<div id="app-controls" style="margin-top: 20px;">
+<div id="app-controls" style="margin-top: 10px;">
 	<input type="button" class="button" id="hide-app" value="Hide App"
          style="width: 80px;" />
 	<input type="button" class="button" id="new-game" value="New Match" />
@@ -39,6 +39,8 @@
   <div id="player-names" class="controls-container" />
     <div class="table-image" ></div>
     <center>
+	    <input type="button" class="button" id="update-names" value="Update Names"
+             style="margin-right: 25px;" />
       <label class="checkbox-label"
              title="Auto invert player sides at the end of each set">
         <input id="auto-invert" type="checkbox" checked />
@@ -121,7 +123,7 @@
     </div>
   </div>
 </div>
-
+<!-- STOP PASTING HERE -->
 
 
 <script>

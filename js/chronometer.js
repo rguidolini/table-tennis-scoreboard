@@ -113,7 +113,9 @@ Chronometer.prototype.stop = function() {
 }
 
 Chronometer.prototype.reset = function() {
-  this.stop();
+  if (this.timerID) {
+    this.stop();
+  }
   this.start_t = null;
   this.drawTime('00:00');
 }

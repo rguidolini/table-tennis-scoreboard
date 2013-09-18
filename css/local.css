@@ -74,3 +74,21 @@
   text-align: right;
   margin-right: 13px;
 }
+
+.watch {
+  background-image: url('../images/watch.png');
+  background-size: 80px 40px;
+  color: white;
+  font-family: arial;
+  font-size: 23px;
+  font-weight: bold;
+  height: 40px;
+  line-height: 42px;
+  position: absolute;
+  left: 690px;
+  top: 4px;
+  text-align: center;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  width: 80px;
+}
+
