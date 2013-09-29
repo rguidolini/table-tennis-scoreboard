@@ -39,7 +39,7 @@
   <div id="player-names" class="controls-container" />
     <div class="table-image" ></div>
     <center>
-	    <input type="button" class="button" id="update-names" value="Update Names"
+      <input type="button" class="button" id="update-names" value="Update Names"
              style="margin-right: 25px;" />
       <label class="checkbox-label"
              title="Auto invert player sides at the end of each set">
@@ -79,17 +79,15 @@
     <div id="load-logo-control" class="zip-control">
       <label class="title">Load Logo</label>
     </div>
-    <div id="load-logo-box" class="load-logo-box height-zero" >
-      <div class="load-logo-box-content">
-        You can also load any arbitrary PNG image as a logo.
-        Enter a valid URL below.
-        <center>
-          <input id="loadable-uri" type="text"
-                 placeholder="Enter an image URL that ends in .png"
-                 style="width: 260px; margin: 5px 0px;" />
-          <input id="load-logo" class="button" type="button" value="Load Logo" />
-        </center>
-      </div>
+    <div class="zip-content">
+      You can also load any arbitrary PNG image as a logo.
+      Enter a valid URL below.
+      <center>
+        <input id="loadable-uri" type="text"
+               placeholder="Enter an image URL that ends in .png"
+               style="width: 260px; margin: 5px 0px;" />
+        <input id="load-logo" class="button" type="button" value="Load Logo" />
+      </center>
     </div>
   </div>
 
@@ -97,31 +95,50 @@
     <div id="help-control" class="zip-control">
       <label class="title">Show keyboard shortcuts</label>
     </div>
-    <div id="help-box" class="load-logo-box height-zero" >
-      <div class="load-logo-box-content">
-        <table style="font-family: sans-serif; font-size: 13px;">
-          <tr>
-            <td class="legend-icon">&larr;</td>
-            <td>Score 1 point for <b><span id="p1name">PLAYER1</span></b>.
-            </td>
-          </tr>
-          <tr>
-            <td class="legend-icon">&rarr;</td>
-            <td>Score 1 point for <b><span id="p2name">PLAYER2</span></b>.
-            </td>
-          </tr>
-          <tr>
-            <td class="legend-icon">&darr;</td>
-            <td>Undo last scoring.</td>
-          </tr>
-          <tr>
-            <td class="legend-icon">&uarr;</td>
-            <td>Invert players position at the table.</td>
-          </tr>
-        </table>
-      </div>
+    <div class="zip-content">
+      <table style="font-family: sans-serif; font-size: 13px;">
+        <tr>
+          <td class="legend-icon">&larr;</td>
+          <td>Score 1 point for <b><span id="p1name">PLAYER1</span></b>.
+          </td>
+        </tr>
+        <tr>
+          <td class="legend-icon">&rarr;</td>
+          <td>Score 1 point for <b><span id="p2name">PLAYER2</span></b>.
+          </td>
+        </tr>
+        <tr>
+          <td class="legend-icon">&darr;</td>
+          <td>Undo last scoring.</td>
+        </tr>
+        <tr>
+          <td class="legend-icon">&uarr;</td>
+          <td>Invert players position at the table.</td>
+        </tr>
+      </table>
     </div>
   </div>
+
+  <div class="zip-container" >
+    <div class="zip-control">
+      <label class="title">Advanced Setup</label>
+    </div>
+    <div class="zip-content">
+      <table>
+        <tr>
+          <td>Set length:</td>
+          <td><input id="set-length" type="text" value=11 /></td>
+          <td><input id="update-set" class="button" type="button" value="update" /></td>
+        </tr>
+        <tr>
+          <td>Game length:</td>
+          <td><input id="game-length" type="text" value=3 /></td>
+          <td><input id="update-game" class="button" type="button" value="update" /></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
 </div>
 <!-- STOP PASTING HERE -->
 
@@ -129,11 +146,6 @@
 <script>
 var CANVAS_WIDTH = 640;
 var CANVAS_HEIGHT = 360;
-
-function updateMirroring() {
-  var val =  document.querySelector('#mirror-checkbox').checked;
-  gapi.hangout.av.setLocalParticipantVideoMirrored(val);
-}
 
 function init() {
   gapi.hangout.onApiReady.add(function(eventObj) {

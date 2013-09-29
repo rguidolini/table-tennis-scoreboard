@@ -125,26 +125,16 @@ function drawLogo() {
   gtvLogo.draw(uri);
 }
 
-function zippy(controlElement, zippyElement) {
-  var html = getElement(controlElement).innerHTML;
-  getElement(controlElement).innerHTML =
-    '<span id="symbol">&#9658;</span>&nbsp;' + html;
-  getElement(controlElement).onclick =
-    function() {
-      getElement(zippyElement).classList.toggle('height-zero');
-      getElement(controlElement).firstChild.innerHTML =
-        getElement(zippyElement).classList.contains('height-zero') ?
-          '&#9658;' : '&#9660;';
-    }
+function updateSetLength() {
+  scoreboard.updateSetLength(getElement('set-length').value);
 }
 
-zippy('load-logo-control', 'load-logo-box');
-zippy('help-control', 'help-box');
+function updateGameLength() {
+  scoreboard.updateMatchLength(getElement('game-length').value);
+}
 
 function bindEvents() {
   document.onkeydown = function(e) { handleKeyStroke(e); }
-  //getElement('player1name').oninput = function() { updateNames(); }
-  //getElement('player2name').oninput = function() { updateNames(); }
   getElement('hide-app').onclick = function() { toggleDisplayApp(); }
   getElement('new-game').onclick = function() { newMatch(); }
   getElement('update-names').onclick = function() { updateNames(); }
@@ -152,8 +142,33 @@ function bindEvents() {
   getElement('score-player2').onclick = function() { scorePointForPlayer('2'); }
   getElement('undo').onclick = function() { undo(); }
   getElement('load-logo').onclick = function() { drawLogo(); }
+  getElement('update-set').onclick = function() { updateSetLength(); }
+  getElement('update-game').onclick = function() { updateGameLength(); }
 }
 bindEvents();
+
+function zippy() {
+  var containers = document.getElementsByClassName('zip-container');
+  for(var i = 0; i < containers.length; i++) {
+    var animator = document.createElement("div");
+    animator.className = 'zip-content-animator height-zero';
+    animator.appendChild(containers[i].getElementsByClassName('zip-content')[0])
+    containers[i].appendChild(animator);
+    var control = containers[i].getElementsByClassName('zip-control')[0];
+
+    var html = control.innerHTML;
+    control.innerHTML = '<span id="symbol">&#9658;</span>&nbsp;' + html;
+    control.onclick =
+      function() {
+        var animator =
+          this.parentElement.getElementsByClassName('zip-content-animator')[0];
+        animator.classList.toggle('height-zero');
+        this.firstChild.innerHTML =
+          animator.classList.contains('height-zero') ? '&#9658;' : '&#9660;';
+      }
+    };
+}
+zippy()
 
 function scorePointForPlayer(player) {
   if (firstStroke) {

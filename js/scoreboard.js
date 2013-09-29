@@ -1,5 +1,3 @@
-var SET_LENGHT = 11;
-var MATCH_LENGHT = 2;
 var LINE_1 = 338;
 var LINE_2 = 354;
 var X_BALL = 18;
@@ -13,6 +11,8 @@ var SUMMARY_COL_3 = 209;
 
 
 function Scoreboard() {
+  this.setLength = 11;
+  this.matchLength = 2;
   this.overlays = {};
   this.summary_overlays = [];
   this.drawBackground(
@@ -45,6 +45,17 @@ Scoreboard.prototype.reset = function() {
   this.setSet('2', 0);
   this.setPlayerName('1', 'PLAYER 1');
   this.setPlayerName('2', 'PLAYER 2');
+}
+
+Scoreboard.prototype.updateSetLength = function(length) {
+  this.setLength = parseInt(length, 10);
+}
+
+// Sets the maximum number of sets in the match (best of 'length').
+// For example, whe 'length' is 5, the player who wins 3 sets first wins the
+// match.
+Scoreboard.prototype.updateMatchLength = function(length) {
+  this.matchLength = parseInt(parseInt(length, 10) / 2, 10) + 1;
 }
 
 Scoreboard.prototype.display = function(visible) {
@@ -246,8 +257,8 @@ Scoreboard.prototype.incrementScore = function(player) {
 }
 
 Scoreboard.prototype.shouldIncrementSet = function() {
-  if ((this.scoreCounting['1'] >= SET_LENGHT ||
-       this.scoreCounting['2'] >= SET_LENGHT) &&
+  if ((this.scoreCounting['1'] >= this.setLength ||
+       this.scoreCounting['2'] >= this.setLength) &&
       Math.abs(this.scoreCounting['1'] - this.scoreCounting['2']) > 1) {
     return true;
   }
@@ -297,7 +308,8 @@ Scoreboard.prototype.toggleBall = function(player) {
 }
 
 Scoreboard.prototype.toggleService = function() {
-  if ((this.scoreCounting['1'] + this.scoreCounting['2']) >= 2*SET_LENGHT-2 ||
+  if ((this.scoreCounting['1'] + this.scoreCounting['2']) >=
+      2 * this.setLength-2 ||
       (this.serviceCounter % 2) == 0) {
     this.toggleBall('1');
     this.toggleBall('2');
@@ -309,10 +321,10 @@ Scoreboard.prototype.setFinished = function() {
 }
 
 Scoreboard.prototype.matchFinished = function() {
-  if (this.setCounting['1'] >= MATCH_LENGHT) {
+  if (this.setCounting['1'] >= this.matchLength) {
     return 1;
   }
-  if (this.setCounting['2'] >= MATCH_LENGHT) {
+  if (this.setCounting['2'] >= this.matchLength) {
     return 2;
   }
   return 0;

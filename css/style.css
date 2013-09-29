@@ -219,8 +219,7 @@ input[type=checkbox] {
 }
 
 .zip-container {
-  margin-top: 15px;
-  padding: 5px;
+  margin: 15px 5px 0px 5px;
   font-family: sans-serif;
   font-size: 13px;
 }
@@ -233,13 +232,13 @@ input[type=checkbox] {
   background-color: #e5e5e5;
 }
 
-.load-logo-box {
+.zip-content-animator {
   height: 100px;
   overflow: hidden;
   transition: height 0.5s;
 }
 
-.load-logo-box-content {
+.zip-content {
   border: solid 1px #b9b9b9;
   border-radius: 3px;
   padding: 5px;
