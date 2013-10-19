@@ -71,17 +71,26 @@ Scoreboard.prototype.display = function(visible) {
 }
 
 Scoreboard.prototype.drawBackground =
-    function(imageUri, xPos, yPos, scale, overlayId) {
+    function(imageUri, xPos, yPos, scale, scaleReference, overlayId) {
   var img = gapi.hangout.av.effects.createImageResource(imageUri);
   var overlay = img.createOverlay();
   overlay.setPosition(xPos, yPos);
-  overlay.setScale(scale, gapi.hangout.av.effects.ScaleReference.WIDTH);
+  if (drawBackground == 'w') {
+    overlay.setScale(scale, gapi.hangout.av.effects.ScaleReference.WIDTH);
+  } else {
+    overlay.setScale(scale, gapi.hangout.av.effects.ScaleReference.HEIGHT);
+  }
   overlay.setVisible(true);
   this.overlays[overlayId] = {
     'img' : img,
     'ovl' : overlay,
     'vis' : true, // set the overlay as visible
   };
+}
+
+Scoreboard.prototype.drawBackground =
+    function(imageUri, xPos, yPos, scale, overlayId) {
+  this.drawBackground(imageUri, xPos, yPos, scale, 'w', overlayId);
 }
 
 Scoreboard.prototype.createBall = function(player) {
@@ -400,8 +409,8 @@ Scoreboard.prototype.drawSummaryTitles = function(text, column, overlayId) {
                            'right',
                            column - 1, // x position
                            321)); // y position
-  this.redrawOverlay(overlayId, img);
-  this.summary_overlays.push(overlayId);
+  this.redrawOverlay('summary-' + overlayId, img);
+  this.summary_overlays.push('summary-' + overlayId);
 }
 
 Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
@@ -449,4 +458,36 @@ Scoreboard.prototype.hideSummary = function() {
   for (var i = 0; i < this.summary_overlays.length; i++) {
     this.setOverlayVisible(this.summary_overlays[i], false);
   }
+}
+
+//-------------------------------------------------------------
+
+Scoreboard.prototype.drawSummaryBackground =
+    function(imageFile, overlayId, xPos) {
+  this.drawBackground(
+      'http://table-tennis-scoreboard.googlecode.com/git/images/' + imageFile,
+      xPos,
+      0.42, // y pos
+      0.1374, // scale
+      'h', // scale reference HEIGHT
+      'summary-' + overlayId);
+}
+
+Scoreboard.prototype.showSummary = function() {
+  this.drawSummaryBackground('summary1.png', 'left-bkg', -275 /* x pos */);
+
+  var xPos = -0.255;
+  for (var set = 0; set < this.gameHistory.length; set++) {
+    this.drawSummaryBackground('summary2.png', 'set-bkg-' + set, xPos);
+    xPos += 34; // This value has been determined empirically.
+
+    this.drawSummaryTitles('#' + (set + 1), columns[set], '#' + set);
+
+    var score1 = this.gameHistory[set].scoreCounting['1'];
+    var score2 = this.gameHistory[set].scoreCounting['2'];
+    this.drawSummaryText(score1, LINE_1, columns[set], 'p1-scr' + set);
+    this.drawSummaryText(score2, LINE_2, columns[set], 'p2-scr' + set);
+  }
+
+  this.drawSummaryBackground('summary3.png', 'right-bkg', xPos - 20);
 }

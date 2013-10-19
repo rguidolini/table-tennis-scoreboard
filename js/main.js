@@ -243,18 +243,11 @@ function updateNames() {
 
 function gameOver() {
   isGameOver = true;
-  scoreboard.displaySummary();
+  //scoreboard.displaySummary();
+  scoreboard.showSummary();
   chrono.stop();
   getElement('controls-cover').style.zIndex = 1;
   hideWarning();
-  /*statTable.displayTable(
-      getElement('stat-table'),
-      chrono.getElapsedTime(),
-      scoreboard.playerName('1'),
-      scoreboard.playerName('2'));
-  getElement('stat-table').classList.remove('hidden');*/
-  //scoreboard.toggleDisplayHide();
-  //getElement('watch').classList.add('hidden');
 }
 
 function scoreAce() {
