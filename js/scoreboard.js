@@ -475,14 +475,14 @@ Scoreboard.prototype.showSummary = function() {
   var textXPos = 164; 
   for (var set = 0; set < this.gameHistory.length; set++) {
     this.drawSummaryBackground('summary2.png', 'set-bkg-' + set, xPos);
-    xPos += 0.034; // This value has been determined empirically.
+    xPos += 0.035; // This value has been determined empirically.
     this.drawSummaryTitles('#' + (set + 1), textXPos, '#' + set);
     var score1 = this.gameHistory[set].scoreCounting['1'];
     var score2 = this.gameHistory[set].scoreCounting['2'];
     this.drawSummaryText(score1, LINE_1, textXPos, 'p1-scr' + set);
     this.drawSummaryText(score2, LINE_2, textXPos, 'p2-scr' + set);
-    textXPos += 21;
+    textXPos += 22;
   }
 
-  this.drawSummaryBackground('summary3.png', 'right-bkg', xPos - 0.02);
+  this.drawSummaryBackground('summary3.png', 'right-bkg', xPos - 0.022);
 }
