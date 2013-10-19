@@ -475,7 +475,7 @@ Scoreboard.prototype.showSummary = function() {
   var textXPos = 164; 
   for (var set = 0; set < this.gameHistory.length; set++) {
     this.drawSummaryBackground('summary2.png', 'set-bkg-' + set, xPos);
-    xPos += 0.035; // This value has been determined empirically.
+    xPos += 0.034; // This value has been determined empirically.
     this.drawSummaryTitles('#' + (set + 1), textXPos, '#' + set);
     var score1 = this.gameHistory[set].scoreCounting['1'];
     var score2 = this.gameHistory[set].scoreCounting['2'];
@@ -484,5 +484,5 @@ Scoreboard.prototype.showSummary = function() {
     textXPos += 22;
   }
 
-  this.drawSummaryBackground('summary3.png', 'right-bkg', xPos - 0.022);
+  this.drawSummaryBackground('summary3.png', 'right-bkg', xPos - 0.025);
 }
