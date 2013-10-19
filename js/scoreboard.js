@@ -9,7 +9,6 @@ var SUMMARY_COL_1 = 164;
 var SUMMARY_COL_2 = 186;
 var SUMMARY_COL_3 = 209;
 
-
 function Scoreboard() {
   this.setLength = 11;
   this.matchLength = 2;
@@ -20,6 +19,7 @@ function Scoreboard() {
       -0.36, // x pos
       0.44, // y pos
       0.26, // scale
+      'w', // scale reference dimension
       'bkg');
   this.createBall('1');
   this.createBall('2');
@@ -75,7 +75,7 @@ Scoreboard.prototype.drawBackground =
   var img = gapi.hangout.av.effects.createImageResource(imageUri);
   var overlay = img.createOverlay();
   overlay.setPosition(xPos, yPos);
-  if (drawBackground == 'w') {
+  if (scaleReference == 'w') {
     overlay.setScale(scale, gapi.hangout.av.effects.ScaleReference.WIDTH);
   } else {
     overlay.setScale(scale, gapi.hangout.av.effects.ScaleReference.HEIGHT);
@@ -86,11 +86,6 @@ Scoreboard.prototype.drawBackground =
     'ovl' : overlay,
     'vis' : true, // set the overlay as visible
   };
-}
-
-Scoreboard.prototype.drawBackground =
-    function(imageUri, xPos, yPos, scale, overlayId) {
-  this.drawBackground(imageUri, xPos, yPos, scale, 'w', overlayId);
 }
 
 Scoreboard.prototype.createBall = function(player) {
