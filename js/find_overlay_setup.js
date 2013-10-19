@@ -17,7 +17,7 @@ var IMAGE_URI =
  */
 function onSetScale(value) {
   imageOverlay.setScale(parseFloat(value),
-      gapi.hangout.av.effects.ScaleReference.WIDTH);
+      gapi.hangout.av.effects.ScaleReference.HEIGHT);
 }
 
 /** Responds to offset slider
