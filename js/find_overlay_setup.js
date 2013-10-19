@@ -36,9 +36,13 @@ function onSetOffsetX(value) {
   imageOverlay.setPosition(parseFloat(value), y);
 }
 
-function drawImageOverlayTest() {
-  console.log('loading image from ' + IMAGE_URI);
-  var img = gapi.hangout.av.effects.createImageResource(IMAGE_URI);
+function drawImageOverlayTest(imageUrl) {
+  if (imageUrl.length == 0) {
+    imageUrl = IMAGE_URI;
+  }
+
+  console.log('loading image from ' + imageUrl);
+  var img = gapi.hangout.av.effects.createImageResource(imageUrl);
   imageOverlay = img.createOverlay();
   imageOverlay.setScale(INITIAL_SCALE,
       gapi.hangout.av.effects.ScaleReference.HEIGHT);

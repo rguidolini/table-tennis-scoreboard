@@ -22,8 +22,12 @@
 
 <!-- START PASTING HERE -->
 <div id='fullUI'>
+	<input id="loadableURI" type="text" 
+	       placeholder="Enter an image URL that ends in .png"
+	       style="width:300px;"
+	       />
   <input class="button" type="button" value="Display Image" id="topHatButton"
-         onClick="drawImageOverlayTest();"/>
+         onClick="drawImageOverlayTest(document.querySelector('#loadableURI').value);"/>
 </div>
 <div id="overlayControls">
   <br><br>
@@ -43,14 +47,14 @@
 <br><br>
 <div id='arbitraryURILoader'>
   Format: text, fontSize, color, bold, shadow, align, xPos, yPos [, c]<br>
-	<input id="loadableURI" type="text" 
+	<input id="textFormat" type="text" 
 	       placeholder="Enter an image URL that ends in .png"
 	       style="width:300px;"
 	       />
 	<input class="button"
 	       type="button" 
 	       value="Show Text" id="animatedButton"
-               onClick="drawTextOverlayTest(document.querySelector('#loadableURI').value)"/>
+               onClick="drawTextOverlayTest(document.querySelector('#textFormat').value)"/>
 </div>
 <script src="https://table-tennis-scoreboard.googlecode.com/git/js/find_overlay_setup.js">
 </script>
