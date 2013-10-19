@@ -482,7 +482,10 @@ Scoreboard.prototype.showSummary = function() {
     this.drawSummaryText(score1, LINE_1, textXPos, 'p1-scr' + set);
     this.drawSummaryText(score2, LINE_2, textXPos, 'p2-scr' + set);
     textXPos += 22;
+    if (set % 6 == 0) {
+      textXPos--; // adjusting text positioning with regard to background.
+    }
   }
 
-  this.drawSummaryBackground('summary3.png', 'right-bkg', xPos - 0.025);
+  this.drawSummaryBackground('summary3.png', 'right-bkg', xPos - 0.014);
 }
