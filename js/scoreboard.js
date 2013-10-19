@@ -469,7 +469,7 @@ Scoreboard.prototype.drawSummaryBackground =
 }
 
 Scoreboard.prototype.showSummary = function() {
-  this.drawSummaryBackground('summary1.png', 'left-bkg', -275 /* x pos */);
+  this.drawSummaryBackground('summary1.png', 'left-bkg', -0.275 /* x pos */);
 
   var xPos = -0.255;
   var columns = {0 : SUMMARY_COL_1,
@@ -477,7 +477,7 @@ Scoreboard.prototype.showSummary = function() {
                  2 : SUMMARY_COL_3};
   for (var set = 0; set < this.gameHistory.length; set++) {
     this.drawSummaryBackground('summary2.png', 'set-bkg-' + set, xPos);
-    xPos += 34; // This value has been determined empirically.
+    xPos += 0.034; // This value has been determined empirically.
 
     this.drawSummaryTitles('#' + (set + 1), columns[set], '#' + set);
 
@@ -487,5 +487,5 @@ Scoreboard.prototype.showSummary = function() {
     this.drawSummaryText(score2, LINE_2, columns[set], 'p2-scr' + set);
   }
 
-  this.drawSummaryBackground('summary3.png', 'right-bkg', xPos - 20);
+  this.drawSummaryBackground('summary3.png', 'right-bkg', xPos - 0.02);
 }
