@@ -477,7 +477,7 @@ Scoreboard.prototype.showSummary = function() {
     this.drawSummaryBackground('summary2.png', 'set-bkg-' + set, xPos);
     xPos += 0.034; // This value has been determined empirically.
 
-    this.drawSummaryTitles('#' + (set + 1), columns[set], '#' + set);
+    this.drawSummaryTitles('#' + (set + 1), textXPos, '#' + set);
 
     var score1 = this.gameHistory[set].scoreCounting['1'];
     var score2 = this.gameHistory[set].scoreCounting['2'];
