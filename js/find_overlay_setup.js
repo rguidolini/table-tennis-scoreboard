@@ -41,7 +41,7 @@ function drawImageOverlayTest() {
   var img = gapi.hangout.av.effects.createImageResource(IMAGE_URI);
   imageOverlay = img.createOverlay();
   imageOverlay.setScale(INITIAL_SCALE,
-      gapi.hangout.av.effects.ScaleReference.WIDTH);
+      gapi.hangout.av.effects.ScaleReference.HEIGHT);
   imageOverlay.setPosition(INITIAL_X_POS, INITIAL_Y_POS);
   imageOverlay.setVisible(true);
 }
