@@ -472,6 +472,9 @@ Scoreboard.prototype.showSummary = function() {
   this.drawSummaryBackground('summary1.png', 'left-bkg', -275 /* x pos */);
 
   var xPos = -0.255;
+  var columns = {0 : SUMMARY_COL_1,
+                 1 : SUMMARY_COL_2,
+                 2 : SUMMARY_COL_3};
   for (var set = 0; set < this.gameHistory.length; set++) {
     this.drawSummaryBackground('summary2.png', 'set-bkg-' + set, xPos);
     xPos += 34; // This value has been determined empirically.
