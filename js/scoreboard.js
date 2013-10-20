@@ -5,17 +5,12 @@ var X_NAME = 23;
 var X_SET = 142;
 var X_SCORE = 164;
 var FONT_SIZE = 13;
-var SUMMARY_COL_1 = 164;
-var SUMMARY_COL_2 = 186;
-var SUMMARY_COL_3 = 209;
-
 var SUMMARY_PREFIX = 'summary-';
 
 function Scoreboard() {
   this.setLength = 11;
   this.matchLength = 2;
   this.overlays = {};
-  this.summary_overlays = [];
   this.drawBackground(
       'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard.png',
       -0.36, // x pos
@@ -38,7 +33,6 @@ Scoreboard.prototype.reset = function() {
   this.serving = {1: false, 2: false};
 
   this.hideSummary();
-  this.summary_overlays = [];
   this.setOverlayVisible('ball-1', false);
   this.setOverlayVisible('ball-2', false);
   this.setScore('1', 0);
@@ -407,7 +401,6 @@ Scoreboard.prototype.drawSummaryTitles = function(text, column, overlayId) {
                            column - 1, // x position
                            321)); // y position
   this.redrawOverlay(SUMMARY_PREFIX + overlayId, img);
-  this.summary_overlays.push('summary-' + overlayId);
 }
 
 Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
@@ -421,37 +414,7 @@ Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
                            column,
                            line));
   this.redrawOverlay(SUMMARY_PREFIX + overlayId, img);
-  this.summary_overlays.push(overlayId);
 }
-
-Scoreboard.prototype.displaySummary = function() {
-  if (this.overlays['sum-bkg']) {
-    this.setOverlayVisible('sum-bkg', true);
-    this.summary_overlays.push('sum-bkg');
-  } else {
-    this.drawBackground(
-        'https://table-tennis-scoreboard.googlecode.com/git/images/scoreboard_summary.png',
-        -0.22, // x pos
-        0.420, // y pos
-        0.115, // scale
-        'sum-bkg');
-    this.summary_overlays.push('sum-bkg');
-  }
-  var columns = {0 : SUMMARY_COL_1,
-                 1 : SUMMARY_COL_2,
-                 2 : SUMMARY_COL_3};
-  for (var i = 0; i < 3; i++) {
-    this.drawSummaryTitles('#' + (i+1), columns[i], '#' + i);
-  }
-  for (var set = 0; set < this.gameHistory.length; set++) {
-    var score1 = this.gameHistory[set].scoreCounting['1'];
-    var score2 = this.gameHistory[set].scoreCounting['2'];
-    this.drawSummaryText(score1, LINE_1, columns[set], 'sum-p1-s' + (set+1));
-    this.drawSummaryText(score2, LINE_2, columns[set], 'sum-p2-s' + (set+1));
-  }
-}
-
-//-------------------------------------------------------------
 
 Scoreboard.prototype.drawSummaryBackground =
     function(imageFile, overlayId, xPos) {

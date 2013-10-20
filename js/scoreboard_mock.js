@@ -80,7 +80,7 @@ Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
   // mock
 }
 
-Scoreboard.prototype.displaySummary = function() {
+Scoreboard.prototype.showSummary = function() {
   // mock
 }
 
