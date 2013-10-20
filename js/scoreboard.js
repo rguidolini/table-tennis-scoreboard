@@ -449,31 +449,30 @@ Scoreboard.prototype.displaySummary = function() {
   }
 }
 
-Scoreboard.prototype.hideSummary = function() {
-  for (var i = 0; i < this.summary_overlays.length; i++) {
-    this.setOverlayVisible(this.summary_overlays[i], false);
-  }
-}
-
 //-------------------------------------------------------------
 
 Scoreboard.prototype.drawSummaryBackground =
     function(imageFile, overlayId, xPos) {
-  this.drawBackground(
-      'http://table-tennis-scoreboard.googlecode.com/git/images/' + imageFile,
-      xPos,
-      0.42, // y pos
-      0.1374, // scale
-      'h', // scale reference HEIGHT
-      'summary-' + overlayId);
+  if (this.overlays[overlayId]) {
+    this.overlays[overlayId]['vis'] = true; // set the overlay as visible
+  } else {
+    this.drawBackground(
+        'http://table-tennis-scoreboard.googlecode.com/git/images/' + imageFile,
+        xPos,
+        0.42, // y pos
+        0.1374, // scale
+        'h', // scale reference HEIGHT
+        'summary-' + overlayId);
+  }
 }
 
 Scoreboard.prototype.showSummary = function() {
   this.drawSummaryBackground('summary1.png', 'left-bkg', -0.275 /* x pos */);
 
   var xPos = -0.255;
-  var textXPos = 164; 
-  for (var set = 0; set < this.gameHistory.length; set++) {
+  var textXPos = 164;
+  var set = 0;
+  for (; set < this.gameHistory.length; set++) {
     this.drawSummaryBackground('summary2.png', 'set-bkg-' + set, xPos);
     xPos += 0.034; // This value has been determined empirically.
     this.drawSummaryTitles('#' + (set + 1), textXPos, '#' + set);
@@ -487,5 +486,15 @@ Scoreboard.prototype.showSummary = function() {
     }
   }
 
-  this.drawSummaryBackground('summary3.png', 'right-bkg', xPos - 0.014);
+  this.drawSummaryBackground('summary3.png', 'right-bkg-' + set, xPos - 0.014);
 }
+
+Scoreboard.prototype.hideSummary = function() {
+  for (var i in this.overlays) {
+    if (i.indexOf('summary-')) {
+      this.overlays[i]['vis'] = false;
+      this.overlays[i]['ovl'].setVisible(false);
+    }
+  }
+}
+
