@@ -243,6 +243,7 @@ function updateNames() {
 
 function gameOver() {
   isGameOver = true;
+  //scoreboard.displaySummary();
   scoreboard.showSummary();
   chrono.stop();
   getElement('controls-cover').style.zIndex = 1;
