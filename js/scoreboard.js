@@ -9,6 +9,8 @@ var SUMMARY_COL_1 = 164;
 var SUMMARY_COL_2 = 186;
 var SUMMARY_COL_3 = 209;
 
+var SUMMARY_PREFIX = 'summary-';
+
 function Scoreboard() {
   this.setLength = 11;
   this.matchLength = 2;
@@ -404,7 +406,7 @@ Scoreboard.prototype.drawSummaryTitles = function(text, column, overlayId) {
                            'right',
                            column - 1, // x position
                            321)); // y position
-  this.redrawOverlay('summary-' + overlayId, img);
+  this.redrawOverlay(SUMMARY_PREFIX + overlayId, img);
   this.summary_overlays.push('summary-' + overlayId);
 }
 
@@ -418,7 +420,7 @@ Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
                            'right',
                            column,
                            line));
-  this.redrawOverlay(overlayId, img);
+  this.redrawOverlay(SUMMARY_PREFIX + overlayId, img);
   this.summary_overlays.push(overlayId);
 }
 
@@ -462,7 +464,7 @@ Scoreboard.prototype.drawSummaryBackground =
         0.42, // y pos
         0.1374, // scale
         'h', // scale reference HEIGHT
-        'summary-' + overlayId);
+        SUMMARY_PREFIX + overlayId);
   }
 }
 
@@ -490,10 +492,9 @@ Scoreboard.prototype.showSummary = function() {
 }
 
 Scoreboard.prototype.hideSummary = function() {
-  for (var i in this.overlays) {
-    if (i.indexOf('summary-') == 0) {
-      this.overlays[i]['vis'] = false;
-      this.overlays[i]['ovl'].setVisible(false);
+  for (var overlayId in this.overlays) {
+    if (overlayId.indexOf(SUMMARY_PREFIX) == 0) {
+      this.setOverlayVisible(overlayId, false);
     }
   }
 }
