@@ -20,6 +20,7 @@ var arePostionsinverted = false;
 var scoreboard = new Scoreboard();
 //var statTable = new StatsTable();
 var chrono = new Chronometer();
+var commentBox = new CommentBox(true);
 var gtvLogo = new GtvLogo();
 
 function showError(msg) {
@@ -144,6 +145,9 @@ function bindEvents() {
   getElement('load-logo').onclick = function() { drawLogo(); }
   getElement('update-set').onclick = function() { updateSetLength(); }
   getElement('update-game').onclick = function() { updateGameLength(); }
+  getElement('show-comment').onclick = function() { toggleDisplaycommentBox(); }
+
+  getElement('update-comment').onclick = function() { updateCommentBox(); }
 }
 bindEvents();
 
@@ -241,6 +245,15 @@ function updateNames() {
   updateShortcutText(name1, name2);
 }
 
+function updateComment() {
+  var com = getElement('comment').value;
+  scoreboard.setPlayerName(1, name1);
+  scoreboard.setPlayerName(2, name2);
+  getElement('score-player1').value = name1;
+  getElement('score-player2').value = name2;
+  updateShortcutText(name1, name2);
+}
+
 function gameOver() {
   isGameOver = true;
   scoreboard.showSummary();
@@ -298,4 +311,19 @@ function invertSides() {
   var tmp_name = p1name.textContent;
   p1name.textContent = p2name.textContent;
   p2name.textContent = tmp_name; 
+}
+
+function toggleDisplaycommentBox() {
+  if (commentBox.getVisible()) {
+    getElement('show-comment').value = 'Show'
+    commentBox.setOverlayVisible('comment-box', false);
+  } else {
+    getElement('show-comment').value = 'Hide'
+    commentBox.setOverlayVisible('comment-box', true);
+  }
+}
+
+function updateCommentBox() {
+  commentBox.setComment(getElement('input-comment').value)
+  commentBox.setNetzen(getElement('input-netzen').value)
 }

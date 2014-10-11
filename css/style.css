@@ -262,3 +262,8 @@ input[type=checkbox] {
   position: absolute;
   z-index: -1;
 }
+
+.comment-box input[type=text] {
+  width: 205px;
+  text-align: left;
+}
