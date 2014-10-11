@@ -267,3 +267,8 @@ input[type=checkbox] {
   width: 205px;
   text-align: left;
 }
+
+#setup-pannel input[type=button] {
+  width: 56px;
+  margin-left: 2px;
+}

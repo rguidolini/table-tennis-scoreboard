@@ -122,7 +122,7 @@
     <div class="zip-control">
       <label class="title">Advanced Setup</label>
     </div>
-    <div class="zip-content">
+    <div id="setup-pannel" class="zip-content">
       <table>
         <tr>
           <td>Set length:</td>
@@ -134,23 +134,14 @@
           <td><input id="game-length" type="text" value=3 /></td>
           <td><input id="update-game" class="button" type="button" value="update" /></td>
         </tr>
+        <tr>
+          <td>Load a logo:</td>
+          <td>
+            <input id="loadable-uri" type="text" placeholder="enter an img URL" />
+          </td>
+          <td><input id="load-logo" class="button" type="button" value="load" /></td>
+        </tr>
       </table>
-    </div>
-  </div>
-
-  <div id="load-logo-container" class="zip-container" />
-    <div id="load-logo-control" class="zip-control">
-      <label class="title">Load Logo</label>
-    </div>
-    <div class="zip-content">
-      You can also load any arbitrary PNG image as a logo.
-      Enter a valid URL below.
-      <center>
-        <input id="loadable-uri" type="text"
-               placeholder="Enter an image URL that ends in .png"
-               style="width: 260px; margin: 5px 0px;" />
-        <input id="load-logo" class="button" type="button" value="Load Logo" />
-      </center>
     </div>
   </div>
 
