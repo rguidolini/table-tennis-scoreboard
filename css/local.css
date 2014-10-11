@@ -106,3 +106,9 @@
   padding: 6px 17px;
   font-size: 14px;
 }
+
+#logo {
+  position: absolute;
+  left: 870px;
+  top: 80px;
+}
