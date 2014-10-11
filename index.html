@@ -28,7 +28,7 @@
   00:00
 </div>
 
-<div id='comment-box' class='comment-box-mock hidden'>
+<div id='comment-box' class='comment-box hidden'>
   <div id='comment' style="float: left;">
   Matheus, voce que o Piva leva esse ano de novo?
   </div>
@@ -94,7 +94,48 @@
     </center>
   </div>
 
-  <div id="load-logo-container" class="zip-container" style="display:none"/>
+  <div class="zip-container" >
+    <div class="zip-control">
+      <label class="title">Netzen Comment</label>
+    </div>
+    <div id="comment-box-pannel" class="zip-content">
+      <table>
+        <tr>
+          <td>Comment:</td>
+          <td><input id="input-comment" type="text" /></td>
+        </tr>
+        <tr>
+          <td>Netzen:</td>
+          <td><input id="input-netzen" type="text" /></td>
+        </tr>
+      </table>
+      <center>
+        <input id="show-comment" class="button" type="button" value="Show" style="width: 62px;"/>
+      </center>
+    </div>
+  </div>
+
+  <div class="zip-container" >
+    <div class="zip-control">
+      <label class="title">Advanced Setup</label>
+    </div>
+    <div class="zip-content">
+      <table>
+        <tr>
+          <td>Set length:</td>
+          <td><input id="set-length" type="text" value=11 /></td>
+          <td><input id="update-set" class="button" type="button" value="update" /></td>
+        </tr>
+        <tr>
+          <td>Game length:</td>
+          <td><input id="game-length" type="text" value=3 /></td>
+          <td><input id="update-game" class="button" type="button" value="update" /></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="load-logo-container" class="zip-container" />
     <div id="load-logo-control" class="zip-control">
       <label class="title">Load Logo</label>
     </div>
@@ -137,47 +178,6 @@
       </table>
     </div>
   </div>
-
-  <div class="zip-container" >
-    <div class="zip-control">
-      <label class="title">Advanced Setup</label>
-    </div>
-    <div class="zip-content">
-      <table>
-        <tr>
-          <td>Set length:</td>
-          <td><input id="set-length" type="text" value=11 /></td>
-          <td><input id="update-set" class="button" type="button" value="update" /></td>
-        </tr>
-        <tr>
-          <td>Game length:</td>
-          <td><input id="game-length" type="text" value=3 /></td>
-          <td><input id="update-game" class="button" type="button" value="update" /></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="zip-container" >
-    <div class="zip-control">
-      <label class="title">Netzen Comment</label>
-    </div>
-    <div class="zip-content comment-box">
-      <table>
-        <tr>
-          <td>Comment:</td>
-          <td><input id="input-comment" type="text" /></td>
-        </tr>
-        <tr>
-          <td>Netzen:</td>
-          <td><input id="input-netzen" type="text" /></td>
-        </tr>
-      </table>
-      <input id="show-comment" class="button" type="button" value="Show" />
-      <input id="update-comment" class="button" type="button" value="Update" />
-    </div>
-  </div>
-
 </div>
 <!-- STOP COPING HERE -->
 

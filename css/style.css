@@ -263,7 +263,7 @@ input[type=checkbox] {
   z-index: -1;
 }
 
-.comment-box input[type=text] {
+#comment-box-pannel input[type=text] {
   width: 205px;
   text-align: left;
 }

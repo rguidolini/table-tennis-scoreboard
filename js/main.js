@@ -56,6 +56,14 @@ function getElement(elementId) {
   return element;
 }
 
+function getElementBySelector(selector) {
+  var elements = document.querySelectorAll(selector)
+  if (!elements) {
+    showError('Elements with CSS id "' + selector + '" not found.');
+  }
+  return elements;
+}
+
 function handleKeyStroke(e) {
   if ((isGameOver && e.which != UNDO_KEY) || !appVisible) {
     return;
@@ -146,13 +154,11 @@ function bindEvents() {
   getElement('update-set').onclick = function() { updateSetLength(); }
   getElement('update-game').onclick = function() { updateGameLength(); }
   getElement('show-comment').onclick = function() { toggleDisplaycommentBox(); }
-
-  getElement('update-comment').onclick = function() { updateCommentBox(); }
 }
 bindEvents();
 
 function zippy() {
-  var containers = document.getElementsByClassName('zip-container');
+  var containers = getElementBySelector('.zip-container');
   for(var i = 0; i < containers.length; i++) {
     var animator = document.createElement("div");
     animator.className = 'zip-content-animator height-zero';
@@ -314,16 +320,21 @@ function invertSides() {
 }
 
 function toggleDisplaycommentBox() {
+  var disableInput = true;
   if (commentBox.getVisible()) {
-    getElement('show-comment').value = 'Show'
+    getElement('show-comment').value = 'Show';
     commentBox.setOverlayVisible('comment-box', false);
+    disableInput = false;
   } else {
-    getElement('show-comment').value = 'Hide'
+    commentBox.setComment(getElement('input-comment').value);
+    commentBox.setNetzen(getElement('input-netzen').value);
+    getElement('show-comment').value = 'Hide';
     commentBox.setOverlayVisible('comment-box', true);
+    disableInput = true;
   }
-}
 
-function updateCommentBox() {
-  commentBox.setComment(getElement('input-comment').value)
-  commentBox.setNetzen(getElement('input-netzen').value)
+  inputs = getElementBySelector('#comment-box-pannel input[type=text]')
+  for (i=0; i < inputs.length; i++) {
+    inputs[i].disabled = disableInput;
+  }
 }
