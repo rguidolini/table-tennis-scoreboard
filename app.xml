@@ -117,8 +117,6 @@ gadgets.util.registerOnLoadHandler(init);
 <!--script src="https://table-tennis-scoreboard.googlecode.com/git/js/main.js">
 </script-->
 
-var scoreboard = new Scoreboard();
-
 ]]>
 </Content>
 </Module>

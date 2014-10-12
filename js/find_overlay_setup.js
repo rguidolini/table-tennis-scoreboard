@@ -1,7 +1,5 @@
 // Used just to help finding the position and scale of new overlays.
 
-var scoreboard = new Scoreboard();
-
 var textOverlay = null;
 var imageOverlay = null;
 var minScale = 0.01;
@@ -13,6 +11,12 @@ var INITIAL_Y_POS = 0.415;
 var IMAGE_URI =
     'https://table-tennis-scoreboard.googlecode.com/git/images/' +
     'scoreboard_summary.png';
+
+var scoreboard = null;
+
+function showScorer() {
+  scoreboard = new Scoreboard();
+}
 
 /** Responds to scale slider
  * @param {string} value The new scale.
