@@ -323,16 +323,14 @@ function toggleDisplaycommentBox() {
   var disableInput = true;
   if (commentBox.getVisible()) {
     getElement('show-comment').value = 'Show';
-    commentBox.setOverlayVisible('comment-box', false);
+    commentBox.display(false);
     disableInput = false;
-    chrono.display(true);
   } else {
     commentBox.setComment(getElement('input-comment').value);
     commentBox.setNetzen(getElement('input-netzen').value);
     getElement('show-comment').value = 'Hide';
-    commentBox.setOverlayVisible('comment-box', true);
+    commentBox.display(true);
     disableInput = true;
-    chrono.display(false);
   }
 
   inputs = getElementBySelector('#comment-box-pannel input[type=text]')

@@ -6,13 +6,19 @@
  * original class. Only the logic has to be identical.
  */
 
-//CommentBox = CommentBox || {};
-function CommentBox(visible) {
-  this.visible = visible
-}
+CommentBox = CommentBox || {};
+
+CommentBox.prototype.elementId = 'comment-box';
 
 CommentBox.prototype.display = function(visible) {
   // Mocked.
+  this.visible = visible;
+  var element = getElement(this.elementId);
+  if (visible) {
+    element.classList.remove('hidden');
+  } else {
+    element.classList.add('hidden');
+  }
 }
 
 CommentBox.prototype.drawBackground = function() {
@@ -25,16 +31,6 @@ CommentBox.prototype.redrawOverlay = function(overlayId, overlayImg) {
 
 CommentBox.prototype.getVisible = function() {
   return this.visible;
-}
-
-CommentBox.prototype.setOverlayVisible = function(overlayId, visible) {
-  this.visible = visible;
-  var element = getElement(overlayId);
-  if (visible) {
-    element.classList.remove('hidden');
-  } else {
-    element.classList.add('hidden');
-  }
 }
 
 CommentBox.prototype.setComment = function(comment) {

@@ -31,8 +31,8 @@
   padding-top: 2px;
   padding-left: 4px;
   background-size: 256px 52px;
-  left: 200px;
-  top: 444px;
+  left: 208px;
+  top: 435px;
 }
 
 .line {
@@ -93,11 +93,11 @@
 }
 
 .comment-box {
-  background-image: url('../images/ask_bkg.png');
+  background-image: url('../images/comment.png');
   width: 276px;
   height: 82px;
-  top: 390px;
-  left: 630px;
+  top: 414px;
+  left: 670px;
   position: absolute;
   color: white;
   font-family: sans-serif;
