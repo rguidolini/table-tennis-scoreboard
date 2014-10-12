@@ -13,7 +13,6 @@ var IMAGE_URI =
     'scoreboard_summary.png';
 
 var scoreboard = null;
-
 function showScorer() {
   scoreboard = new Scoreboard();
 }
@@ -52,6 +51,10 @@ function drawImageOverlayTest(imageUrl) {
 
   console.log('loading image from ' + imageUrl);
   var img = gapi.hangout.av.effects.createImageResource(imageUrl);
+  if (!!imageOverlay && document.querySelector('#clear-image').checked) {
+    imageOverlay.setVisible(false);
+    imageOverlay.dispose();
+  }
   imageOverlay = img.createOverlay();
   imageOverlay.setScale(INITIAL_SCALE,
       gapi.hangout.av.effects.ScaleReference.HEIGHT);
@@ -88,24 +91,21 @@ function drawTextOverlayTest() {
   var shad = document.querySelector('#text-shadow').checked;
   var size = document.querySelector('#text-size').value;
   var colr = document.querySelector('#text-color').value;
+  var algn = document.querySelector('#text-align').value;
+  var xpos = document.querySelector('#text-xpos').value;
+  var ypos = document.querySelector('#text-ypos').value;
  
-  var params = text.split(',');
-  if (params.length != 8) {
-    console.log("numero errado de parametros. Esperado 8, recebido: " +
-        params.length + ". Use virgula pra separar.");
-    return;
-  }
   console.log("drawing text: " + text);
   var img = gapi.hangout.av.effects.createImageResource(
-      createTextOverlay(params[0],    // text
+      createTextOverlay(text,
                         font,
                         size,
                         colr,
                         bold,
                         shad,
-                        params[5],    // align
-                        params[6],    // xPos
-                        params[7]));  // yPos
+                        algn,
+                        xpos,
+                        ypos));
 
   // We should delete (hide) a previous text
   if (!!textOverlay && document.querySelector('#clear-text').checked) {

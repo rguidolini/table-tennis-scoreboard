@@ -9,6 +9,10 @@
 <div id='fullUI'>
   <input class="button" type="button" value="Show Scorer"
          onClick="showScorer();"/><br>
+	<label>
+    <input id="clear-image" name="clear-text" type="checkbox" checked />
+    Clear previous image 
+  </label><br><br>
 
 	<input id="loadableURI" type="text" 
 	       placeholder="Enter an image URL that ends in .png"
@@ -54,6 +58,18 @@
     Font color:
 	  <input id="text-color" type="text" value="white" />
   </label><br>
+  <label>
+    Align:
+	  <input id="text-align" type="text" value="left" />
+  </label><br>
+  <label>
+    X Pos:
+	  <input id="text-xpos" type="text" />
+  </label><br>
+  <label>
+    Y Pos:
+	  <input id="text-ypos" type="text" />
+  </label><br>
 
 	<label>
     <input id="text-bold" type="checkbox" />
@@ -64,7 +80,7 @@
     Shadow
   </label><br>
 	<label>
-    <input id="clear-text" name="clear-text" type="checkbox" />
+    <input id="clear-text" name="clear-text" type="checkbox" checked />
     Clear previous text
   </label><br>
 	<input class="button" type="button" value="Show Text" id="animatedButton"
