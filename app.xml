@@ -6,6 +6,22 @@
 	<Require feature="locked-domain" /> \
 </ModulePrefs>
 <Content type="html"><![CDATA[
+<html>
+<link rel="stylesheet" type="text/css"
+      href="https://table-tennis-scoreboard.googlecode.com/git/css/style.css" />
+<head>
+	<title>Ping Pong</title>
+	<meta http-equiv="Content-Type" content="text/html; charset = iso-8859-1" />
+</head>
+<body>
+<script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
+<script src="https://hangoutmediastarter.appspot.com/static/html5slider.js"></script>
+
+<!--
+********************************************************************************
+* START PASTING HERE
+********************************************************************************
+-->
 
 <div id='fullUI'>
 	<input id="loadableURI" type="text" 
@@ -45,6 +61,34 @@
 <script src="https://table-tennis-scoreboard.googlecode.com/git/js/find_overlay_setup.js">
 </script>
 
+
+<!--
+********************************************************************************
+* STOP PASTING HERE
+********************************************************************************
+-->
+
+<script>
+var CANVAS_WIDTH = 640;
+var CANVAS_HEIGHT = 360;
+
+function init() {
+  gapi.hangout.onApiReady.add(function(eventObj) {
+    console.log("everything ready");
+  });
+  gapi.hangout.av.setLocalParticipantVideoMirrored(false);
+}
+gadgets.util.registerOnLoadHandler(init);
+</script>
+
+<script src="https://table-tennis-scoreboard.googlecode.com/git/js/scoreboard.js">
+</script>
+<script src="https://table-tennis-scoreboard.googlecode.com/git/js/chronometer.js">
+</script>
+<script src="https://table-tennis-scoreboard.googlecode.com/git/js/gtvlogo.js">
+</script>
+<script src="https://table-tennis-scoreboard.googlecode.com/git/js/main.js">
+</script>
 
 ]]>
 </Content>
