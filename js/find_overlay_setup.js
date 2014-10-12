@@ -75,8 +75,14 @@ function createTextOverlay(text, fontSize, color, bold, shadow, align, xPos, yPo
   return canvas.toDataURL();
 }
 
-function drawTextOverlayTest(uri) {
-  var params = uri.split(' ');
+function drawTextOverlayTest(text) {
+  var params = text.split(',');
+  if (params.length != 7 && params.length == 8) {
+    console.log("numero errado de parametros. Esperado 7 ou 8. Recebidoi: " +
+        params.length + ". Use virgula pra separar.");
+    return;
+  }
+  console.log("drawing text: " + text);
   var img = gapi.hangout.av.effects.createImageResource(
       createTextOverlay(params[0],    // text
                         params[1],    // fontSize

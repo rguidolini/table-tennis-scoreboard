@@ -17,7 +17,7 @@
 <div id="overlayControls">
   <br><br>
 	<input id="scale-input" type="text" style="width:100px;" />
-	<input id="scale-ref-input" type="text" value="H" style="width:20px;" />
+	<input id="scale-ref-input" type="text" value="H" style="width:30px;" />
 	<input class="button" type="button" value="Scale!" 
          onClick="onSetScale(
              document.querySelector('#scale-input').value,
@@ -39,8 +39,8 @@
 	       placeholder="Enter an image URL that ends in .png"
 	       style="width:300px;"
 	       />
-	<input class="button"
-	       type="button" 
+	<input id="clear-text" name="clear-text" type="checkbox" />
+	<input class="button" type="button" 
 	       value="Show Text" id="animatedButton"
                onClick="drawTextOverlayTest(document.querySelector('#textFormat').value)"/>
 </div>
