@@ -113,8 +113,8 @@
 -->
 
 <script>
-var CANVAS_WIDTH = 1070;
-var CANVAS_HEIGHT = 600;
+var CANVAS_WIDTH = 640;
+var CANVAS_HEIGHT = 360;
 
 function init() {
   gapi.hangout.onApiReady.add(function(eventObj) {
