@@ -77,8 +77,8 @@ function createTextOverlay(text, fontSize, color, bold, shadow, align, xPos, yPo
 
 function drawTextOverlayTest(text) {
   var params = text.split(',');
-  if (params.length != 7 && params.length == 8) {
-    console.log("numero errado de parametros. Esperado 7 ou 8. Recebidoi: " +
+  if (params.length != 9 && params.length == 8) {
+    console.log("numero errado de parametros. Esperado 9 ou 8. Recebidoi: " +
         params.length + ". Use virgula pra separar.");
     return;
   }
@@ -87,10 +87,11 @@ function drawTextOverlayTest(text) {
       createTextOverlay(params[0],    // text
                         params[1],    // fontSize
                         params[2],    // color
-                        params[3],    // shadow
-                        params[4],    // align
-                        params[5],    // xPos
-                        params[6]));  // yPos
+                        params[3],    // bold
+                        params[4],    // shadow
+                        params[5],    // align
+                        params[6],    // xPos
+                        params[7]));  // yPos
 
   // We should delete (hide) a previous text
   if (!!textOverlay && params.length == 8) {
