@@ -21,16 +21,12 @@ CommentBox.prototype.display = function(visible) {
   }
 }
 
-CommentBox.prototype.drawBackground = function() {
+CommentBox.prototype.initBackground = function() {
   // Mocked.
 }
 
 CommentBox.prototype.redrawOverlay = function(overlayId, overlayImg) {
   // Mocked.
-}
-
-CommentBox.prototype.getVisible = function() {
-  return this.visible;
 }
 
 CommentBox.prototype.setComment = function(comment) {
