@@ -15,9 +15,12 @@ var IMAGE_URI =
 /** Responds to scale slider
  * @param {string} value The new scale.
  */
-function onSetScale(value) {
-  imageOverlay.setScale(parseFloat(value),
-      gapi.hangout.av.effects.ScaleReference.HEIGHT);
+function onSetScale(value, reference) {
+  var ref = gapi.hangout.av.effects.ScaleReference.WIDTH;
+  if (reference == "H") {
+    ref = gapi.hangout.av.effects.ScaleReference.HEIGHT;
+  }
+  imageOverlay.setScale(parseFloat(value), ref);
 }
 
 /** Responds to offset slider
