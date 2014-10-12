@@ -1,5 +1,7 @@
 // Used just to help finding the position and scale of new overlays.
 
+var scoreboard = new Scoreboard();
+
 var textOverlay = null;
 var imageOverlay = null;
 var minScale = 0.01;
@@ -53,7 +55,7 @@ function drawImageOverlayTest(imageUrl) {
   imageOverlay.setVisible(true);
 }
 
-function createTextOverlay(text, fontSize, color, bold, shadow, align, xPos, yPos) {
+function createTextOverlay(text, font, fontSize, color, bold, shadow, align, xPos, yPos) {
   var canvas = document.createElement('canvas');
   canvas.setAttribute('width', CANVAS_WIDTH);
   canvas.setAttribute('height', CANVAS_HEIGHT);
@@ -66,7 +68,7 @@ function createTextOverlay(text, fontSize, color, bold, shadow, align, xPos, yPo
     context.shadowBlur = 2;
   }
 
-  context.font = ((bold) ? 'bold ' : '') + fontSize + 'px Monospace';
+  context.font = ((bold) ? 'bold ' : '') + fontSize + 'px ' + font;
   context.fillStyle = color;
   context.textAlign = align;
   context.textBaseline = 'bottom';
@@ -75,7 +77,14 @@ function createTextOverlay(text, fontSize, color, bold, shadow, align, xPos, yPo
   return canvas.toDataURL();
 }
 
-function drawTextOverlayTest(text, clear) {
+function drawTextOverlayTest() {
+  var text = document.querySelector('#text-format').value;
+  var font = document.querySelector('#text-font').value;
+  var bold = document.querySelector('#text-bold').checked;
+  var shad = document.querySelector('#text-shadow').checked;
+  var size = document.querySelector('#text-size').value;
+  var colr = document.querySelector('#text-color').value;
+ 
   var params = text.split(',');
   if (params.length != 8) {
     console.log("numero errado de parametros. Esperado 8, recebido: " +
@@ -85,16 +94,17 @@ function drawTextOverlayTest(text, clear) {
   console.log("drawing text: " + text);
   var img = gapi.hangout.av.effects.createImageResource(
       createTextOverlay(params[0],    // text
-                        params[1],    // fontSize
-                        params[2],    // color
-                        params[3],    // bold
-                        params[4],    // shadow
+                        font,
+                        size,
+                        colr,
+                        bold,
+                        shad,
                         params[5],    // align
                         params[6],    // xPos
                         params[7]));  // yPos
 
   // We should delete (hide) a previous text
-  if (!!textOverlay && clear) {
+  if (!!textOverlay && document.querySelector('#clear-text').checked) {
     textOverlay.setVisible(false);
     textOverlay.dispose();
   }
