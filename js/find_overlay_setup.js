@@ -66,7 +66,7 @@ function createTextOverlay(text, fontSize, color, bold, shadow, align, xPos, yPo
     context.shadowBlur = 2;
   }
 
-  context.font = ((bold) ? 'bold ' : '') + fontSize + 'px Arial';
+  context.font = ((bold) ? 'bold ' : '') + fontSize + 'px Monospace';
   context.fillStyle = color;
   context.textAlign = align;
   context.textBaseline = 'bottom';
@@ -75,10 +75,10 @@ function createTextOverlay(text, fontSize, color, bold, shadow, align, xPos, yPo
   return canvas.toDataURL();
 }
 
-function drawTextOverlayTest(text) {
+function drawTextOverlayTest(text, clear) {
   var params = text.split(',');
-  if (params.length != 9 && params.length == 8) {
-    console.log("numero errado de parametros. Esperado 9 ou 8. Recebidoi: " +
+  if (params.length != 8) {
+    console.log("numero errado de parametros. Esperado 8, recebido: " +
         params.length + ". Use virgula pra separar.");
     return;
   }
@@ -94,7 +94,7 @@ function drawTextOverlayTest(text) {
                         params[7]));  // yPos
 
   // We should delete (hide) a previous text
-  if (!!textOverlay && params.length == 8) {
+  if (!!textOverlay && clear) {
     textOverlay.setVisible(false);
     textOverlay.dispose();
   }

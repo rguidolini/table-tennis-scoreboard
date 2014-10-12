@@ -42,7 +42,9 @@
 	<input id="clear-text" name="clear-text" type="checkbox" />
 	<input class="button" type="button" 
 	       value="Show Text" id="animatedButton"
-               onClick="drawTextOverlayTest(document.querySelector('#textFormat').value)"/>
+               onClick="drawTextOverlayTest(
+                   document.querySelector('#textFormat').value,
+                   document.querySelector('#clear-text').checked)"/>
 </div>
 <script src="https://table-tennis-scoreboard.googlecode.com/git/js/find_overlay_setup.js">
 </script>
