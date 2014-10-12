@@ -23,6 +23,7 @@
 ********************************************************************************
 -->
 
+
 <div id='fullUI'>
 	<input id="loadableURI" type="text" 
 	       placeholder="Enter an image URL that ends in .png"
@@ -34,8 +35,11 @@
 <div id="overlayControls">
   <br><br>
 	<input id="scale-input" type="text" style="width:100px;" />
-	<input class="button" type="button" value="Scale" 
-         onClick="onSetScale(document.querySelector('#scale-input').value)"/>
+	<input id="scale-ref-input" type="text" value="H" style="width:10px;" />
+	<input class="button" type="button" value="Scale!" 
+         onClick="onSetScale(
+             document.querySelector('#scale-input').value,
+             document.querySelector('#scale-ref-input').value)"/>
   <br><br>
 	<input id="xoffset-input" type="text" style="width:100px;" />
 	<input class="button" type="button" value="X Offset" 
