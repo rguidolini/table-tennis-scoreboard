@@ -7,163 +7,44 @@
 </ModulePrefs>
 <Content type="html"><![CDATA[
 
-<html>
-<link rel="stylesheet" type="text/css"
-      href="https://table-tennis-scoreboard.googlecode.com/git/css/style.css" />
-<head>
-	<title>Ping Pong</title>
-	<meta http-equiv="Content-Type" content="text/html; charset = iso-8859-1" />
-</head>
-
-<body>
-<script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
-<script src="https://hangoutmediastarter.appspot.com/static/html5slider.js"></script>
-
-
-<!-- START PASTING HERE -->
-<center>
-<div id="error-msg" class="hidden error-box">
-  You should not be seeing this message
+<div id='fullUI'>
+	<input id="loadableURI" type="text" 
+	       placeholder="Enter an image URL that ends in .png"
+	       style="width:300px;"
+	       />
+  <input class="button" type="button" value="Display Image" id="topHatButton"
+         onClick="drawImageOverlayTest(document.querySelector('#loadableURI').value);"/>
+</div>
+<div id="overlayControls">
+  <br><br>
+	<input id="scale-input" type="text" style="width:100px;" />
+	<input class="button" type="button" value="Scale" 
+         onClick="onSetScale(document.querySelector('#scale-input').value)"/>
+  <br><br>
+	<input id="xoffset-input" type="text" style="width:100px;" />
+	<input class="button" type="button" value="X Offset" 
+         onClick="onSetOffsetX(document.querySelector('#xoffset-input').value)"/>
+  <br><br>
+	<input id="yoffset-input" type="text" style="width:100px;" />
+	<input class="button" type="button" value="Y Offset" 
+         onClick="onSetOffsetY(document.querySelector('#yoffset-input').value)"/>
 </div>
 
-<div id="app-controls" style="margin-top: 10px;">
-	<input type="button" class="button" id="hide-app" value="Hide App"
-         style="width: 80px;" />
-	<input type="button" class="button" id="new-game" value="New Match" />
+<br><br>
+<div id='arbitraryURILoader'>
+  Format: text, fontSize, color, bold, shadow, align, xPos, yPos [, c]<br>
+	<input id="textFormat" type="text" 
+	       placeholder="Enter an image URL that ends in .png"
+	       style="width:300px;"
+	       />
+	<input class="button"
+	       type="button" 
+	       value="Show Text" id="animatedButton"
+               onClick="drawTextOverlayTest(document.querySelector('#textFormat').value)"/>
 </div>
-</center>
-
-<div id="app-interaction">
-  <div id="controls-cover">
-  </div>
-  <div id="player-names" class="controls-container" />
-    <div class="table-image" ></div>
-    <center>
-      <input type="button" class="button" id="update-names" value="Update Names"
-             style="margin-right: 25px;" />
-      <label class="checkbox-label"
-             title="Auto invert player sides at the end of each set">
-        <input id="auto-invert" type="checkbox" checked />
-        Auto-invert
-      </label>
-    </center>
-    <input id="player1name" type="text" value="PLAYER1" class="input-name-box"
-           maxlength="15" style="left: 10px;"/>
-    <input id="player2name" type="text" value="PLAYER2" class="input-name-box"
-           maxlength="15" style="left: 156px;" />
-  </div>
-
-  <div id="scoring" class="controls-container" />
-    <div id="score-buttons" style="height: 70px;" >
-      <div class="minor-label">
-        Score point for
-      </div>
-      <div class="path-1"></div>
-      <div class="path-2"></div>
-      <div class="score-btn">
-        <input id="score-player1" style="width: 100%;" class="button"
-               type="button" value="PLAYER1" />
-      </div>
-      <div class="score-btn">
-        <input id="score-player2" style="width: 100%;" class="button"
-               type="button" value="PLAYER2" />
-      </div>
-    </div>
-
-    <center>
-      <input id="undo" class="jfk-button red-button" type="button" value="Undo" />
-    </center>
-  </div>
-
-  <div id="load-logo-container" class="zip-container" />
-    <div id="load-logo-control" class="zip-control">
-      <label class="title">Load Logo</label>
-    </div>
-    <div class="zip-content">
-      You can also load any arbitrary PNG image as a logo.
-      Enter a valid URL below.
-      <center>
-        <input id="loadable-uri" type="text"
-               placeholder="Enter an image URL that ends in .png"
-               style="width: 260px; margin: 5px 0px;" />
-        <input id="load-logo" class="button" type="button" value="Load Logo" />
-      </center>
-    </div>
-  </div>
-
-  <div id="help-container" class="zip-container" />
-    <div id="help-control" class="zip-control">
-      <label class="title">Show keyboard shortcuts</label>
-    </div>
-    <div class="zip-content">
-      <table style="font-family: sans-serif; font-size: 13px;">
-        <tr>
-          <td class="legend-icon">&larr;</td>
-          <td>Score 1 point for <b><span id="p1name">PLAYER1</span></b>.
-          </td>
-        </tr>
-        <tr>
-          <td class="legend-icon">&rarr;</td>
-          <td>Score 1 point for <b><span id="p2name">PLAYER2</span></b>.
-          </td>
-        </tr>
-        <tr>
-          <td class="legend-icon">&darr;</td>
-          <td>Undo last scoring.</td>
-        </tr>
-        <tr>
-          <td class="legend-icon">&uarr;</td>
-          <td>Invert players position at the table.</td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="zip-container" >
-    <div class="zip-control">
-      <label class="title">Advanced Setup</label>
-    </div>
-    <div class="zip-content">
-      <table>
-        <tr>
-          <td>Set length:</td>
-          <td><input id="set-length" type="text" value=11 /></td>
-          <td><input id="update-set" class="button" type="button" value="update" /></td>
-        </tr>
-        <tr>
-          <td>Game length:</td>
-          <td><input id="game-length" type="text" value=3 /></td>
-          <td><input id="update-game" class="button" type="button" value="update" /></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-</div>
-<!-- STOP PASTING HERE -->
-
-
-<script>
-var CANVAS_WIDTH = 640;
-var CANVAS_HEIGHT = 360;
-
-function init() {
-  gapi.hangout.onApiReady.add(function(eventObj) {
-    console.log("everything ready");
-  });
-  gapi.hangout.av.setLocalParticipantVideoMirrored(false);
-}
-gadgets.util.registerOnLoadHandler(init);
+<script src="https://table-tennis-scoreboard.googlecode.com/git/js/find_overlay_setup.js">
 </script>
 
-<script src="https://table-tennis-scoreboard.googlecode.com/git/js/scoreboard.js">
-</script>
-<script src="https://table-tennis-scoreboard.googlecode.com/git/js/chronometer.js">
-</script>
-<script src="https://table-tennis-scoreboard.googlecode.com/git/js/gtvlogo.js">
-</script>
-<script src="https://table-tennis-scoreboard.googlecode.com/git/js/main.js">
-</script>
 
 ]]>
 </Content>
