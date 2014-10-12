@@ -325,12 +325,14 @@ function toggleDisplaycommentBox() {
     getElement('show-comment').value = 'Show';
     commentBox.setOverlayVisible('comment-box', false);
     disableInput = false;
+    chrono.display(true);
   } else {
     commentBox.setComment(getElement('input-comment').value);
     commentBox.setNetzen(getElement('input-netzen').value);
     getElement('show-comment').value = 'Hide';
     commentBox.setOverlayVisible('comment-box', true);
     disableInput = true;
+    chrono.display(false);
   }
 
   inputs = getElementBySelector('#comment-box-pannel input[type=text]')

@@ -10,6 +10,11 @@ Scoreboard = Scoreboard || {};
 
 Scoreboard.prototype.display = function(visible) {
   // Mocked.
+  if (visible) {
+    getElement('scoreboard').classList.remove('hidden')
+  } else {
+    getElement('scoreboard').classList.add('hidden')
+  }
 }
 
 Scoreboard.prototype.drawBackground = function() {

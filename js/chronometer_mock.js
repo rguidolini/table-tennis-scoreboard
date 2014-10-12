@@ -6,7 +6,11 @@
 Chronometer = Chronometer || {};
 
 Chronometer.prototype.display = function(visible) {
-  // Mocked ;-)
+  if (visible) {
+    getElement('watch').classList.remove('hidden')
+  } else {
+    getElement('watch').classList.add('hidden')
+  }
 }
 
 Chronometer.prototype.drawBackground = function() {

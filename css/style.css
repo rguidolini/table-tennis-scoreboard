@@ -233,7 +233,7 @@ input[type=checkbox] {
 }
 
 .zip-content-animator {
-  height: 100px;
+  height: 101px;
   overflow: hidden;
   transition: height 0.5s;
 }

@@ -94,16 +94,15 @@
 
 .comment-box {
   background-image: url('../images/ask_bkg.png');
-  width: 266px;
-  height: 63px;
-  top: 416px;
+  width: 276px;
+  height: 82px;
+  top: 390px;
+  left: 630px;
   position: absolute;
-  left: 662px;
   color: white;
-  text-shadow: black 0.1em 0.1em 0.2em;
   font-family: sans-serif;
   font-weight: bold;
-  padding: 6px 17px;
+  padding: 8px 12px;
   font-size: 14px;
 }
 
