@@ -20,7 +20,7 @@ var arePostionsinverted = false;
 var scoreboard = new Scoreboard();
 //var statTable = new StatsTable();
 var chrono = new Chronometer();
-var commentBox = new CommentBox(true);
+var commentBox = new CommentBox(false);
 var gtvLogo = new GtvLogo();
 
 function showError(msg) {
