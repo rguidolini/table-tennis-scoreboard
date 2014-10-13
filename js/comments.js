@@ -1,6 +1,12 @@
 function CommentBox(visible) {
   this.visible = visible;
-  this.overlays = {};
+  this.overlays = {
+    'bkg' : {},
+    'comm0' : {},
+    'comm1' : {},
+    'comm2' : {},
+    'name' : {},
+  };
   this.bkgScale = 0.34;
   this.bkgXPos = 0.325;
   this.bkgYPos = 0.39;
@@ -8,7 +14,7 @@ function CommentBox(visible) {
   this.commXpos = 427;
   this.nameXPos = 620;
 
-  this.linesYpos = [316, 328, 340, 352];
+  this.linesYPos = [316, 328, 340, 352];
   this.lineMaxLength = 40;
 
   this.initBackground();
@@ -84,7 +90,7 @@ CommentBox.prototype.setComment = function(comment) {
 
   for (i = 0; i < lines.length; i++) {
     var img = gapi.hangout.av.effects.createImageResource(
-        this.createTextOverlay(lines[i], 'left', this.commXpos, this.linesYpos[i]));
+        this.createTextOverlay(lines[i], 'left', this.commXpos, this.linesYPos[i]));
     this.redrawOverlay('comm' + i, img);
   }
 };
@@ -95,7 +101,7 @@ CommentBox.prototype.setNetzen = function(netzen) {
   }
 
   var img = gapi.hangout.av.effects.createImageResource(
-    this.createTextOverlay(netzen, 'right', this.nameXPos, this.linesYpos[3]));
+    this.createTextOverlay(netzen, 'right', this.nameXPos, this.linesYPos[3]));
   this.redrawOverlay('name', img);
 };
 
