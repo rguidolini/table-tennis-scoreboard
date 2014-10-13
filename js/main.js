@@ -324,12 +324,14 @@ function toggleDisplaycommentBox() {
   if (commentBox.getVisible()) {
     getElement('show-comment').value = 'Show';
     commentBox.display(false);
+    chrono.display(true);
     disableInput = false;
   } else {
     commentBox.setComment(getElement('input-comment').value);
     commentBox.setNetzen(getElement('input-netzen').value);
     getElement('show-comment').value = 'Hide';
     commentBox.display(true);
+    chrono.display(false);
     disableInput = true;
   }
 
