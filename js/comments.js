@@ -1,22 +1,15 @@
 function CommentBox(visible) {
   this.visible = visible;
-  this.overlays = {
-    'bkg' : {},
-    'comm0' : {},
-    'comm1' : {},
-    'name' : {},
-  };
+  this.overlays = {};
   this.bkgScale = 0.34;
-  this.bkgXPos = 0.32;
-  this.bkgYPos = 0.44;
+  this.bkgXPos = 0.325;
+  this.bkgYPos = 0.39;
 
   this.commXpos = 427;
   this.nameXPos = 620;
 
-  this.line0YPos = 320;
-  this.line1YPos = 336;
-  this.line2YPos = 352;
-  this.lineMaxLength = 43;
+  this.linesYpos = [316, 328, 340, 352];
+  this.lineMaxLength = 40;
 
   this.initBackground();
 }
@@ -71,13 +64,14 @@ CommentBox.prototype.createTextOverlay = function(text, align, xPos, yPos) {
 };
 
 CommentBox.prototype.setComment = function(comment) {
-  var lines = [comment, ''];
+  var lines = [comment, '', ''];
+
   if (comment.length > this.lineMaxLength) {
     lines[0] = '';
     var pieces = comment.split(' ');
-    for (i = 0, l = 0; l < 2; l++) {
+    for (i = 0, l = 0; l < lines.length; l++) {
       for (; i < pieces.length; i++) {
-        if ((lines[l].length + pieces[i].length) < this.lineMaxLength) {
+        if ((lines[l].length + pieces[i].length) <= this.lineMaxLength) {
           lines[l] += pieces[i] + ' ';
         } else {
           break;
@@ -88,13 +82,11 @@ CommentBox.prototype.setComment = function(comment) {
   //console.log('1(' + lines[0].length +'): ' + lines[0]);
   //console.log('2(' + lines[1].length +'): ' + lines[1]);
 
-  var img0 = gapi.hangout.av.effects.createImageResource(
-    this.createTextOverlay(lines[0], 'left', this.commXpos, this.line0YPos));
-  this.redrawOverlay('comm0', img0);
-
-  var img1 = gapi.hangout.av.effects.createImageResource(
-    this.createTextOverlay(lines[1], 'left', this.commXpos, this.line1YPos));
-  this.redrawOverlay('comm1', img1);
+  for (i = 0; i < lines.length; i++) {
+    var img = gapi.hangout.av.effects.createImageResource(
+        this.createTextOverlay(lines[i], 'left', this.commXpos, this.linesYpos[i]));
+    this.redrawOverlay('comm' + i, img);
+  }
 };
 
 CommentBox.prototype.setNetzen = function(netzen) {
@@ -103,7 +95,7 @@ CommentBox.prototype.setNetzen = function(netzen) {
   }
 
   var img = gapi.hangout.av.effects.createImageResource(
-    this.createTextOverlay(netzen, 'right', this.nameXPos, this.line2YPos));
+    this.createTextOverlay(netzen, 'right', this.nameXPos, this.linesYpos[3]));
   this.redrawOverlay('name', img);
 };
 

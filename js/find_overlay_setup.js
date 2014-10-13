@@ -112,6 +112,7 @@ function drawTextOverlayTest() {
     textOverlay.setVisible(false);
     textOverlay.dispose();
   }
+  document.querySelector('#clear-text').checked = true;
   textOverlay = img.createOverlay()
   textOverlay.setVisible(true);
   minScale = 0.1;
