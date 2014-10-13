@@ -181,8 +181,8 @@ gadgets.util.registerOnLoadHandler(init);
 </script>
 <script src="https://table-tennis-scoreboard.googlecode.com/git/js/gtvlogo.js">
 </script>
-<!--script src="https://table-tennis-scoreboard.googlecode.com/git/js/main.js">
-</script-->
+<script src="https://table-tennis-scoreboard.googlecode.com/git/js/main.js">
+</script>
 
 ]]>
 </Content>
