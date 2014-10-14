@@ -95,14 +95,14 @@
 .comment-box {
   background-image: url('../images/comment.png');
   width: 276px;
-  height: 82px;
-  top: 414px;
+  height: 62px;
+  top: 390px;
   left: 670px;
   position: absolute;
   color: white;
   font-family: sans-serif;
   font-weight: bold;
-  padding: 8px 12px;
+  padding: 28px 12px 8px 12px;
   font-size: 14px;
 }
 

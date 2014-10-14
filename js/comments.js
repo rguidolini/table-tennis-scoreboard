@@ -1,5 +1,5 @@
-function CommentBox(visible) {
-  this.visible = visible;
+function CommentBox() {
+  this.visible = false;
   this.overlays = {
     'bkg' : {},
     'comm0' : {},

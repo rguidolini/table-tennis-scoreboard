@@ -20,7 +20,7 @@ var arePostionsinverted = false;
 var scoreboard = new Scoreboard();
 //var statTable = new StatsTable();
 var chrono = new Chronometer();
-var commentBox = new CommentBox(false);
+var commentBox = new CommentBox();
 var gtvLogo = new GtvLogo();
 
 function showError(msg) {
@@ -72,7 +72,8 @@ function handleKeyStroke(e) {
   // Ignore command keys when interacting with input elements.
   if (e.target) {
     var tag = e.target.tagName.toLowerCase();
-    if (tag == 'input' || tag == 'textarea' || tag == 'select') {
+    var type = (e.target.type) ? e.target.type.toLowerCase() : '';
+    if ((tag == 'input' && type == 'text') || tag == 'textarea' || tag == 'select') {
       return;
     }
   }
@@ -181,6 +182,10 @@ function zippy() {
 zippy()
 
 function scorePointForPlayer(player) {
+  if (isGameOver) {
+    return;
+  }
+
   if (firstStroke) {
     chrono.start();
     //statTable.startSet();
