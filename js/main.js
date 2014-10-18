@@ -143,44 +143,6 @@ function updateGameLength() {
   scoreboard.updateMatchLength(getElement('game-length').value);
 }
 
-function bindEvents() {
-  document.onkeydown = function(e) { handleKeyStroke(e); }
-  getElement('hide-app').onclick = function() { toggleDisplayApp(); }
-  getElement('new-game').onclick = function() { newMatch(); }
-  getElement('update-names').onclick = function() { updateNames(); }
-  getElement('score-player1').onclick = function() { scorePointForPlayer('1'); }
-  getElement('score-player2').onclick = function() { scorePointForPlayer('2'); }
-  getElement('undo').onclick = function() { undo(); }
-  getElement('load-logo').onclick = function() { drawLogo(); }
-  getElement('update-set').onclick = function() { updateSetLength(); }
-  getElement('update-game').onclick = function() { updateGameLength(); }
-  getElement('show-comment').onclick = function() { toggleDisplaycommentBox(); }
-}
-bindEvents();
-
-function zippy() {
-  var containers = getElementBySelector('.zip-container');
-  for(var i = 0; i < containers.length; i++) {
-    var animator = document.createElement("div");
-    animator.className = 'zip-content-animator height-zero';
-    animator.appendChild(containers[i].getElementsByClassName('zip-content')[0])
-    containers[i].appendChild(animator);
-    var control = containers[i].getElementsByClassName('zip-control')[0];
-
-    var html = control.innerHTML;
-    control.innerHTML = '<span id="symbol">&#9658;</span>&nbsp;' + html;
-    control.onclick =
-      function() {
-        var animator =
-          this.parentElement.getElementsByClassName('zip-content-animator')[0];
-        animator.classList.toggle('height-zero');
-        this.firstChild.innerHTML =
-          animator.classList.contains('height-zero') ? '&#9658;' : '&#9660;';
-      }
-    };
-}
-zippy()
-
 function scorePointForPlayer(player) {
   if (isGameOver) {
     return;
@@ -345,3 +307,23 @@ function toggleDisplaycommentBox() {
     inputs[i].disabled = disableInput;
   }
 }
+
+function bindEvents() {
+  document.onkeydown = function(e) { handleKeyStroke(e); }
+  getElement('hide-app').onclick = function() { toggleDisplayApp(); }
+  getElement('new-game').onclick = function() { newMatch(); }
+  getElement('update-names').onclick = function() { updateNames(); }
+  getElement('score-player1').onclick = function() { scorePointForPlayer('1'); }
+  getElement('score-player2').onclick = function() { scorePointForPlayer('2'); }
+  getElement('undo').onclick = function() { undo(); }
+  getElement('load-logo').onclick = function() { drawLogo(); }
+  getElement('update-set').onclick = function() { updateSetLength(); }
+  getElement('update-game').onclick = function() { updateGameLength(); }
+  getElement('show-comment').onclick = function() { toggleDisplaycommentBox(); }
+}
+
+function main() {
+  bindEvents();
+  initZipElements();
+}
+main();
