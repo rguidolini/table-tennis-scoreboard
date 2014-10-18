@@ -34,24 +34,25 @@
 	<input id="loadableURI" type="text" 
 	       placeholder="Enter an image URL that ends in .png"
 	       style="width:300px;"
+         value="https://table-tennis-scoreboard.googlecode.com/git/images/comment.png"
 	       />
-  <input class="button" type="button" value="Display ! Image" id="topHatButton"
+  <input class="button" type="button" value="Display Image" id="topHatButton"
          onClick="drawImageOverlayTest(document.querySelector('#loadableURI').value);"/>
 </div>
 <div id="overlayControls">
   <br><br>
-	<input id="scale-input" type="text" style="width:100px;" />
-	<input id="scale-ref-input" type="text" value="H" style="width:30px;" />
-	<input class="button" type="button" value="Scale!" 
+	<input id="scale-input" type="text" style="width:100px;" value="0.34"/>
+	<input id="scale-ref-input" type="text" value="W" style="width:30px;" />
+	<input class="button" type="button" value="Scale" 
          onClick="onSetScale(
              document.querySelector('#scale-input').value,
              document.querySelector('#scale-ref-input').value)"/>
   <br><br>
-	<input id="xoffset-input" type="text" style="width:100px;" />
+	<input id="xoffset-input" type="text" style="width:100px;" value="0.325"/>
 	<input class="button" type="button" value="X Offset" 
          onClick="onSetOffsetX(document.querySelector('#xoffset-input').value)"/>
   <br><br>
-	<input id="yoffset-input" type="text" style="width:100px;" />
+	<input id="yoffset-input" type="text" style="width:100px;" value="0.39"/>
 	<input class="button" type="button" value="Y Offset" 
          onClick="onSetOffsetY(document.querySelector('#yoffset-input').value)"/>
 </div>
@@ -65,11 +66,11 @@
 	       />
   <label>
     Font family:
-	  <input id="text-font" type="text" value="Arial" />
+	  <input id="text-font" type="text" value="Monospace" />
   </label><br>
   <label>
     Font size:
-	  <input id="text-size" type="text" value=13 />
+	  <input id="text-size" type="text" value=9 />
   </label><br>
   <label>
     Font color:
@@ -81,11 +82,11 @@
   </label><br>
   <label>
     X Pos:
-	  <input id="text-xpos" type="text" />
+	  <input id="text-xpos" type="text" value="427"/>
   </label><br>
   <label>
     Y Pos:
-	  <input id="text-ypos" type="text" />
+	  <input id="text-ypos" type="text" value="316"/>
   </label><br>
 
 	<label>
@@ -105,7 +106,6 @@
 </div>
 <script src="https://table-tennis-scoreboard.googlecode.com/git/js/find_overlay_setup.js">
 </script>
-
 
 <!--
 ********************************************************************************
