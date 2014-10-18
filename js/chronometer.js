@@ -51,7 +51,7 @@ Chronometer.prototype.drawBackground = function() {
 
 Chronometer.prototype.redrawOverlay = function(overlayId, overlayImg) {
   var newOverlay = overlayImg.createOverlay();
-  newOverlay.setVisible(true);
+  newOverlay.setVisible(this.visible);
   if (this.overlays[overlayId]['ovl']) {
     this.overlays[overlayId]['ovl'].setVisible(false);
     this.overlays[overlayId]['ovl'].dispose();
