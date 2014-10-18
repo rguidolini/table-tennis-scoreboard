@@ -35,7 +35,7 @@
 	       placeholder="Enter an image URL that ends in .png"
 	       style="width:300px;"
 	       />
-  <input class="button" type="button" value="Display Image" id="topHatButton"
+  <input class="button" type="button" value="Display ! Image" id="topHatButton"
          onClick="drawImageOverlayTest(document.querySelector('#loadableURI').value);"/>
 </div>
 <div id="overlayControls">
