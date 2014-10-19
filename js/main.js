@@ -308,22 +308,41 @@ function toggleDisplaycommentBox() {
   }
 }
 
+function updateCommentCounter() {
+  var comment = getElement('input-comment');
+  var counter = getElement('comment-box-counter');
+  counter.textContent = commentBox.getLineLength() - comment.value.length;
+
+  console.log('logs');
+  console.log(comment.value.length);
+  console.log(commentBox.getLineLength());
+}
+
+function initCommentInputs() {
+  var comment = getElement('input-comment');
+  comment.maxLength = commentBox.getLineLength();
+  var counter = getElement('comment-box-counter');
+  counter.textContent = commentBox.getLineLength() - comment.value.length;
+}
+
 function bindEvents() {
-  document.onkeydown = function(e) { handleKeyStroke(e); }
-  getElement('hide-app').onclick = function() { toggleDisplayApp(); }
-  getElement('new-game').onclick = function() { newMatch(); }
-  getElement('update-names').onclick = function() { updateNames(); }
-  getElement('score-player1').onclick = function() { scorePointForPlayer('1'); }
-  getElement('score-player2').onclick = function() { scorePointForPlayer('2'); }
-  getElement('undo').onclick = function() { undo(); }
-  getElement('load-logo').onclick = function() { drawLogo(); }
-  getElement('update-set').onclick = function() { updateSetLength(); }
-  getElement('update-game').onclick = function() { updateGameLength(); }
-  getElement('show-comment').onclick = function() { toggleDisplaycommentBox(); }
+  document.onkeydown = function(e) { handleKeyStroke(e); };
+  getElement('hide-app').onclick = function() { toggleDisplayApp(); };
+  getElement('new-game').onclick = function() { newMatch(); };
+  getElement('update-names').onclick = function() { updateNames(); };
+  getElement('score-player1').onclick = function() { scorePointForPlayer('1'); };
+  getElement('score-player2').onclick = function() { scorePointForPlayer('2'); };
+  getElement('undo').onclick = function() { undo(); };
+  getElement('load-logo').onclick = function() { drawLogo(); };
+  getElement('update-set').onclick = function() { updateSetLength(); };
+  getElement('update-game').onclick = function() { updateGameLength(); };
+  getElement('show-comment').onclick = function() { toggleDisplaycommentBox(); };
+  getElement('input-comment').onkeyup = function() { updateCommentCounter(); };
 }
 
 function main() {
   bindEvents();
   initZipElements();
+  initCommentInputs();
 }
 main();

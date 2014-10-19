@@ -66,8 +66,8 @@ input[type=checkbox] {
 }
 
 .button:active {
-	background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333));
-	background: -moz-linear-gradient(bottom, #ddd, #aaa);
+  background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333));
+  background: -moz-linear-gradient(bottom, #ddd, #aaa);
 }
 
 .button:hover {
@@ -266,6 +266,16 @@ input[type=checkbox] {
 #comment-box-pannel input[type=text] {
   width: 205px;
   text-align: left;
+}
+
+#comment-box-counter {
+  display: inline-block;
+  border: solid 1px #b9b9b9;
+  border-radius: 2px;
+  padding: 3px;
+  text-align: center;
+  width: 20px;
+  margin-right: 40px;
 }
 
 #setup-pannel input[type=button] {

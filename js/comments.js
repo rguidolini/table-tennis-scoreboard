@@ -7,15 +7,15 @@ function CommentBox() {
     'comm2' : {},
     'name' : {},
   };
-  this.bkgScale = 0.34;
-  this.bkgXPos = 0.325;
-  this.bkgYPos = 0.39;
+  this.bkgScale = 0.196;
+  this.bkgXPos = 0.295;
+  this.bkgYPos = 0.395;
 
-  this.commXpos = 427;
+  this.commXpos = 389;
   this.nameXPos = 620;
 
-  this.linesYPos = [316, 328, 340, 352];
-  this.lineMaxLength = 40;
+  this.linesYPos = [317, 329, 341, 353];
+  this.lineMaxLength = 44;
 
   this.initBackground();
 }
@@ -105,3 +105,6 @@ CommentBox.prototype.setNetzen = function(netzen) {
   this.redrawOverlay('name', img);
 };
 
+CommentBox.prototype.getLineLength = function () {
+  return this.lineMaxLength;
+};
