@@ -311,18 +311,14 @@ function toggleDisplaycommentBox() {
 function updateCommentCounter() {
   var comment = getElement('input-comment');
   var counter = getElement('comment-box-counter');
-  counter.textContent = commentBox.getLineLength() - comment.value.length;
-
-  console.log('logs');
-  console.log(comment.value.length);
-  console.log(commentBox.getLineLength());
+  counter.textContent = commentBox.maxCommentLength() - comment.value.length;
 }
 
 function initCommentInputs() {
   var comment = getElement('input-comment');
-  comment.maxLength = commentBox.getLineLength();
   var counter = getElement('comment-box-counter');
-  counter.textContent = commentBox.getLineLength() - comment.value.length;
+  comment.maxLength = commentBox.maxCommentLength();
+  counter.textContent = commentBox.maxCommentLength() - comment.value.length;
 }
 
 function bindEvents() {

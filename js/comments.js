@@ -32,7 +32,7 @@ CommentBox.prototype.initBackground = function() {
       'https://table-tennis-scoreboard.googlecode.com/git/images/comment.png');
   var overlay = img.createOverlay();
   overlay.setPosition(this.bkgXPos, this.bkgYPos);
-  overlay.setScale(this.bkgScale, gapi.hangout.av.effects.ScaleReference.WIDTH);
+  overlay.setScale(this.bkgScale, gapi.hangout.av.effects.ScaleReference.HEIGHT);
   this.overlays['bkg'] = {
     'img' : img,
     'ovl' : overlay,
@@ -105,6 +105,7 @@ CommentBox.prototype.setNetzen = function(netzen) {
   this.redrawOverlay('name', img);
 };
 
-CommentBox.prototype.getLineLength = function () {
-  return this.lineMaxLength;
+CommentBox.prototype.maxCommentLength = function () {
+  // It supports up to 3 lines of comment.
+  return 3 * this.lineMaxLength;
 };
