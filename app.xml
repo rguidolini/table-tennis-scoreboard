@@ -89,7 +89,7 @@
         </tr>
         <tr>
           <td>Comment:</td>
-          <td><input id="input-comment" type="text" /></td>
+          <td><textarea id="input-comment" rows="1"></textarea></td>
         </tr>
         <tr>
           <td>Remaining:</td>

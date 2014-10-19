@@ -287,24 +287,16 @@ function invertSides() {
 }
 
 function toggleDisplaycommentBox() {
-  var disableInput = true;
   if (commentBox.getVisible()) {
     getElement('show-comment').value = 'Show';
     commentBox.display(false);
     chrono.display(true);
-    disableInput = false;
   } else {
     commentBox.setComment(getElement('input-comment').value);
     commentBox.setNetzen(getElement('input-netzen').value);
     getElement('show-comment').value = 'Hide';
     commentBox.display(true);
     chrono.display(false);
-    disableInput = true;
-  }
-
-  inputs = getElementBySelector('#comment-box-pannel input[type=text]')
-  for (i=0; i < inputs.length; i++) {
-    inputs[i].disabled = disableInput;
   }
 }
 

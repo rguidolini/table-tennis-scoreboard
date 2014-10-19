@@ -5,7 +5,7 @@ body, html{
   margin: 0;
 }
 
-input[type=text] {
+input[type=text], textarea {
   background: #fff;
   border: 1px solid #d9d9d9;
   border-top: 1px solid #c0c0c0;
@@ -16,9 +16,11 @@ input[type=text] {
   width: 122px;
   text-align: center;
   box-sizing: border-box;
+  font-family: Arial;
+  font-size: 13px;
 }
 
-input[type=text]:hover {
+input[type=text]:hover, textarea:hover {
   border: 1px solid #b9b9b9;
   border-top: 1px solid #a0a0a0;
   box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);
@@ -26,7 +28,7 @@ input[type=text]:hover {
   -webkit-box-shadow: inset 0px 1px 2px rgba(0,0,0,0.1);
 }
 
-input[type=text]:focus {
+input[type=text]:focus, textarea:focus {
   border: 1px solid #4d90fe;
   box-shadow: inset 0px 1px 2px rgba(0,0,0,0.3);
   -moz-box-shadow: inset 0px 1px 2px rgba(0,0,0,0.3);
@@ -42,7 +44,7 @@ input[type=checkbox] {
 }
 
 .height-zero {
-  height: 0px!important;
+  max-height: 0px!important;
 }
 
 .button {
@@ -233,9 +235,9 @@ input[type=checkbox] {
 }
 
 .zip-content-animator {
-  height: 101px;
+  max-height: 200px;
   overflow: hidden;
-  transition: height 0.5s;
+  transition: max-height 0.5s;
 }
 
 .zip-content {
@@ -263,7 +265,7 @@ input[type=checkbox] {
   z-index: -1;
 }
 
-#comment-box-pannel input[type=text] {
+#comment-box-pannel input[type=text], textarea {
   width: 205px;
   text-align: left;
 }
