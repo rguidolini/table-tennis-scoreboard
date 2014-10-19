@@ -109,3 +109,7 @@ CommentBox.prototype.maxCommentLength = function () {
   // It supports up to 3 lines of comment.
   return 3 * this.lineMaxLength;
 };
+
+CommentBox.prototype.setLineMaxLength = function(lineMaxLength) {
+  this.lineMaxLength = lineMaxLength;
+};

@@ -313,6 +313,12 @@ function initCommentInputs() {
   counter.textContent = commentBox.maxCommentLength() - comment.value.length;
 }
 
+function resetCommentMaxLineLength() {
+  var length = getElement('comment-line-length');
+  commentBox.setLineMaxLength(length.value);
+  initCommentInputs();
+}
+
 function bindEvents() {
   document.onkeydown = function(e) { handleKeyStroke(e); };
   getElement('hide-app').onclick = function() { toggleDisplayApp(); };
@@ -326,6 +332,7 @@ function bindEvents() {
   getElement('update-game').onclick = function() { updateGameLength(); };
   getElement('show-comment').onclick = function() { toggleDisplaycommentBox(); };
   getElement('input-comment').onkeyup = function() { updateCommentCounter(); };
+  getElement('update-line-length').onclick = function() { resetCommentMaxLineLength() };
 }
 
 function main() {
