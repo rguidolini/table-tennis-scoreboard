@@ -109,19 +109,25 @@
     <div id="setup-pannel" class="zip-content">
       <table>
         <tr>
-          <td>Set length:</td>
+          <td class="label">Set length:</td>
           <td><input id="set-length" type="text" value=11 /></td>
           <td><input id="update-set" class="button" type="button" value="update" /></td>
         </tr>
         <tr>
-          <td>Game length:</td>
+          <td class="label">Game length (in sets):</td>
           <td><input id="game-length" type="text" value=3 /></td>
           <td><input id="update-game" class="button" type="button" value="update" /></td>
         </tr>
         <tr>
-          <td>Load a logo:</td>
+          <td class="label">Comment line length:</td>
+          <td><input id="comment-line-length" type="text" value="44"/></td>
+          <td><input id="update-line-length" class="button" type="button" value="update" /></td>
+        </tr>
+      </table>
+      <table>
+        <tr>
           <td>
-            <input id="loadable-uri" type="text" placeholder="enter an img URL" />
+            <input id="loadable-uri" type="text" placeholder="enter a TV logo url (png or jpg)" style="width: 210px;" />
           </td>
           <td><input id="load-logo" class="button" type="button" value="load" /></td>
         </tr>

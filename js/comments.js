@@ -85,8 +85,6 @@ CommentBox.prototype.setComment = function(comment) {
       }
     }
   }
-  //console.log('1(' + lines[0].length +'): ' + lines[0]);
-  //console.log('2(' + lines[1].length +'): ' + lines[1]);
 
   for (i = 0; i < lines.length; i++) {
     var img = gapi.hangout.av.effects.createImageResource(

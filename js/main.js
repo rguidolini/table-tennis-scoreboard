@@ -106,12 +106,8 @@ function handleKeyStroke(e) {
 function toggleDisplayApp() {
   appVisible = !appVisible;
   scoreboard.display(appVisible);
-  //statTable.display(appVisible);
   chrono.display(appVisible);
-  gtvLogo.display(appVisible);
   getElement('hide-app').value = appVisible ? 'Hide App' : 'Show App';
-  getElement('new-game').classList.toggle('hidden');
-  getElement('app-interaction').classList.toggle('hidden');
 }
 
 function newMatch() {
@@ -290,7 +286,7 @@ function toggleDisplaycommentBox() {
   if (commentBox.getVisible()) {
     getElement('show-comment').value = 'Show';
     commentBox.display(false);
-    chrono.display(true);
+    chrono.display(true && appVisible);
   } else {
     commentBox.setComment(getElement('input-comment').value);
     commentBox.setNetzen(getElement('input-netzen').value);
