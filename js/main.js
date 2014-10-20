@@ -106,7 +106,7 @@ function handleKeyStroke(e) {
 function toggleDisplayApp() {
   appVisible = !appVisible;
   scoreboard.display(appVisible);
-  chrono.display(appVisible);
+  chrono.display(appVisible && !commentBox.getVisible());
   getElement('hide-app').value = appVisible ? 'Hide App' : 'Show App';
 }
 
