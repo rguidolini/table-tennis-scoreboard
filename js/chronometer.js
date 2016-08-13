@@ -38,7 +38,7 @@ Chronometer.prototype.display = function(visible) {
 
 Chronometer.prototype.drawBackground = function() {
   var img = gapi.hangout.av.effects.createImageResource(
-      'https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/master/images/watch.png');
+      'https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/master/images/watch.png');
   var overlay = img.createOverlay();
   overlay.setPosition(0.44, 0.44);
   overlay.setScale(0.08, gapi.hangout.av.effects.ScaleReference.WIDTH);

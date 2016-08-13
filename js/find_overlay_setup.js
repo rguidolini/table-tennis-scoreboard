@@ -9,7 +9,7 @@ var INITIAL_SCALE = 0.115;
 var INITIAL_X_POS = -0.22;
 var INITIAL_Y_POS = 0.415;
 var IMAGE_URI =
-    'https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/' +
+    'https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/' +
     'master/images/scoreboard_summary.png';
 
 var scoreboard = null;

@@ -8,7 +8,7 @@
 <Content type="html"><![CDATA[
 <html>
 <link rel="stylesheet" type="text/css"
-      href="https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/master/css/style.css" />
+      href="https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/master/css/style.css" />
 <head>
 	<title>Ping Pong</title>
 	<meta http-equiv="Content-Type" content="text/html; charset = iso-8859-1" />
@@ -183,12 +183,12 @@ function init() {
 gadgets.util.registerOnLoadHandler(init);
 </script>
 
-<script src="https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/master/js/scoreboard.js"></script>
-<script src="https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/master/js/chronometer.js"></script>
-<script src="https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/master/js/comments.js"></script>
-<script src="https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/master/js/gtvlogo.js"></script>
-<script src="https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/master/js/zippy.js"></script>
-<script src="https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/master/js/main.js"></script>
+<script src="https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/master/js/scoreboard.js"></script>
+<script src="https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/master/js/chronometer.js"></script>
+<script src="https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/master/js/comments.js"></script>
+<script src="https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/master/js/gtvlogo.js"></script>
+<script src="https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/master/js/zippy.js"></script>
+<script src="https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/master/js/main.js"></script>
 
 ]]>
 </Content>

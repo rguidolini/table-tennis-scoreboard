@@ -12,7 +12,7 @@ function Scoreboard() {
   this.matchLength = 2;
   this.overlays = {};
   this.drawBackground(
-      'https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/master/images/scoreboard.png',
+      'https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/master/images/scoreboard.png',
       -0.36, // x pos
       0.44, // y pos
       0.26, // scale
@@ -422,7 +422,7 @@ Scoreboard.prototype.drawSummaryBackground =
     this.overlays[overlayId]['vis'] = true; // set the overlay as visible
   } else {
     this.drawBackground(
-        'https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/master/images/' + imageFile,
+        'https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/master/images/' + imageFile,
         xPos,
         0.42, // y pos
         0.1374, // scale
