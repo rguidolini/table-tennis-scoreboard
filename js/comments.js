@@ -29,7 +29,7 @@ CommentBox.prototype.display = function(visible) {
 
 CommentBox.prototype.initBackground = function() {
   var img = gapi.hangout.av.effects.createImageResource(
-      'https://table-tennis-scoreboard.googlecode.com/git/images/comment.png');
+      'https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/master/images/comment.png');
   var overlay = img.createOverlay();
   overlay.setPosition(this.bkgXPos, this.bkgYPos);
   overlay.setScale(this.bkgScale, gapi.hangout.av.effects.ScaleReference.HEIGHT);

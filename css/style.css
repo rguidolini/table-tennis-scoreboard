@@ -176,7 +176,7 @@ input[type=checkbox] {
 
 .table-image {
   background-image:
-    url('https://table-tennis-scoreboard.googlecode.com/git/images/table.png');
+    url('https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/master/images/table.png');
   width: 280px;
   height: 80px;
   margin: 05px 0px;

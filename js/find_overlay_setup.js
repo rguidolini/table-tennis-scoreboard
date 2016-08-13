@@ -9,8 +9,8 @@ var INITIAL_SCALE = 0.115;
 var INITIAL_X_POS = -0.22;
 var INITIAL_Y_POS = 0.415;
 var IMAGE_URI =
-    'https://table-tennis-scoreboard.googlecode.com/git/images/' +
-    'scoreboard_summary.png';
+    'https://raw.githubusercontent.com/rguidolini/table-tennis-scoreboard/' +
+    'master/images/scoreboard_summary.png';
 
 var scoreboard = null;
 function showScorer() {
