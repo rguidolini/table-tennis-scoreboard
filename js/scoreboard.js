@@ -26,11 +26,8 @@ Scoreboard.prototype.reset = function() {
   this.setOverlayVisible('ball-2', false);
   this.drawScore('1', 0);
   this.drawScore('2', 0);
-  this.setOverlayContent('1', 0);
-  this.setOverlayContent('2', 0);
-
-
-
+  this.setOverlayContent('set-1', 0);
+  this.setOverlayContent('set-2', 0);
   this.setPlayerName('1', 'PLAYER 1');
   this.setPlayerName('2', 'PLAYER 2');
 }
@@ -65,8 +62,8 @@ Scoreboard.prototype.setOverlayVisibleView = function(overlayId, visible) {
 }
 
 Scoreboard.prototype.setOverlayContent = function(overlayId, content) {
-  localStorage.setItem(this.contentKeyPrefix + overlayId, visible);
-  this.setOverlayContentView(overlayId, visible);
+  localStorage.setItem(this.contentKeyPrefix + overlayId, content);
+  this.setOverlayContentView(overlayId, content);
 }
 
 Scoreboard.prototype.setOverlayContentView = function(overlayId, content) {
@@ -205,7 +202,7 @@ Scoreboard.prototype.incrementSet = function(player) {
   this.storeSetInfo();
   this.setCounting[player]++;
   this.serviceCounter = 0;
-  this.setOverlayContent(player, this.setCounting[player]);
+  this.setOverlayContent('set-' + player, this.setCounting[player]);
   this.drawScore('1', 0);
   this.drawScore('2', 0);
   this.resetFirstServer();
@@ -285,8 +282,8 @@ Scoreboard.prototype.reconstructPreviousSetData = function() {
   this.setOverlayVisible('ball-2', this.serving['2']);
   this.drawScore('1', this.scoreCounting['1']);
   this.drawScore('2', this.scoreCounting['2']);
-  this.setOverlayContent('1', this.setCounting['1']);
-  this.setOverlayContent('2', this.setCounting['2']);
+  this.setOverlayContent('set-1', this.setCounting['1']);
+  this.setOverlayContent('set-2', this.setCounting['2']);
 }
 
 // return: what has been undone:
@@ -318,7 +315,7 @@ Scoreboard.prototype.listen = function() {
       thisObject.setOverlayVisibleView(id, e.newValue === 'true');
     } else if (e.key.startsWith(thisObject.contentKeyPrefix)) {
       var id = e.key.replace(thisObject.contentKeyPrefix, '');
-      thisObject.setOverlayVisibleView(id, e.newValue);
+      thisObject.setOverlayContentView(id, e.newValue);
     }
     
     else if (e.key.startsWith(thisObject.scoreKeyPrefix)) {
