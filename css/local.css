@@ -26,7 +26,7 @@
   width: 253px;
   height: 50px;
   padding-top: 2px;
-  padding-left: 4px;
+  padding-left: 8px;
   background-size: 256px 52px;
 }
 
@@ -46,7 +46,7 @@
   -webkit-border-radius: 5px;
   color: white;
   background-color: white;
-  margin: 5px;
+  margin: 5px 3px;
   float: left;
 }
 

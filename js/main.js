@@ -110,12 +110,10 @@ function toggleDisplayApp() {
 }
 
 function newMatch() {
+  getElement('player1name').value = '';
+  getElement('player2name').value = '';
   scoreboard.reset();
-  //statTable.reset();
   chrono.reset();
-  getElement('player1name').value = 'PLAYER1';
-  getElement('player2name').value = 'PLAYER2';
-  updateNames();
   getElement('controls-cover').style.zIndex = -1;
   isGameOver = false;
   firstStroke = true;
