@@ -139,10 +139,10 @@ Scoreboard.prototype.hideScoresIn0x0 = function() {
 Scoreboard.prototype.setScore = function(player, score) {
   this.scoreCounting[player] = score;
   localStorage.setItem(this.scoreKeyPrefix + player, score);
-  this.drawScoreView(player, score);
+  this.setScoreView(player, score);
 }
 
-Scoreboard.prototype.drawScoreView = function(player, score) {
+Scoreboard.prototype.setScoreView = function(player, score) {
   var element = getElement('point-' + player);
   element.textContent = score;
   this.hideScoresIn0x0();
@@ -316,11 +316,9 @@ Scoreboard.prototype.listen = function() {
     } else if (e.key.startsWith(thisObject.contentKeyPrefix)) {
       var id = e.key.replace(thisObject.contentKeyPrefix, '');
       thisObject.setOverlayContentView(id, e.newValue);
-    }
-    
-    else if (e.key.startsWith(thisObject.scoreKeyPrefix)) {
+    } else if (e.key.startsWith(thisObject.scoreKeyPrefix)) {
       var player = e.key.replace(thisObject.scoreKeyPrefix, '');
-      thisObject.drawScoreView(player, e.newValue);
+      thisObject.setScoreView(player, e.newValue);
     }
   });
 }
