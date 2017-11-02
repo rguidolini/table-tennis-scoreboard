@@ -24,8 +24,8 @@ Scoreboard.prototype.reset = function() {
   // this.hideSummary();
   this.setOverlayVisible('ball-1', false);
   this.setOverlayVisible('ball-2', false);
-  this.drawScore('1', 0);
-  this.drawScore('2', 0);
+  this.setScore('1', 0);
+  this.setScore('2', 0);
   this.setOverlayContent('set-1', 0);
   this.setOverlayContent('set-2', 0);
   this.setPlayerName('1', 'PLAYER 1');
@@ -136,7 +136,7 @@ Scoreboard.prototype.hideScoresIn0x0 = function() {
   }
 }
 
-Scoreboard.prototype.drawScore = function(player, score) {
+Scoreboard.prototype.setScore = function(player, score) {
   this.scoreCounting[player] = score;
   localStorage.setItem(this.scoreKeyPrefix + player, score);
   this.drawScoreView(player, score);
@@ -180,7 +180,7 @@ Scoreboard.prototype.retrieveSetInfo = function() {
 Scoreboard.prototype.incrementScore = function(player) {
   this.scoreCounting[player]++;
   this.setHistory.push(player);
-  this.drawScore(player, this.scoreCounting[player]);
+  this.setScore(player, this.scoreCounting[player]);
   this.serviceCounter++;
   this.toggleService();
   this.incrementSet(player);
@@ -203,8 +203,8 @@ Scoreboard.prototype.incrementSet = function(player) {
   this.setCounting[player]++;
   this.serviceCounter = 0;
   this.setOverlayContent('set-' + player, this.setCounting[player]);
-  this.drawScore('1', 0);
-  this.drawScore('2', 0);
+  this.setScore('1', 0);
+  this.setScore('2', 0);
   this.resetFirstServer();
 }
 
@@ -280,8 +280,8 @@ Scoreboard.prototype.reconstructPreviousSetData = function() {
   // Refreshing the scoreboard
   this.setOverlayVisible('ball-1', this.serving['1']);
   this.setOverlayVisible('ball-2', this.serving['2']);
-  this.drawScore('1', this.scoreCounting['1']);
-  this.drawScore('2', this.scoreCounting['2']);
+  this.setScore('1', this.scoreCounting['1']);
+  this.setScore('2', this.scoreCounting['2']);
   this.setOverlayContent('set-1', this.setCounting['1']);
   this.setOverlayContent('set-2', this.setCounting['2']);
 }
@@ -301,7 +301,7 @@ Scoreboard.prototype.undo = function() {
     return 'set';
   }
   this.scoreCounting[lastPlayerToScore]--;
-  this.drawScore(lastPlayerToScore, this.scoreCounting[lastPlayerToScore]);
+  this.setScore(lastPlayerToScore, this.scoreCounting[lastPlayerToScore]);
   this.toggleService();
   this.serviceCounter--;
   return 'score';
