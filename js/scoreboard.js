@@ -19,12 +19,12 @@ Scoreboard.prototype.reset = function() {
   this.gameHistory = [];
   this.serving = {1: false, 2: false};
 
-  this.setOverlayVisible('ball-1', false);
-  this.setOverlayVisible('ball-2', false);
+  this.setVisible('ball-1', false);
+  this.setVisible('ball-2', false);
   this.setScore('1', 0);
   this.setScore('2', 0);
-  this.setOverlayContent('set-1', 0);
-  this.setOverlayContent('set-2', 0);
+  this.setContent('set-1', 0);
+  this.setContent('set-2', 0);
   this.setPlayerName('1', 'PLAYER 1');
   this.setPlayerName('2', 'PLAYER 2');
 }
@@ -41,15 +41,15 @@ Scoreboard.prototype.updateMatchLength = function(length) {
 }
 
 Scoreboard.prototype.display = function(visible) {
-  this.setOverlayVisible('scoreboard', visible);
+  this.setVisible('scoreboard', visible);
 }
 
-Scoreboard.prototype.setOverlayVisible = function(overlayId, visible) {
+Scoreboard.prototype.setVisible = function(overlayId, visible) {
   localStorage.setItem(this.visibleKeyPrefix + overlayId, visible);
-  this.setOverlayVisibleView(overlayId, visible);
+  this.setVisibleView(overlayId, visible);
 }
 
-Scoreboard.prototype.setOverlayVisibleView = function(overlayId, visible) {
+Scoreboard.prototype.setVisibleView = function(overlayId, visible) {
   var element = getElement(overlayId);
   if (visible) {
     element.classList.remove('hidden');
@@ -58,18 +58,18 @@ Scoreboard.prototype.setOverlayVisibleView = function(overlayId, visible) {
   }
 }
 
-Scoreboard.prototype.setOverlayContent = function(overlayId, content) {
+Scoreboard.prototype.setContent = function(overlayId, content) {
   localStorage.setItem(this.contentKeyPrefix + overlayId, content);
-  this.setOverlayContentView(overlayId, content);
+  this.setContentView(overlayId, content);
 }
 
-Scoreboard.prototype.setOverlayContentView = function(overlayId, content) {
+Scoreboard.prototype.setContentView = function(overlayId, content) {
   var element = getElement(overlayId);
   element.textContent = content;
 }
 
 Scoreboard.prototype.setPlayerName = function(player, name) {
-  this.setOverlayContent('name-' + player, name);
+  this.setContent('name-' + player, name);
 }
 
 Scoreboard.prototype.setFirstServer = function(player) {
@@ -88,8 +88,8 @@ Scoreboard.prototype.unsetFirstServer = function() {
 }
 
 Scoreboard.prototype.resetFirstServer = function() {
-  this.setOverlayVisible('ball-1', false);
-  this.setOverlayVisible('ball-2', false);
+  this.setVisible('ball-1', false);
+  this.setVisible('ball-2', false);
   if (this.matchFinished()) {
     return;
   }
@@ -101,11 +101,11 @@ Scoreboard.prototype.resetFirstServer = function() {
 
 Scoreboard.prototype.hideScoresIn0x0 = function() {
   if (this.scoreCounting['1'] == 0 && this.scoreCounting['2'] == 0) {
-    this.setOverlayVisible('point-1', false);
-    this.setOverlayVisible('point-2', false);
+    this.setVisible('point-1', false);
+    this.setVisible('point-2', false);
   } else {
-    this.setOverlayVisible('point-1', true);
-    this.setOverlayVisible('point-2', true);
+    this.setVisible('point-1', true);
+    this.setVisible('point-2', true);
   }
 }
 
@@ -175,7 +175,7 @@ Scoreboard.prototype.incrementSet = function(player) {
   this.storeSetInfo();
   this.setCounting[player]++;
   this.serviceCounter = 0;
-  this.setOverlayContent('set-' + player, this.setCounting[player]);
+  this.setContent('set-' + player, this.setCounting[player]);
   this.setScore('1', 0);
   this.setScore('2', 0);
   this.resetFirstServer();
@@ -194,7 +194,7 @@ Scoreboard.prototype.playerServing = function() {
 // player is the string '1' or '2'.
 Scoreboard.prototype.toggleBall = function(player) {
   this.serving[player] = !(this.serving[player]);
-  this.setOverlayVisible('ball-' + player, this.serving[player]);
+  this.setVisible('ball-' + player, this.serving[player]);
 }
 
 Scoreboard.prototype.toggleService = function() {
@@ -251,12 +251,12 @@ Scoreboard.prototype.reconstructPreviousSetData = function() {
   }
 
   // Refreshing the scoreboard
-  this.setOverlayVisible('ball-1', this.serving['1']);
-  this.setOverlayVisible('ball-2', this.serving['2']);
+  this.setVisible('ball-1', this.serving['1']);
+  this.setVisible('ball-2', this.serving['2']);
   this.setScore('1', this.scoreCounting['1']);
   this.setScore('2', this.scoreCounting['2']);
-  this.setOverlayContent('set-1', this.setCounting['1']);
-  this.setOverlayContent('set-2', this.setCounting['2']);
+  this.setContent('set-1', this.setCounting['1']);
+  this.setContent('set-2', this.setCounting['2']);
 }
 
 // return: what has been undone:
@@ -285,10 +285,10 @@ Scoreboard.prototype.listen = function() {
   window.addEventListener('storage', function(e) {
     if (e.key.startsWith(thisObject.visibleKeyPrefix)) {
       var id = e.key.replace(thisObject.visibleKeyPrefix, '');
-      thisObject.setOverlayVisibleView(id, e.newValue === 'true');
+      thisObject.setVisibleView(id, e.newValue === 'true');
     } else if (e.key.startsWith(thisObject.contentKeyPrefix)) {
       var id = e.key.replace(thisObject.contentKeyPrefix, '');
-      thisObject.setOverlayContentView(id, e.newValue);
+      thisObject.setContentView(id, e.newValue);
     } else if (e.key.startsWith(thisObject.scoreKeyPrefix)) {
       var player = e.key.replace(thisObject.scoreKeyPrefix, '');
       thisObject.setScoreView(player, e.newValue);
