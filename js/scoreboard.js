@@ -1,27 +1,16 @@
-var LINE_1 = 338;
-var LINE_2 = 354;
-var X_BALL = 18;
-var X_NAME = 23;
-var X_SET = 142;
-var X_SCORE = 164;
-var FONT_SIZE = 13;
-var SUMMARY_PREFIX = 'summary-';
-
 function Scoreboard() {
+  this.visibleKeyPrefix = 'Scoreboard.visible.';
+  this.contentKeyPrefix = 'Scoreboard.content.';
+
+  this.scoreKeyPrefix = 'Scoreboard.score.1';
+
   this.setLength = 11;
   this.matchLength = 2;
-  this.overlays = {};
-  this.drawBackground(
-      'https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/master/images/scoreboard.png',
-      -0.36, // x pos
-      0.44, // y pos
-      0.26, // scale
-      'w', // scale reference dimension
-      'bkg');
-  this.createBall('1');
-  this.createBall('2');
   this.reset();
 }
+
+// remover palavra overlay do nome das funcoes
+// acabar com drawscore
 
 Scoreboard.prototype.reset = function() {
   this.serviceCounter = 0;
@@ -32,13 +21,16 @@ Scoreboard.prototype.reset = function() {
   this.gameHistory = [];
   this.serving = {1: false, 2: false};
 
-  this.hideSummary();
+  // this.hideSummary();
   this.setOverlayVisible('ball-1', false);
   this.setOverlayVisible('ball-2', false);
-  this.setScore('1', 0);
-  this.setScore('2', 0);
-  this.setSet('1', 0);
-  this.setSet('2', 0);
+  this.drawScore('1', 0);
+  this.drawScore('2', 0);
+  this.setOverlayContent('1', 0);
+  this.setOverlayContent('2', 0);
+
+
+
   this.setPlayerName('1', 'PLAYER 1');
   this.setPlayerName('2', 'PLAYER 2');
 }
@@ -55,73 +47,31 @@ Scoreboard.prototype.updateMatchLength = function(length) {
 }
 
 Scoreboard.prototype.display = function(visible) {
-  for (var i in this.overlays) {
-    if (visible) {
-      if (this.overlays[i]['vis']) {
-        this.overlays[i]['ovl'].setVisible(visible);
-      }
-    } else {
-      this.overlays[i]['ovl'].setVisible(visible);
-    }
-  }
-}
-
-Scoreboard.prototype.drawBackground =
-    function(imageUri, xPos, yPos, scale, scaleReference, overlayId) {
-  var img = gapi.hangout.av.effects.createImageResource(imageUri);
-  var overlay = img.createOverlay();
-  overlay.setPosition(xPos, yPos);
-  if (scaleReference == 'w') {
-    overlay.setScale(scale, gapi.hangout.av.effects.ScaleReference.WIDTH);
-  } else {
-    overlay.setScale(scale, gapi.hangout.av.effects.ScaleReference.HEIGHT);
-  }
-  overlay.setVisible(true);
-  this.overlays[overlayId] = {
-    'img' : img,
-    'ovl' : overlay,
-    'vis' : true, // set the overlay as visible
-  };
-}
-
-Scoreboard.prototype.createBall = function(player) {
-  var canvas = document.createElement('canvas');
-  canvas.setAttribute('width', CANVAS_WIDTH);
-  canvas.setAttribute('height', CANVAS_HEIGHT);
-  var ctx = canvas.getContext("2d");
-  ctx.fillStyle = "white";
-  ctx.beginPath();
-  ctx.arc(X_BALL, (player == 1)? 331: 346, 3, 0, 2*Math.PI);
-  ctx.fill();
-  var img = gapi.hangout.av.effects.createImageResource(canvas.toDataURL());
-  this.overlays['ball-' + player] = {
-    'img' : img,
-    'ovl' : img.createOverlay(),
-    'vis' : false, // set the overlay as hidden 
-  }
-}
-
-Scoreboard.prototype.redrawOverlay = function(overlayId, overlayImg) {
-  var newOverlay = overlayImg.createOverlay();
-  newOverlay.setVisible(true);
-  if (!this.overlays[overlayId]) {
-    this.overlays[overlayId] = {}
-  }
-  if (this.overlays[overlayId]['ovl']) {
-    this.overlays[overlayId]['ovl'].setVisible(false);
-    this.overlays[overlayId]['ovl'].dispose();
-    this.overlays[overlayId]['img'].dispose();
-  }
-  this.overlays[overlayId]['ovl'] = newOverlay;
-  this.overlays[overlayId]['img'] = overlayImg;
-  this.overlays[overlayId]['vis'] = true; // set the overlay as visible
+  this.setOverlayVisible('scoreboard', visible);
 }
 
 Scoreboard.prototype.setOverlayVisible = function(overlayId, visible) {
-  if (this.overlays && this.overlays[overlayId]) {
-    this.overlays[overlayId]['ovl'].setVisible(visible);
-    this.overlays[overlayId]['vis'] = visible;
+  localStorage.setItem(this.visibleKeyPrefix + overlayId, visible);
+  this.setOverlayVisibleView(overlayId, visible);
+}
+
+Scoreboard.prototype.setOverlayVisibleView = function(overlayId, visible) {
+  var element = getElement(overlayId);
+  if (visible) {
+    element.classList.remove('hidden');
+  } else {
+    element.classList.add('hidden');
   }
+}
+
+Scoreboard.prototype.setOverlayContent = function(overlayId, content) {
+  localStorage.setItem(this.contentKeyPrefix + overlayId, visible);
+  this.setOverlayContentView(overlayId, visible);
+}
+
+Scoreboard.prototype.setOverlayContentView = function(overlayId, content) {
+  var element = getElement(overlayId);
+  element.textContent = content;
 }
 
 Scoreboard.prototype.createTextOverlay =
@@ -148,17 +98,8 @@ Scoreboard.prototype.createTextOverlay =
 }
 
 Scoreboard.prototype.setPlayerName = function(player, name) {
-  var yPos = (player == 1) ? LINE_1: LINE_2;
-  var img = gapi.hangout.av.effects.createImageResource(
-    this.createTextOverlay(name.toUpperCase(),
-                           FONT_SIZE,
-                           'white',
-                           true, // bold
-                           true, // shadow
-                           'left',
-                           X_NAME,
-                           yPos));
-  this.redrawOverlay('name-' + player, img);
+  var element =  getElement('name-' + player);
+  element.textContent = name;
 }
 
 Scoreboard.prototype.setFirstServer = function(player) {
@@ -199,23 +140,15 @@ Scoreboard.prototype.hideScoresIn0x0 = function() {
 }
 
 Scoreboard.prototype.drawScore = function(player, score) {
-  var yPos = (player == 1) ? LINE_1: LINE_2;
-  var img = gapi.hangout.av.effects.createImageResource(
-    this.createTextOverlay(score,
-                           FONT_SIZE,
-                           'white',
-                           true, // bold
-                           true, // shadow
-                           'right',
-                           X_SCORE,
-                           yPos));
-  this.redrawOverlay('point-' + player, img);
-  this.hideScoresIn0x0();
+  this.scoreCounting[player] = score;
+  localStorage.setItem(this.scoreKeyPrefix + player, score);
+  this.drawScoreView(player, score);
 }
 
-Scoreboard.prototype.setScore = function(player, score) {
-  this.scoreCounting[player] = score;
-  this.drawScore(player, score);
+Scoreboard.prototype.drawScoreView = function(player, score) {
+  var element = getElement('point-' + player);
+  element.textContent = score;
+  this.hideScoresIn0x0();
 }
 
 Scoreboard.prototype.storeSetInfo = function() {
@@ -265,20 +198,6 @@ Scoreboard.prototype.shouldIncrementSet = function() {
   return false;
 }
 
-Scoreboard.prototype.setSet = function(player, value) {
-  var yPos = (player == 1) ? LINE_1: LINE_2;
-  var img = gapi.hangout.av.effects.createImageResource(
-      this.createTextOverlay(value,
-                             FONT_SIZE,
-                             'black',
-                             true, // bold
-                             false, // shadow
-                             'right',
-                             X_SET,
-                             yPos));
-  this.redrawOverlay('set-' + player, img);
-}
-
 Scoreboard.prototype.incrementSet = function(player) {
   if (!this.shouldIncrementSet()) {
     return;
@@ -286,9 +205,9 @@ Scoreboard.prototype.incrementSet = function(player) {
   this.storeSetInfo();
   this.setCounting[player]++;
   this.serviceCounter = 0;
-  this.setSet(player, this.setCounting[player]);
-  this.setScore('1', 0);
-  this.setScore('2', 0);
+  this.setOverlayContent(player, this.setCounting[player]);
+  this.drawScore('1', 0);
+  this.drawScore('2', 0);
   this.resetFirstServer();
 }
 
@@ -302,6 +221,7 @@ Scoreboard.prototype.playerServing = function() {
   return 0;
 }
 
+// player is the string '1' or '2'.
 Scoreboard.prototype.toggleBall = function(player) {
   this.serving[player] = !(this.serving[player]);
   this.setOverlayVisible('ball-' + player, this.serving[player]);
@@ -363,10 +283,10 @@ Scoreboard.prototype.reconstructPreviousSetData = function() {
   // Refreshing the scoreboard
   this.setOverlayVisible('ball-1', this.serving['1']);
   this.setOverlayVisible('ball-2', this.serving['2']);
-  this.setScore('1', this.scoreCounting['1']);
-  this.setScore('2', this.scoreCounting['2']);
-  this.setSet('1', this.setCounting['1']);
-  this.setSet('2', this.setCounting['2']);
+  this.drawScore('1', this.scoreCounting['1']);
+  this.drawScore('2', this.scoreCounting['2']);
+  this.setOverlayContent('1', this.setCounting['1']);
+  this.setOverlayContent('2', this.setCounting['2']);
 }
 
 // return: what has been undone:
@@ -390,75 +310,20 @@ Scoreboard.prototype.undo = function() {
   return 'score';
 }
 
-Scoreboard.prototype.drawSummaryTitles = function(text, column, overlayId) {
-  var img = gapi.hangout.av.effects.createImageResource(
-    this.createTextOverlay(text,
-                           11, // font size
-                           'white',
-                           false, // bold
-                           false, // shadow
-                           'right',
-                           column - 1, // x position
-                           321)); // y position
-  this.redrawOverlay(SUMMARY_PREFIX + overlayId, img);
-}
-
-Scoreboard.prototype.drawSummaryText = function(text, line, column, overlayId) {
-  var img = gapi.hangout.av.effects.createImageResource(
-    this.createTextOverlay(text,
-                           FONT_SIZE,
-                           'white',
-                           true, // bold
-                           true, // shadow
-                           'right',
-                           column,
-                           line));
-  this.redrawOverlay(SUMMARY_PREFIX + overlayId, img);
-}
-
-Scoreboard.prototype.drawSummaryBackground =
-    function(imageFile, overlayId, xPos) {
-  if (this.overlays[overlayId]) {
-    this.overlays[overlayId]['vis'] = true; // set the overlay as visible
-  } else {
-    this.drawBackground(
-        'https://cdn.rawgit.com/rguidolini/table-tennis-scoreboard/master/images/' + imageFile,
-        xPos,
-        0.42, // y pos
-        0.1374, // scale
-        'h', // scale reference HEIGHT
-        SUMMARY_PREFIX + overlayId);
-  }
-}
-
-Scoreboard.prototype.showSummary = function() {
-  this.drawSummaryBackground('summary1.png', 'left-bkg', -0.275 /* x pos */);
-
-  var xPos = -0.255;
-  var textXPos = 164;
-  var set = 0;
-  for (; set < this.gameHistory.length; set++) {
-    this.drawSummaryBackground('summary2.png', 'set-bkg-' + set, xPos);
-    xPos += 0.034; // This value has been determined empirically.
-    this.drawSummaryTitles('#' + (set + 1), textXPos, '#' + set);
-    var score1 = this.gameHistory[set].scoreCounting['1'];
-    var score2 = this.gameHistory[set].scoreCounting['2'];
-    this.drawSummaryText(score1, LINE_1, textXPos, 'p1-scr' + set);
-    this.drawSummaryText(score2, LINE_2, textXPos, 'p2-scr' + set);
-    textXPos += 22;
-    if (set % 6 == 0) {
-      textXPos--; // adjusting text positioning with regard to background.
+Scoreboard.prototype.listen = function() {
+  var thisObject = this;
+  window.addEventListener('storage', function(e) {
+    if (e.key.startsWith(thisObject.visibleKeyPrefix)) {
+      var id = e.key.replace(thisObject.visibleKeyPrefix, '');
+      thisObject.setOverlayVisibleView(id, e.newValue === 'true');
+    } else if (e.key.startsWith(thisObject.contentKeyPrefix)) {
+      var id = e.key.replace(thisObject.contentKeyPrefix, '');
+      thisObject.setOverlayVisibleView(id, e.newValue);
     }
-  }
-
-  this.drawSummaryBackground('summary3.png', 'right-bkg-' + set, xPos - 0.014);
-}
-
-Scoreboard.prototype.hideSummary = function() {
-  for (var overlayId in this.overlays) {
-    if (overlayId.indexOf(SUMMARY_PREFIX) == 0) {
-      this.setOverlayVisible(overlayId, false);
+    
+    else if (e.key.startsWith(thisObject.scoreKeyPrefix)) {
+      var player = e.key.replace(thisObject.scoreKeyPrefix, '');
+      thisObject.drawScoreView(player, e.newValue);
     }
-  }
+  });
 }
-

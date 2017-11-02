@@ -18,7 +18,6 @@ var firstStroke = true;
 var arePostionsinverted = false;
 
 var scoreboard = new Scoreboard();
-//var statTable = new StatsTable();
 var chrono = new Chronometer();
 var commentBox = new CommentBox();
 var gtvLogo = new GtvLogo();
@@ -282,11 +281,11 @@ function invertSides() {
   p2name.textContent = tmp_name; 
 }
 
-function toggleDisplaycommentBox() {
+function toggleDisplayCommentBox() {
   if (commentBox.getVisible()) {
     getElement('show-comment').value = 'Show';
     commentBox.display(false);
-    chrono.display(true && appVisible);
+    chrono.display(appVisible);
   } else {
     commentBox.setComment(getElement('input-comment').value);
     commentBox.setNetzen(getElement('input-netzen').value);
@@ -326,7 +325,7 @@ function bindEvents() {
   getElement('load-logo').onclick = function() { drawLogo(); };
   getElement('update-set').onclick = function() { updateSetLength(); };
   getElement('update-game').onclick = function() { updateGameLength(); };
-  getElement('show-comment').onclick = function() { toggleDisplaycommentBox(); };
+  getElement('show-comment').onclick = function() { toggleDisplayCommentBox(); };
   getElement('input-comment').onkeyup = function() { updateCommentCounter(); };
   getElement('update-line-length').onclick = function() { resetCommentMaxLineLength() };
 }
