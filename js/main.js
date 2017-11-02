@@ -180,7 +180,6 @@ function undo() {
   }
   if (isGameOver) {
     isGameOver = false;
-    scoreboard.hideSummary();
     chrono.start();
     getElement('controls-cover').style.zIndex = -1;
   }
@@ -224,7 +223,6 @@ function updateComment() {
 
 function gameOver() {
   isGameOver = true;
-  scoreboard.showSummary();
   chrono.stop();
   getElement('controls-cover').style.zIndex = 1;
   hideWarning();

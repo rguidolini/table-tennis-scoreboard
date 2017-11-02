@@ -1,7 +1,6 @@
 function Scoreboard() {
   this.visibleKeyPrefix = 'Scoreboard.visible.';
   this.contentKeyPrefix = 'Scoreboard.content.';
-
   this.scoreKeyPrefix = 'Scoreboard.score.1';
 
   this.setLength = 11;
@@ -10,7 +9,6 @@ function Scoreboard() {
 }
 
 // remover palavra overlay do nome das funcoes
-// acabar com drawscore
 
 Scoreboard.prototype.reset = function() {
   this.serviceCounter = 0;
@@ -21,7 +19,6 @@ Scoreboard.prototype.reset = function() {
   this.gameHistory = [];
   this.serving = {1: false, 2: false};
 
-  // this.hideSummary();
   this.setOverlayVisible('ball-1', false);
   this.setOverlayVisible('ball-2', false);
   this.setScore('1', 0);
@@ -71,32 +68,8 @@ Scoreboard.prototype.setOverlayContentView = function(overlayId, content) {
   element.textContent = content;
 }
 
-Scoreboard.prototype.createTextOverlay =
-    function(text, fontSize, color, bold, shadow, align, xPos, yPos) {
-  var canvas = document.createElement('canvas');
-  canvas.setAttribute('width', CANVAS_WIDTH);
-  canvas.setAttribute('height', CANVAS_HEIGHT);
-
-  var context = canvas.getContext('2d');
-  if (shadow) {
-    context.shadowColor = 'black';
-    context.shadowOffsetX = 1;
-    context.shadowOffsetY = 1;
-    context.shadowBlur = 2;
-  }
-
-  context.font = ((bold) ? 'bold ' : '') + fontSize + 'px Arial';
-  context.fillStyle = color;
-  context.textAlign = align;
-  context.textBaseline = 'bottom';
-  context.fillText(text, xPos, yPos);
-
-  return canvas.toDataURL();
-}
-
 Scoreboard.prototype.setPlayerName = function(player, name) {
-  var element =  getElement('name-' + player);
-  element.textContent = name;
+  this.setOverlayContent('name-' + player, name);
 }
 
 Scoreboard.prototype.setFirstServer = function(player) {
@@ -269,7 +242,7 @@ Scoreboard.prototype.reconstructPreviousSetData = function() {
   this.toggleService();
   this.setHistory.pop();
   this.serviceCounter--;
-  if (this.scoreCounting['1'] > this.scoreCounting['2']) { 
+  if (this.scoreCounting['1'] > this.scoreCounting['2']) {
     this.setCounting['1']--;
     this.scoreCounting['1']--;
   } else {
