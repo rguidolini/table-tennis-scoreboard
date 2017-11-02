@@ -1,14 +1,18 @@
 function Scoreboard() {
-  this.visibleKeyPrefix = 'Scoreboard.visible.';
-  this.contentKeyPrefix = 'Scoreboard.content.';
-  this.scoreKeyPrefix = 'Scoreboard.score.1';
+  this.scoreKeyPrefix = 'Scoreboard.score.';
 
   this.setLength = 11;
   this.matchLength = 2;
   this.reset();
 }
 
-// remover palavra overlay do nome das funcoes
+Scoreboard.prototype.setVisible = function(elementId, visible) {
+  setVisible(this.constructor.name, elementId, visible);
+}
+
+Scoreboard.prototype.setContent = function(elementId, content) {
+  setContent(this.constructor.name, elementId, content);
+}
 
 Scoreboard.prototype.reset = function() {
   this.serviceCounter = 0;
@@ -42,30 +46,6 @@ Scoreboard.prototype.updateMatchLength = function(length) {
 
 Scoreboard.prototype.display = function(visible) {
   this.setVisible('scoreboard', visible);
-}
-
-Scoreboard.prototype.setVisible = function(overlayId, visible) {
-  localStorage.setItem(this.visibleKeyPrefix + overlayId, visible);
-  this.setVisibleView(overlayId, visible);
-}
-
-Scoreboard.prototype.setVisibleView = function(overlayId, visible) {
-  var element = getElement(overlayId);
-  if (visible) {
-    element.classList.remove('hidden');
-  } else {
-    element.classList.add('hidden');
-  }
-}
-
-Scoreboard.prototype.setContent = function(overlayId, content) {
-  localStorage.setItem(this.contentKeyPrefix + overlayId, content);
-  this.setContentView(overlayId, content);
-}
-
-Scoreboard.prototype.setContentView = function(overlayId, content) {
-  var element = getElement(overlayId);
-  element.textContent = content;
 }
 
 Scoreboard.prototype.setPlayerName = function(player, name) {
@@ -283,15 +263,17 @@ Scoreboard.prototype.undo = function() {
 Scoreboard.prototype.listen = function() {
   var thisObject = this;
   window.addEventListener('storage', function(e) {
-    if (e.key.startsWith(thisObject.visibleKeyPrefix)) {
-      var id = e.key.replace(thisObject.visibleKeyPrefix, '');
-      thisObject.setVisibleView(id, e.newValue === 'true');
-    } else if (e.key.startsWith(thisObject.contentKeyPrefix)) {
-      var id = e.key.replace(thisObject.contentKeyPrefix, '');
-      thisObject.setContentView(id, e.newValue);
-    } else if (e.key.startsWith(thisObject.scoreKeyPrefix)) {
-      var player = e.key.replace(thisObject.scoreKeyPrefix, '');
-      thisObject.setScoreView(player, e.newValue);
+    if (updateView(thisObject.constructor.name, e.key, e.newValue)) {
+      return;
     }
+
+    // Needs special treatment because it has side effects.
+    var scoreKeyPrefix = 'Scoreboard.score.';
+    if (e.key.startsWith(scoreKeyPrefix)) {
+      var player = e.key.replace(scoreKeyPrefix, '');
+      thisObject.setScoreView(player, e.newValue);
+      return;
+    }
+    console.log('ERROR: storage event unhandled: ' + e.key + '=' + e.newValue);
   });
 }
