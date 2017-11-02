@@ -1,6 +1,4 @@
 function Chronometer() {
-  this.timeKey = 'Chronometer.time';
-  this.visibleKey = 'Chronometer.visible';
   this.start_t = null;
   this.timerID = null;
   this.visible = true;
@@ -8,26 +6,30 @@ function Chronometer() {
   this.drawTime('00:00');
 }
 
-Chronometer.prototype.display = function(visible) {
-  localStorage.setItem(this.visibleKey, visible);
-  this.displayView(visible);
+Chronometer.prototype.setVisible = function(elementId, visible) {
+  setVisible(this.constructor.name, elementId, visible);
 }
 
-Chronometer.prototype.displayView = function(visible) {
-  if (visible) {
-    getElement('watch').classList.remove('hidden')
-  } else {
-    getElement('watch').classList.add('hidden')
-  }
+Chronometer.prototype.setContent = function(elementId, content) {
+  setContent(this.constructor.name, elementId, content);
+}
+
+Chronometer.prototype.listen = function() {
+  var thisObject = this;
+  window.addEventListener('storage', function(e) {
+    if (updateView(thisObject.constructor.name, e.key, e.newValue)) {
+      return;
+    }
+    console.log('ERROR: storage event unhandled: ' + e.key + '=' + e.newValue);
+  });
+}
+
+Chronometer.prototype.display = function(visible) {
+  this.setVisible('watch', visible);
 }
 
 Chronometer.prototype.drawTime = function(time) {
-  localStorage.setItem(this.timeKey, time);
-  this.drawTimeView(time);
-}
-
-Chronometer.prototype.drawTimeView = function(time) {
-  getElement('watch').textContent = time;
+  this.setContent('watch', time);
 }
 
 function formatTime(time) {
@@ -82,16 +84,4 @@ Chronometer.prototype.reset = function() {
 
 Chronometer.prototype.isWorking = function() {
   return (this.timerID != null);
-}
-
-Chronometer.prototype.listen = function() {
-  var thisObject = this;
-  window.addEventListener('storage', function(e) {  
-    if (e.key == thisObject.timeKey) {
-      thisObject.drawTimeView(e.newValue);
-    } else if (e.key == thisObject.visibleKey) {
-      var visible = true;
-      thisObject.displayView(e.newValue === 'true')
-    }
-  });
 }
