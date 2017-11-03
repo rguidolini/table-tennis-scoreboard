@@ -17,8 +17,8 @@ var isGameOver = false;
 var firstStroke = true;
 var arePostionsinverted = false;
 
-var scoreboard = new Scoreboard();
-var chrono = new Chronometer();
+var scoreboard = new Scoreboard('scoreboard');
+var chrono = new Chronometer('watch');
 var commentBox = new CommentBox();
 var gtvLogo = new GtvLogo();
 

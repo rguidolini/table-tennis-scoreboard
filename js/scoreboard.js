@@ -1,18 +1,16 @@
-function Scoreboard() {
-  this.scoreKeyPrefix = 'Scoreboard.score.';
+// This class uses JS inheritage. See:
+// http://blog.caelum.com.br/reaproveitando-codigo-com-javascript-heranca-e-prototipos/
 
+function Scoreboard(mainElementId) {
+  VisualElement.call(this, mainElementId);
+
+  this.scoreKeyPrefix = 'Scoreboard.score.';
   this.setLength = 11;
   this.matchLength = 2;
   this.reset();
 }
-
-Scoreboard.prototype.setVisible = function(elementId, visible) {
-  setVisible(this.constructor.name, elementId, visible);
-}
-
-Scoreboard.prototype.setContent = function(elementId, content) {
-  setContent(this.constructor.name, elementId, content);
-}
+Scoreboard.prototype = new VisualElement();
+Scoreboard.prototype.constructor = Scoreboard;
 
 Scoreboard.prototype.reset = function() {
   this.serviceCounter = 0;
@@ -42,10 +40,6 @@ Scoreboard.prototype.updateSetLength = function(length) {
 // match.
 Scoreboard.prototype.updateMatchLength = function(length) {
   this.matchLength = parseInt(parseInt(length, 10) / 2, 10) + 1;
-}
-
-Scoreboard.prototype.display = function(visible) {
-  this.setVisible('scoreboard', visible);
 }
 
 Scoreboard.prototype.setPlayerName = function(player, name) {
