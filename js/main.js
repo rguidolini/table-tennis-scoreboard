@@ -20,7 +20,7 @@ var arePostionsinverted = false;
 var scoreboard = new Scoreboard('scoreboard');
 var chrono = new Chronometer('watch');
 var commentBox = new CommentBox('comment-box');
-var gtvLogo = new GtvLogo();
+var logo = new VisualElement('logo');
 
 function showError(msg) {
   var errorDiv = document.getElementById('error-msg');
@@ -106,6 +106,7 @@ function toggleDisplayApp() {
   appVisible = !appVisible;
   scoreboard.display(appVisible);
   chrono.display(appVisible && !commentBox.getVisible());
+  logo.display(appVisible);
   getElement('hide-app').value = appVisible ? 'Hide App' : 'Show App';
 }
 
@@ -327,6 +328,7 @@ function bindEvents() {
 }
 
 function main() {
+  localStorage.clear();
   bindEvents();
   initZipElements();
   initCommentInputs();

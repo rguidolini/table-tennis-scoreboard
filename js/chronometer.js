@@ -4,7 +4,6 @@
 function Chronometer(mainElementId) {
   VisualElement.call(this, mainElementId);
 
-  this.visible = true;
   this.start_t = null;
   this.timerID = null;
   this.drawTime('00:00');

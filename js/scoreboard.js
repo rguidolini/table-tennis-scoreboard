@@ -257,17 +257,19 @@ Scoreboard.prototype.undo = function() {
 Scoreboard.prototype.listen = function() {
   var thisObject = this;
   window.addEventListener('storage', function(e) {
-    if (updateView(thisObject.constructor.name, e.key, e.newValue)) {
-      return;
-    }
-
     // Needs special treatment because it has side effects.
     var scoreKeyPrefix = 'Scoreboard.score.';
+    if (e.key == null) {
+      return;
+    }
     if (e.key.startsWith(scoreKeyPrefix)) {
       var player = e.key.replace(scoreKeyPrefix, '');
       thisObject.setScoreView(player, e.newValue);
       return;
     }
-    console.log('ERROR: storage event unhandled: ' + e.key + '=' + e.newValue);
+
+    if (thisObject.updateView(e.key, e.newValue)) {
+      return;
+    }
   });
 }
