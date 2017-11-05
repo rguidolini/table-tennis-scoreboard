@@ -10,10 +10,6 @@ function CommentBox(mainElementId) {
 CommentBox.prototype = new VisualElement();
 CommentBox.prototype.constructor = CommentBox;
 
-CommentBox.prototype.getVisible = function() {
-  return this.visible;
-};
-
 CommentBox.prototype.setComment = function(comment) {
   this.setContent('comment', comment);
 };

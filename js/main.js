@@ -122,6 +122,12 @@ function newMatch() {
   }
 }
 
+function openDashboard() {
+  windowObjectReference = window.open(
+    "dashboard.html", "_blank",
+    "menubar=no,location=no,status=no,width=1600,height=900");
+}
+
 function drawLogo() {
   var uri = getElement('loadable-uri').value;
   console.log('loading ' + uri);
@@ -314,6 +320,7 @@ function bindEvents() {
   document.onkeydown = function(e) { handleKeyStroke(e); };
   getElement('hide-app').onclick = function() { toggleDisplayApp(); };
   getElement('new-game').onclick = function() { newMatch(); };
+  getElement('open-dashboard').onclick = function() { openDashboard(); };
   getElement('update-names').onclick = function() { updateNames(); };
   getElement('score-player1').onclick = function() { scorePointForPlayer('1'); };
   getElement('score-player2').onclick = function() { scorePointForPlayer('2'); };
