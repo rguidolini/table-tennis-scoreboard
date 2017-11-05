@@ -125,13 +125,7 @@ function newMatch() {
 function openDashboard() {
   windowObjectReference = window.open(
     "dashboard.html", "_blank",
-    "menubar=no,location=no,status=no,width=1600,height=900");
-}
-
-function drawLogo() {
-  var uri = getElement('loadable-uri').value;
-  console.log('loading ' + uri);
-  gtvLogo.draw(uri);
+    "menubar=no,location=no,status=no,width=1409,height=792");
 }
 
 function updateSetLength() {
@@ -325,7 +319,6 @@ function bindEvents() {
   getElement('score-player1').onclick = function() { scorePointForPlayer('1'); };
   getElement('score-player2').onclick = function() { scorePointForPlayer('2'); };
   getElement('undo').onclick = function() { undo(); };
-  getElement('load-logo').onclick = function() { drawLogo(); };
   getElement('update-set').onclick = function() { updateSetLength(); };
   getElement('update-game').onclick = function() { updateGameLength(); };
   getElement('show-comment').onclick = function() { toggleDisplayCommentBox(); };

@@ -1,203 +1,187 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ping Pong Scorer</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<link rel="stylesheet" type="text/css" href="css/local.css" />
+  <title>TTS Panel</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/local.css" />
 </head>
 
 <body>
-<div id="screen" >
-<div id='scoreboard' class='scorer'>
-  <div class=line id='line-1'>
-    <div class='ball hidden' id='ball-1'></div>
-    <div class='player-name' id='name-1'> player 1 </div>
-    <div class='set' id='set-1'> 0 </div>
-    <div class='point hidden' id='point-1'> 0 </div>
-  </div>
 
-  <div class=line id='line-2'>
-    <div class='ball hidden' id='ball-2'></div>
-    <div class='player-name' id='name-2'> player 2 </div>
-    <div class='set' id='set-2'> 0 </div>
-    <div class='point hidden' id='point-2'> 0 </div>
-  </div>
-</div>
-
-<div id='watch' class='watch'>
-  00:00
-</div>
-
-<div id='comment-box' class='comment-box hidden'>
-  <div id='comment' style="float: left;">
-  Matheus, voce que o Piva leva esse ano de novo?
-  </div>
-  <div id='netzen' style="margin-top: 45px; text-align: right; color: white">
-  powerguido - Belo Horizonte
-  </div>
-</div>
-
-<img id="logo" src="" class="hidden">
-
-
-<div id="app-pannel">
-
-<!--
-********************************************************************************
-* START COPING HERE
-********************************************************************************
--->
-
-<center>
 <div id="error-msg" class="hidden error-box">
   You should not be seeing this message
 </div>
 
-<div id="app-controls" style="margin-top: 10px;">
-  <input type="button" class="button" id="hide-app" value="Hide App"
-         style="width: 80px;" />
-  <input type="button" class="button" id="new-game" value="New Match" />
-  <input type="button" class="button" id="open-dashboard" value="Dashboard" />
+<div id="dashboard" style="display: none;">
+  <div id='scoreboard' class='scorer'>
+    <div class=line id='line-1'>
+      <div class='ball hidden' id='ball-1'></div>
+      <div class='player-name' id='name-1'> player 1 </div>
+      <div class='set' id='set-1'> 0 </div>
+      <div class='point hidden' id='point-1'> 0 </div>
+    </div>
+
+    <div class=line id='line-2'>
+      <div class='ball hidden' id='ball-2'></div>
+      <div class='player-name' id='name-2'> player 2 </div>
+      <div class='set' id='set-2'> 0 </div>
+      <div class='point hidden' id='point-2'> 0 </div>
+    </div>
+  </div>
+
+  <div id='watch' class='watch'>
+    00:00
+  </div>
+
+  <div id='comment-box' class='comment-box hidden'>
+    <div id='comment' style="float: left;">
+      Matheus, voce acha que o Piva leva esse ano de novo?
+    </div>
+    <div id='netzen' style="margin-top: 45px; text-align: right; color: white">
+      powerguido - Belo Horizonte
+    </div>
+  </div>
+
+  <img id="logo" src="images/gtvlogo.png">
 </div>
-</center>
+ 
+<div id="app-pannel">
 
-<div id="app-interaction">
-  <div id="controls-cover">
-  </div>
-  <div id="player-names" class="controls-container" />
-    <input id="player1name" type="text" placeholder="PLAYER 1" class="input-name-box"
-           maxlength="15" style="left: 10px;"/>
-    <input id="player2name" type="text" placeholder="PLAYER 2" class="input-name-box"
-           maxlength="15" style="left: 156px;" />
-    <div class="table-image" ></div>
-    <center>
-      <input type="button" class="button" id="update-names" value="Update Names"
-             style="margin-right: 25px;" />
-      <label class="checkbox-label"
-             title="Auto invert player sides at the end of each set">
-        <input id="auto-invert" type="checkbox" checked />
-        Auto-invert
-      </label>
-    </center>
-  </div>
+  <center>
+    <div id="error-msg" class="hidden error-box">
+      You should not be seeing this message
+    </div>
+    
+    <div id="app-controls" style="margin-top: 10px;">
+      <input type="button" class="button" id="hide-app" value="Hide App" style="width: 80px;" />
+      <input type="button" class="button" id="new-game" value="New Match" />
+      <input type="button" class="button" id="open-dashboard" value="Dashboard" />
+    </div>
+  </center>
 
-  <div id="scoring" class="controls-container" />
-    <div id="score-buttons" style="height: 70px;" >
-      <div class="minor-label">
-        Score point for
+  <div id="app-interaction">
+    <div id="controls-cover">
+    </div>
+    <div id="player-names" class="controls-container" />
+      <input id="player1name" type="text" placeholder="PLAYER 1" class="input-name-box"
+             maxlength="15" style="left: 10px;"/>
+      <input id="player2name" type="text" placeholder="PLAYER 2" class="input-name-box"
+             maxlength="15" style="left: 156px;" />
+      <div class="table-image" >
       </div>
-      <div class="path-1"></div>
-      <div class="path-2"></div>
-      <div class="score-btn">
-        <input id="score-player1" style="width: 100%;" class="button"
-               type="button" value="PLAYER1" />
+      <center>
+        <input type="button" class="button" id="update-names" value="Update Names"
+               style="margin-right: 25px;" />
+        <label class="checkbox-label"
+               title="Auto invert player sides at the end of each set">
+          <input id="auto-invert" type="checkbox" checked />
+          Auto-invert
+        </label>
+      </center>
+    </div>
+ 
+    <div id="scoring" class="controls-container" />
+      <div id="score-buttons" style="height: 70px;" >
+        <div class="minor-label">
+          Score point for
+        </div>
+        <div class="path-1">
+        </div>
+        <div class="path-2">
+        </div>
+        <div class="score-btn">
+          <input id="score-player1" style="width: 100%;" class="button"
+                 type="button" value="PLAYER1" />
+        </div>
+        <div class="score-btn">
+          <input id="score-player2" style="width: 100%;" class="button"
+                 type="button" value="PLAYER2" />
+        </div>
       </div>
-      <div class="score-btn">
-        <input id="score-player2" style="width: 100%;" class="button"
-               type="button" value="PLAYER2" />
+  
+      <center>
+        <input id="undo" class="jfk-button red-button" type="button" value="Undo" />
+      </center>
+    </div>
+  
+    <div class="zip-container" >
+      <div class="zip-control">
+        <label class="title">Netzen Comment</label>
+      </div>
+      <div id="comment-box-pannel" class="zip-content">
+        <table>
+          <tr>
+            <td>Netzen:</td>
+            <td><input id="input-netzen" type="text" /></td>
+          </tr>
+          <tr>
+            <td>Comment:</td>
+            <td><textarea id="input-comment" rows="1"></textarea></td>
+          </tr>
+          <tr>
+            <td>Remaining:</td>
+            <td>
+              <div id="comment-box-counter">You shouldn't be seeing this text!</div>
+              <input id="show-comment" class="button" type="button" value="Show" style="width: 62px;"/>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  
+    <div class="zip-container" >
+      <div class="zip-control">
+        <label class="title">Advanced Setup</label>
+      </div>
+      <div id="setup-pannel" class="zip-content">
+        <table>
+          <tr>
+            <td class="label">Set length:</td>
+            <td><input id="set-length" type="text" value=11 /></td>
+            <td><input id="update-set" class="button" type="button" value="update" /></td>
+          </tr>
+          <tr>
+            <td class="label">Match length (in sets):</td>
+            <td><input id="game-length" type="text" value=3 /></td>
+            <td><input id="update-game" class="button" type="button" value="update" /></td>
+          </tr>
+          <tr>
+            <td class="label">Comment line length:</td>
+            <td><input id="comment-line-length" type="text" value="44"/></td>
+            <td><input id="update-line-length" class="button" type="button" value="update" /></td>
+          </tr>
+        </table>
       </div>
     </div>
 
-    <center>
-      <input id="undo" class="jfk-button red-button" type="button" value="Undo" />
-    </center>
+    <div id="help-container" class="zip-container" />
+      <div id="help-control" class="zip-control">
+        <label class="title">Show keyboard shortcuts</label>
+      </div>
+      <div class="zip-content">
+        <table style="font-family: sans-serif; font-size: 13px;">
+          <tr>
+            <td class="legend-icon">&larr;</td>
+            <td>Score 1 point for <b><span id="p1name">PLAYER1</span></b>.</td>
+          </tr>
+          <tr>
+            <td class="legend-icon">&rarr;</td>
+            <td>Score 1 point for <b><span id="p2name">PLAYER2</span></b>.</td>
+          </tr>
+          <tr>
+            <td class="legend-icon">&darr;</td>
+            <td>Undo last scoring.</td>
+          </tr>
+          <tr>
+            <td class="legend-icon">&uarr;</td>
+            <td>Invert players position at the table.</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
   </div>
-
-  <div class="zip-container" >
-    <div class="zip-control">
-      <label class="title">Netzen Comment</label>
-    </div>
-    <div id="comment-box-pannel" class="zip-content">
-      <table>
-        <tr>
-          <td>Netzen:</td>
-          <td><input id="input-netzen" type="text" /></td>
-        </tr>
-        <tr>
-          <td>Comment:</td>
-          <td><textarea id="input-comment" rows="1"></textarea></td>
-        </tr>
-        <tr>
-          <td>Remaining:</td>
-          <td>
-            <div id="comment-box-counter">You shouldn't be seeing this text!</div>
-            <input id="show-comment" class="button" type="button" value="Show" style="width: 62px;"/>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="zip-container" >
-    <div class="zip-control">
-      <label class="title">Advanced Setup</label>
-    </div>
-    <div id="setup-pannel" class="zip-content">
-      <table>
-        <tr>
-          <td class="label">Set length:</td>
-          <td><input id="set-length" type="text" value=11 /></td>
-          <td><input id="update-set" class="button" type="button" value="update" /></td>
-        </tr>
-        <tr>
-          <td class="label">Game length (in sets):</td>
-          <td><input id="game-length" type="text" value=3 /></td>
-          <td><input id="update-game" class="button" type="button" value="update" /></td>
-        </tr>
-        <tr>
-          <td class="label">Comment line length:</td>
-          <td><input id="comment-line-length" type="text" value="44"/></td>
-          <td><input id="update-line-length" class="button" type="button" value="update" /></td>
-        </tr>
-      </table>
-      <table>
-        <tr>
-          <td>
-            <input id="loadable-uri" type="text" placeholder="enter a TV logo url (png or jpg)" style="width: 210px;" />
-          </td>
-          <td><input id="load-logo" class="button" type="button" value="load" /></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  <div id="help-container" class="zip-container" />
-    <div id="help-control" class="zip-control">
-      <label class="title">Show keyboard shortcuts</label>
-    </div>
-    <div class="zip-content">
-      <table style="font-family: sans-serif; font-size: 13px;">
-        <tr>
-          <td class="legend-icon">&larr;</td>
-          <td>Score 1 point for <b><span id="p1name">PLAYER1</span></b>.
-          </td>
-        </tr>
-        <tr>
-          <td class="legend-icon">&rarr;</td>
-          <td>Score 1 point for <b><span id="p2name">PLAYER2</span></b>.
-          </td>
-        </tr>
-        <tr>
-          <td class="legend-icon">&darr;</td>
-          <td>Undo last scoring.</td>
-        </tr>
-        <tr>
-          <td class="legend-icon">&uarr;</td>
-          <td>Invert players position at the table.</td>
-        </tr>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!--
-********************************************************************************
-* STOP COPING HERE
-********************************************************************************
--->
-
-</div>
 </div>
 <script src="js/common.js"></script>
 <script src="js/visual_element.js"></script>
