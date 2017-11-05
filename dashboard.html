@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>TTS Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/local.css" />
+</head>
+
+<body>
+  <div id="screen" >
+    <div id="error-msg" class="hidden error-box">
+      You should not be seeing this message
+    </div>
+    <div id='scoreboard' class='scorer'>
+      <div class=line id='line-1'>
+        <div class='ball hidden' id='ball-1'></div>
+        <div class='player-name' id='name-1'> player 1 </div>
+        <div class='set' id='set-1'> 0 </div>
+        <div class='point hidden' id='point-1'> 0 </div>
+      </div>
+
+      <div class=line id='line-2'>
+        <div class='ball hidden' id='ball-2'></div>
+        <div class='player-name' id='name-2'> player 2 </div>
+        <div class='set' id='set-2'> 0 </div>
+        <div class='point hidden' id='point-2'> 0 </div>
+      </div>
+    </div>
+
+    <div id='watch' class='watch'>
+      00:00
+    </div>
+
+    <div id='comment-box' class='comment-box hidden'>
+      <div id='comment' style="float: left;">
+        Matheus, voce acha que o Piva leva esse ano de novo?
+      </div>
+      <div id='netzen' style="margin-top: 45px; text-align: right; color: white">
+        powerguido - Belo Horizonte
+      </div>
+    </div>
+
+    <img id="logo" src="images/logo.png">
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/visual_element.js"></script>
+  <script src="js/chronometer.js"></script>
+  <script src="js/scoreboard.js"></script>
+  <script src="js/comments.js"></script>
+  <script src="js/logo.js"></script>
+  <script src="js/panel.js"></script>
+</body>
+</html>
+

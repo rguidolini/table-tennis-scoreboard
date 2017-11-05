@@ -20,7 +20,7 @@ var arePostionsinverted = false;
 var scoreboard = new Scoreboard('scoreboard');
 var chrono = new Chronometer('watch');
 var commentBox = new CommentBox('comment-box');
-var logo = new VisualElement('logo');
+var logo = new Logo('logo');
 
 function showError(msg) {
   var errorDiv = document.getElementById('error-msg');
