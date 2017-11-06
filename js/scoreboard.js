@@ -29,6 +29,7 @@ Scoreboard.prototype.reset = function() {
   this.setContent('set-2', 0);
   this.setPlayerName('1', 'PLAYER 1');
   this.setPlayerName('2', 'PLAYER 2');
+  this.setVisible('sc-summary', false);
 }
 
 Scoreboard.prototype.updateSetLength = function(length) {
@@ -252,6 +253,27 @@ Scoreboard.prototype.undo = function() {
   this.toggleService();
   this.serviceCounter--;
   return 'score';
+}
+
+function makeSummerySetElement(setNumber, score1, score2) {
+  return '' +
+    '<div class="sc-summary-set">' +
+    '  <div class="sc-summary-set-num">#' + setNumber + '</div>' +
+    '  <div class="sc-summary-set-count">' + score1 + '</div>' +
+    '  <div class="sc-summary-set-count">' + score2 + '</div>' +
+    '</div>';
+};
+
+Scoreboard.prototype.showSummary = function() {
+  var html = '';
+  for (var set = 0; set < this.gameHistory.length; set++) {
+    html += makeSummerySetElement(
+      set + 1,
+      this.gameHistory[set].scoreCounting['1'],
+      this.gameHistory[set].scoreCounting['2']);
+  }
+  this.setHTML('sc-summary-content', html);
+  this.setVisible('sc-summary', true);
 }
 
 Scoreboard.prototype.listen = function() {

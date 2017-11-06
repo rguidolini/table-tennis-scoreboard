@@ -28,6 +28,16 @@ VisualElement.prototype.setContentView = function(elementId, content) {
   getElement(elementId).textContent = content;
 }
 
+VisualElement.prototype.setHTML = function(elementId, html) {
+  var key = this.constructor.name + '.html.' + elementId, html;
+  localStorage.setItem(key, html);
+  this.setHTMLView(elementId, html);
+}
+
+VisualElement.prototype.setHTMLView = function(elementId, html) {
+  getElement(elementId).innerHTML = html;
+}
+
 VisualElement.prototype.display = function(visible) {
   this.visible = visible;  
   this.setVisible(this.mainElementId, visible);
@@ -68,6 +78,13 @@ VisualElement.prototype.updateView = function(key, value) {
   if (key.startsWith(prefix)) {
     var elementId = key.replace(prefix, '');
     this.setContentView(elementId, value);
+    return true;
+  }
+
+  var prefix = this.constructor.name + '.html.';
+  if (key.startsWith(prefix)) {
+    var elementId = key.replace(prefix, '');
+    this.setHTMLView(elementId, value);
     return true;
   }
 

@@ -223,6 +223,7 @@ function updateComment() {
 function gameOver() {
   isGameOver = true;
   chrono.stop();
+  scoreboard.showSummary();
   getElement('controls-cover').style.zIndex = 1;
   hideWarning();
 }
