@@ -1,6 +1,6 @@
 function VisualElement(mainElementId) {
   this.mainElementId = mainElementId;
-  this.visible = false;
+  this.visible = true;
 }
 
 VisualElement.prototype.setVisible = function(elementId, visible) {
