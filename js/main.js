@@ -179,6 +179,7 @@ function undo() {
   }
   if (isGameOver) {
     isGameOver = false;
+    scoreboard.hideSummary();
     chrono.start();
     getElement('controls-cover').style.zIndex = -1;
   }

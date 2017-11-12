@@ -232,6 +232,7 @@ Scoreboard.prototype.reconstructPreviousSetData = function() {
   this.setScore('2', this.scoreCounting['2']);
   this.setContent('set-1', this.setCounting['1']);
   this.setContent('set-2', this.setCounting['2']);
+  this.hideScoresIn0x0();
 }
 
 // return: what has been undone:
@@ -274,6 +275,10 @@ Scoreboard.prototype.showSummary = function() {
   }
   this.setHTML('sc-summary-content', html);
   this.setVisible('sc-summary', true);
+}
+
+Scoreboard.prototype.hideSummary = function() {
+  this.setVisible('sc-summary', false);
 }
 
 Scoreboard.prototype.listen = function() {
