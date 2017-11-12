@@ -22,13 +22,12 @@
 }
 
 .scorer {
-  background-image: url('../images/scoreboard.png');
+  background-image: url(../images/scoreboard2.png);
   color: #FFFFFE;
-  width: 253px;
-  height: 50px;
+  width: 430px;
+  height: 88px;
   padding-top: 2px;
   padding-left: 8px;
-  background-size: 256px 52px;
   position: absolute;
   bottom: 5px;
   left: 5px;
@@ -37,9 +36,9 @@
 .line {
   padding-top: 2px;
   font-family: sans-serif;
-  font-size: 19px;
+  font-size: 28px;
   font-weight: bolder;
-  line-height: 21px;
+  line-height: 44px;
 }
 
 .ball {
@@ -55,7 +54,7 @@
 
 .player-name {
   text-transform: uppercase;
-  width: 168px;
+  width: 339px;
   float: left;
   text-shadow: black 0.1em 0.1em 0.2em;
 }
@@ -115,17 +114,16 @@
 }
 
 .watch {
-  background-image: url('../images/watch.png');
-  background-size: 80px 40px;
   color: #FFFFFE;
+  background-image: url(../images/watch2.png);
+  width: 90px;
+  height: 45px;
+  line-height: 47px;
+  font-size: 28px;
   font-family: arial;
-  font-size: 23px;
   font-weight: bold;
-  height: 40px;
-  line-height: 42px;
   text-align: center;
   text-shadow: black 0.1em 0.1em 0.2em;
-  width: 80px;
   position: absolute;
   bottom: 10px;
   right: 10px;
