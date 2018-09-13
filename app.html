@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TTS Panel</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/local.css" />
+</head>
+
+<body style="overflow: hidden;" >
+
+<div id="error-msg" class="hidden error-box">
+  You should not be seeing this message
+</div>
+
+<div id="app-pannel">
+
+  <center>
+    <div id="error-msg" class="hidden error-box">
+      You should not be seeing this message
+    </div>
+    
+    <div id="app-controls" style="margin-top: 10px;">
+      <input type="button" class="button" id="hide-app" value="Hide App" style="width: 80px;" />
+      <input type="button" class="button" id="new-game" value="New Match" />
+      <input type="button" class="button" id="open-dashboard" value="Dashboard" />
+    </div>
+  </center>
+
+  <div id="app-interaction">
+    <div id="controls-cover">
+    </div>
+    <div id="player-names" class="controls-container" />
+      <input id="player1name" type="text" placeholder="PLAYER 1" class="input-name-box"
+             maxlength="15" style="left: 10px;"/>
+      <input id="player2name" type="text" placeholder="PLAYER 2" class="input-name-box"
+             maxlength="15" style="left: 156px;" />
+      <div class="table-image" >
+      </div>
+      <center>
+        <input type="button" class="button" id="update-names" value="Update Names"
+               style="margin-right: 25px;" />
+        <label class="checkbox-label"
+               title="Auto invert player sides at the end of each set">
+          <input id="auto-invert" type="checkbox" checked />
+          Auto-invert
+        </label>
+      </center>
+    </div>
+ 
+    <div id="scoring" class="controls-container" />
+      <div id="score-buttons" style="height: 70px;" >
+        <div class="minor-label">
+          Score point for
+        </div>
+        <div class="path-1">
+        </div>
+        <div class="path-2">
+        </div>
+        <div class="score-btn">
+          <input id="score-player1" style="width: 100%;" class="button"
+                 type="button" value="PLAYER1" />
+        </div>
+        <div class="score-btn">
+          <input id="score-player2" style="width: 100%;" class="button"
+                 type="button" value="PLAYER2" />
+        </div>
+      </div>
+  
+      <center>
+        <input id="undo" class="jfk-button red-button" type="button" value="Undo" />
+      </center>
+    </div>
+  
+    <div class="zip-container" >
+      <div class="zip-control">
+        <label class="title">Internaut Comment</label>
+      </div>
+      <div id="comment-box-pannel" class="zip-content">
+        <table><tbody>
+          <tr>
+            <td><input id="input-netzen" type="text" placeholder="Internaut"></td>
+          </tr>
+          <tr>
+            <td><textarea id="input-comment" rows="4" placeholder="Comment"></textarea></td>
+          </tr>
+          <tr>
+            <td>
+              <input id="show-comment" class="button" type="button" value="Show" style="width: 62px;margin-left: 104px;">
+            </td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+  
+    <div class="zip-container" >
+      <div class="zip-control">
+        <label class="title">Advanced Setup</label>
+      </div>
+      <div id="setup-pannel" class="zip-content">
+        <table>
+          <tr>
+            <td class="label">Set length:</td>
+            <td><input id="set-length" type="text" value=11 /></td>
+            <td><input id="update-set" class="button" type="button" value="update" /></td>
+          </tr>
+          <tr>
+            <td class="label">Match length (in sets):</td>
+            <td><input id="game-length" type="text" value=3 /></td>
+            <td><input id="update-game" class="button" type="button" value="update" /></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="help-container" class="zip-container" />
+      <div id="help-control" class="zip-control">
+        <label class="title">Show keyboard shortcuts</label>
+      </div>
+      <div class="zip-content">
+        <table style="font-family: sans-serif; font-size: 13px;">
+          <tr>
+            <td class="legend-icon">&larr;</td>
+            <td>Score 1 point for <b><span id="p1name">PLAYER1</span></b>.</td>
+          </tr>
+          <tr>
+            <td class="legend-icon">&rarr;</td>
+            <td>Score 1 point for <b><span id="p2name">PLAYER2</span></b>.</td>
+          </tr>
+          <tr>
+            <td class="legend-icon">&darr;</td>
+            <td>Undo last scoring.</td>
+          </tr>
+          <tr>
+            <td class="legend-icon">&uarr;</td>
+            <td>Invert players position at the table.</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <div id="screen" >
+    <div id="error-msg" class="hidden error-box">
+      You should not be seeing this message
+    </div>
+
+    <div id='scoreboard'>
+      <div class='scorer'>
+        <div class=line id='line-1'>
+          <div class='ball hidden' id='ball-1'></div>
+          <div class='player-name' id='name-1'> player 1 </div>
+          <div class='set' id='set-1'> 0 </div>
+          <div class='point hidden' id='point-1'> 0 </div>
+        </div>
+
+        <div class=line id='line-2'>
+          <div class='ball hidden' id='ball-2'></div>
+          <div class='player-name' id='name-2'> player 2 </div>
+          <div class='set' id='set-2'> 0 </div>
+          <div class='point hidden' id='point-2'> 0 </div>
+        </div>
+      </div>
+      <div id="sc-summary" class="hidden">
+        <div id="sc-summary-content"></div>
+        <div id="sc-summary-frame"></div>
+      </div>
+    </div>
+
+
+    <div id='watch' class='watch'>
+      00:00
+    </div>
+
+    <div id='comment-box' class='comment-box hidden'>
+      <div id="comment-title" class="comment-plate" >Comentário do Internauta</div>
+      <div id='comment' ></div>
+      <div id='netzen' class="comment-plate" ></div>
+    </div>
+
+    <div id="logo">
+      <div style="height: 30px;">
+        <img src="images/logo.png">
+      </div>
+      <div id="live-text" >
+        A&nbsp;O&nbsp;&nbsp;&nbsp;V&nbsp;I&nbsp;V&nbsp;O</div>
+      </div>
+    </div>
+
+
+<script src="js/common.js"></script>
+<script src="js/visual_element.js"></script>
+<script src="js/scoreboard.js"></script>
+<script src="js/chronometer.js"></script>
+<script src="js/comments.js"></script>
+<script src="js/logo.js"></script>
+<script src="js/zippy.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+
